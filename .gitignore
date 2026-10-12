@@ -36,6 +36,8 @@ x64/
 *.pdb
 *.ilk
 # 链接与镜像产物
+*.bin
+*.exe
 *.elf
 *.map
 *.hex

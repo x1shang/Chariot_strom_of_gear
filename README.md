@@ -1,11 +1,11 @@
 ---
 title: chariot — ESP32 投石小车
 type: project-index
-status: 原型 / 电机默认锁定
+status: 原型 / 子系统控制状态见固件说明
 mcu: ESP32-D0WD-V3
 fqbn: esp32:esp32:esp32
 serial_port: COM9
-last_verified: 2026-10-07
+last_verified: 2026-10-10
 ---
 
 # chariot — ESP32 投石小车
@@ -16,12 +16,12 @@ last_verified: 2026-10-07
 | 子系统 | 职责 | 硬件 | 代码 |
 |---|---|---|---|
 | **投掷机构** | PS2 手柄按住蓄力 → 90° 抛杆 → 自动复位 | 2804 无刷 + DRV8313 + AS5600 + SimpleFOC | `firmware/catapult/` |
-| **行驶底盘** | 四麦轮独立驱动（每轮一个 H 桥，不能并接） | **2 × TB6612FNG** 双路有刷驱动板 ← 当前方案 | `firmware/chassis/MecanumPS2*Diagnostic/` 架空**诊断**固件；**行驶固件待写**（见下） |
+| **行驶底盘** | 四麦轮独立驱动（每轮一个 H 桥，不能并接） | **2 × TB6612FNG** 双路有刷驱动板 ← 当前方案 | [`MecanumPS2Dpad`](firmware/chassis/MecanumPS2Dpad/README.md)：方向键前后/横移，100% 目标占空比；另保留架空诊断固件 |
 | **MCP 桥** | 给 Codex 提供串口/编译/烧录工具 | pyserial + arduino-cli + esptool | `tools/mcp-bridge/` |
 
-> 🔴 **现在不能通电使能电机。** 编码器通信未通过验收、磁场偏弱、驱动功率供电未确认。
-> 所有固件默认锁定（`CONFIG_CONFIRMED=false`、`SUPPLY_VOLTAGE=0`，驱动 EN 保持低电平），
-> 上电只会打印状态，不会驱动电机。详见 [§6 当前阻塞](#6-当前阻塞)。
+> **投掷机构仍有待验收项。** 编码器通信、磁场及驱动功率供电的历史阻塞见 [§6 当前阻塞](#6-当前阻塞)，相关 FOC 固件保留配置锁。
+>
+> **2026-10-10 底盘更新：** 新增独立方向键固件 [`MecanumPS2Dpad`](firmware/chassis/MecanumPS2Dpad/README.md)，开机松开全部按键、通信有效后自动就绪，直接按方向键移动，无需 START/L1。松键撤销输出；投掷输出保持禁用。100% 版本已编译、烧录并通过动力关闭时的启动检查，带载速度、持续运行及无线断联表现仍待实车确认。
 
 ---
 
@@ -36,6 +36,7 @@ chariot/
 │   │   ├── Stage1_AS5600Test/ 第一阶段：只读编码器，不驱动电机
 │   │   └── Stage2_FOCClosedLoop/ 第二阶段：闭环空载测试
 │   └── chassis/               底盘固件
+│       ├── MecanumPS2Dpad/    【方向键行驶】前后/左右平移，100% 目标占空比
 │       ├── MecanumPS2/        【当前主线】两线法麦轮 + PS2（本仓库基线 c762494）
 │       ├── MecanumPS2*Diagnostic/  4 个架空限时诊断固件，见 docs/diagnostics/2026-10-07/
 │       ├── MotorLinkCheck/    ⚠️ 奇果派 PCA9685：链路自检（不适用 TB6612）
@@ -128,7 +129,7 @@ FQBN   : esp32:esp32:esp32      (ESP32 Dev Module)
 
 **合计 9 根输出，一根都不借投掷/PS2 的引脚** —— 这正是它能与投掷直接整合、不需要 IO 扩展器的原因。
 
-- ⚠️ **这套接法还没有可用的行驶固件。** `firmware/chassis/MecanumPS2*Diagnostic/` 是**架空诊断**固件
+- **方向键行驶固件：** [`MecanumPS2Dpad`](firmware/chassis/MecanumPS2Dpad/README.md) 沿用此接线，轮向极性为 `{1,1,-1,-1}`，已完成编译、烧录和启动检查，100% 版本尚未进行带动力实测。`firmware/chassis/MecanumPS2*Diagnostic/` 是**架空诊断**固件
   （只有限时点动，用来实测链路与命令解析）；`firmware/chassis/Motor*/` 是奇果派 PCA9685 的代码，烧进 TB6612 什么都不会发生。
   实现要点（启动先拉低 STBY、换向先撤原方向 PWM、制动要让 PWM 外设真的输出常高）见接线文档 §3。
 - ⚠️ **9 根引脚用满，没有舵机信号脚了。** 投球机构若要 MG995 舵机，需改用下面的备选方案。
@@ -243,7 +244,7 @@ python tools\mcp-bridge\test_mcp.py                # 验证 MCP 协议
 | 投掷机构 · PS2Catapult | 已上传 COM9 并验证启动（332524 字节 / 25%，全局变量 24548 / 7%）。PS2 数字模式 `0x41` 帧已验证；**按键功能、自动往返、带杆运行未验证** |
 | 投掷机构 · Stage1 | 已烧录诊断过；串口与 I2C 电气正常，**编码器未通过** |
 | 行驶底盘 · 奇果派 PCA9685（备选） | 2 个固件 × 5 种开发板**编译全部通过**；**尚未实机烧录**；该方案已让位给 TB6612 |
-| 行驶底盘 · TB6612FNG（当前） | 接线按两线法装配；4 个**架空限时诊断固件**已编译烧录。单轮双向、四轮 300ms 短测**通过现场观察**；**四轮持续联动未通过、根因未定位**（见 `docs/diagnostics/2026-10-07/`）；**行驶固件仍未编写**，接线**未做完整实物通断验收** |
+| 行驶底盘 · TB6612FNG（当前） | 接线按两线法装配；方向键固件 `MecanumPS2Dpad` 已编译、烧录，100% 目标占空比，启动时手柄在线且四轮输出零。100% 版本带载运动仍待确认。历史单轮双向及四轮 300ms 短测通过现场观察，持续联动异常仍保留于诊断记录 |
 | MCP 桥 | MCP 协议层与 Codex 端到端**均已验证** |
 
 ## 7. 故障排查
@@ -297,6 +298,7 @@ python tools\mcp-bridge\test_mcp.py                # 验证 MCP 协议
 
 | 模块 README | 内容 |
 |---|---|
+| [`firmware/chassis/MecanumPS2Dpad/README.md`](firmware/chassis/MecanumPS2Dpad/README.md) | 【方向键行驶】前后/左右平移、100% 目标占空比、测试和启动日志 |
 | [`firmware/chassis/MecanumPS2/README.md`](firmware/chassis/MecanumPS2/README.md) | 【底盘主线】两线法麦轮 + PS2：命令表、占空比/时限、安全边界 |
 | [`firmware/chassis/MecanumPS2MotionDiagnostic/README.md`](firmware/chassis/MecanumPS2MotionDiagnostic/README.md) | ★ 当前诊断版：4 个诊断固件的版本/极性/命令总表 + `MOVEPULSE` |
 | [`firmware/chassis/TB6612LogicCheck/README.md`](firmware/chassis/TB6612LogicCheck/README.md) | 第 2 步逻辑验收固件（只回读引脚，不含使能与运动） |
@@ -357,9 +359,7 @@ python tools\mcp-bridge\test_mcp.py                # 验证 MCP 协议
 **底盘侧待办（按顺序）**：
 
 1. **修 GPIO21/22 的 SDA 间歇故障** —— 它同时影响投掷和（若走备选方案的）I2C，是唯一两头都卡的故障。
-2. **先定位四轮持续联动失败的根因，再写 TB6612FNG 行驶固件** —— 诊断固件已入库
-   （8 路 20kHz PWM + STBY 使能 + 四轮独立混控，但**只有限时点动**，不能用来开）；联动时只有单轮转，
-   先完成排错索引 §下一步待测 的**输出电压诊断**（降压模块 VADJ-OUT 相对模块 GND）。
+2. **验证方向键固件的带载速度、持续运行及断联停车** —— `MecanumPS2Dpad` 已编译、烧录并通过动力关闭启动检查；历史联动停转问题仍需结合供电和输出电压诊断排查，不能由软件测试推断实车正常。
 3. 核对手上是否有奇果派 PCA9685 板、以及投球机构是否要 MG995 舵机 —— 这两条决定底盘走哪条路。
 4. 底盘 ↔ 投掷**动作互锁**（本程序只控投掷电机，不控行驶）。
 
