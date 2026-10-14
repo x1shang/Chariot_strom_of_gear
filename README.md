@@ -16,13 +16,13 @@ last_updated: 2026-10-14
 
 | 子系统 | 职责 | 硬件 | 代码 |
 |---|---|---|---|
-| **抛投装置** | 2号转轴拉绳蓄力；1号控制2号位置实现释放 | **L298N + 两台 N20，12V 动力方案** | [当前接线与 GPIO](docs/抛投装置-L298N双N20接线与GPIO分配.md)；[2号单次3秒测试固件](firmware/catapult/N20Motor2DirectionCheck/README.md) |
+| **抛投装置** | 2号转轴拉绳蓄力；1号控制2号位置实现释放 | **L298N + 两台 N20，12V 动力方案** | [当前接线与 GPIO](docs/抛投装置-L298N双N20接线与GPIO分配.md)；[2号3秒→1号0.5秒测试固件](firmware/catapult/N20SequenceTest/README.md) |
 | **行驶底盘** | 四麦轮独立驱动（每轮一个 H 桥，不能并接） | **2 × TB6612FNG** 双路有刷驱动板 ← 当前方案 | [`MecanumPS2Dpad`](firmware/chassis/MecanumPS2Dpad/README.md)：方向键前后/横移，100% 目标占空比；另保留架空诊断固件 |
 | **MCP 桥** | 给 Codex 提供串口/编译/烧录工具 | pyserial + arduino-cli + esptool | `tools/mcp-bridge/` |
 
 > **2026-10-14 抛投更新：** 用户报告 DRV8313 烧坏，移除旧驱动及 AS5600 编码器，改用 L298N + 两台 N20，采用 12V 动力方案。[旧文档、固件与证据已归档](docs/archive/2026-10-14-DRV8313-AS5600/README.md)。旧 FOC 固件不适用于新接线。
 >
-> **当前板上固件：** `N20Motor2DirectionCheck`，已烧录并按用户请求完成6次独立的2号电机3秒电气正转，1号释放电机和底盘禁用。上电停止，不自动重复；实际机械转向待用户确认。[测试记录](docs/logs/2026-10-14-n20-motor2-check/README.md)
+> **当前板上固件：** 已按用户要求恢复原`MecanumPS2Dpad`方向键底盘驱动，保留100%目标占空比。启动确认hw=1、ps=1、mode=73、ready=1，STBY=0及四轮输出为0；两台N20不参与控制。[恢复烧录记录](docs/logs/2026-10-14-restore-dpad/README.md)。刚才的测试源码与日志完整保留，入口见[测试程序索引](docs/测试程序索引-2026-10-14.md)。
 >
 > **⚠️ 2026-10-14 实机抛投未成功：** 用户现场试验后报告四项问题——电池像是断路、只能直连电源；3D 打印孔过大导致齿轮一直滑齿，加限位器失败；卷线轴没有半月形杆，齿轮在轴上滑动并脱落、无法装回；人力把杆拉满时抛射初始角度仍是平的，过不了城墙。四项均为现场口述、无仪器数据与照片；其中**抛射角度问题不依赖其余三项修复**，属机构几何设计问题。[失败记录与证据边界](docs/logs/2026-10-14-throw-test/README.md) · [机器可读报告原件](docs/logs/2026-10-14-throw-test/user-report.json)
 >

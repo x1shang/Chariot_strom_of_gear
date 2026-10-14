@@ -1,0 +1,36 @@
+{
+  "date": "2026-10-14",
+  "sketch": "D:\\Temp\\chariot-restore-dpad-1x7ey1_a\\MecanumPS2Dpad",
+  "build": "D:\\Temp\\chariot-restore-dpad-1x7ey1_a\\build",
+  "port": "COM9",
+  "firmware": "MecanumPS2Dpad",
+  "source_sha256": {
+    "DpadControl.h": "65a08ffb1f6fd14e9e51e3a0f34f840e50dfda4a72ea2039c5b8d00bf747559f",
+    "DriveMath.h": "6e089b4245f24e664e19de4dc61254b54e5f29d82b72a7ced9d7c8bad582b9a4",
+    "MecanumPS2Dpad.ino": "aa8d2e03a3d6d1e91bccbfc1031c3ce8b643761258fe8ee9759ad9dc99ac6743"
+  },
+  "preserved_test_source_sha256": {
+    "firmware/chassis/PS2SignalCheck/PS2SignalCheck.ino": "2d5d3054ed7a45a25441a239f4fe2dda2c24658c1cff808f33216d2d18e2f68b",
+    "firmware/catapult/N20Motor2DirectionCheck/N20Motor2DirectionCheck.ino": "c21f1dada0b93350feeff8d28d68a7db0f649113ac1880f1f87de31c317d8c82",
+    "firmware/catapult/N20Motor2Reverse10s/N20Motor2Reverse10s.ino": "ef63351559418c7cef1a501fd7828d593b882ef89b865c972a80fecc7ac47e94",
+    "firmware/catapult/N20SequenceTest/N20SequenceTest.ino": "cc142b88a90823f9add2ab9b46d8d70c2dff4ff41fca935a6db0bd98351a70b5",
+    "host/motor2_forward_once.py": "b1cadd80ea31e9f5e0be9e5d5cd62993a20f5b10a8bcd278d430df2e57d683ae",
+    "host/motor2_counterclockwise_once.py": "1e8ae6da5e477775253eca00e06f30fc6b9635fead4b355d8cc6abd864275a89",
+    "host/n20_sequence_once.py": "b08200f6c78e1d93b27cfdde3e3c15456cc20089ecd635b456404dbc19930c4f",
+    "tests/test_n20_motor2_firmware.cpp": "bd29f96982175c154b30bb471a514a79ae62579fc60ed57082dc4b427892ceef",
+    "tests/test_n20_motor2_reverse_firmware.cpp": "c3097643a61b81e98150455417176e7f7563acf41611537951ea3251986a818a",
+    "tests/test_n20_sequence_firmware.cpp": "b82cf47167f13eaa92898dd7c89080e264cc93c789278de1714726d61e7d56d9",
+    "tests/test_ps2_signal_check.cpp": "d92de42d3cff269545640596a61dbfb9f81253554a3d71dbbb7c64f7be641c08"
+  },
+  "fqbn": "esp32:esp32:esp32",
+  "core": "3.3.12",
+  "chip": "ESP32-D0WD-V3 rev3.1",
+  "mac": "08:a6:f7:a8:95:94",
+  "app_bytes": 284192,
+  "app_image_sha256": "233ab9adf088cdae06d077e3fb561329e72ed52fb5c57148a93c01edb560104b",
+  "flash_write_hash_verified": true,
+  "final_status": "STATUS hw=1 ps=1 mode=73 buttons=0000 ready=1 STBY=0 duty=0,0,0,0",
+  "preserved_test_sources_verified": true,
+  "motion_commands_sent": 0,
+  "serial_closed": true
+}

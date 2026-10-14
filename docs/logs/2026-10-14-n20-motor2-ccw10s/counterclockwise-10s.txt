@@ -1,0 +1,94 @@
+Checked 2026-10-14T19:18:08.158313 port=COM9
+User requested one motor2 counterclockwise 10s test, with motor1 disabled.
+Motor1 release output must stay disabled. Single motor2 CCW10S only.
+0.000s TX STOP
+0.000s TX STATUS
+0.015s RX OK STOP; motor 1 disabled
+0.015s RX STATUS fw=N20Motor2Ccw10s-v1 hw=1 used=0 running=0 ENA=0 ENB=0 IN3=0 IN4=0 STBY=0 elapsed=0
+1.500s PREPARE 5s; motor2 will run counterclockwise for 10s once
+6.547s TX CCW10S
+6.547s TX STATUS
+6.562s RX START CCW10S motor=2 ms=10000 IN3=0 IN4=1 ENB=1 ENA=0
+6.562s RX STATUS fw=N20Motor2Ccw10s-v1 hw=1 used=1 running=1 ENA=0 ENB=1 IN3=0 IN4=1 STBY=0 elapsed=0
+6.812s TX STATUS
+6.812s RX STATUS fw=N20Motor2Ccw10s-v1 hw=1 used=1 running=1 ENA=0 ENB=1 IN3=0 IN4=1 STBY=0 elapsed=257
+7.062s TX STATUS
+7.062s RX STATUS fw=N20Motor2Ccw10s-v1 hw=1 used=1 running=1 ENA=0 ENB=1 IN3=0 IN4=1 STBY=0 elapsed=504
+7.312s TX STATUS
+7.312s RX STATUS fw=N20Motor2Ccw10s-v1 hw=1 used=1 running=1 ENA=0 ENB=1 IN3=0 IN4=1 STBY=0 elapsed=758
+7.609s TX STATUS
+7.609s RX STATUS fw=N20Motor2Ccw10s-v1 hw=1 used=1 running=1 ENA=0 ENB=1 IN3=0 IN4=1 STBY=0 elapsed=1055
+7.906s TX STATUS
+7.906s RX STATUS fw=N20Motor2Ccw10s-v1 hw=1 used=1 running=1 ENA=0 ENB=1 IN3=0 IN4=1 STBY=0 elapsed=1349
+8.203s TX STATUS
+8.218s RX STATUS fw=N20Motor2Ccw10s-v1 hw=1 used=1 running=1 ENA=0 ENB=1 IN3=0 IN4=1 STBY=0 elapsed=1656
+8.468s TX STATUS
+8.484s RX STATUS fw=N20Motor2Ccw10s-v1 hw=1 used=1 running=1 ENA=0 ENB=1 IN3=0 IN4=1 STBY=0 elapsed=1918
+8.718s TX STATUS
+8.734s RX STATUS fw=N20Motor2Ccw10s-v1 hw=1 used=1 running=1 ENA=0 ENB=1 IN3=0 IN4=1 STBY=0 elapsed=2172
+9.015s TX STATUS
+9.031s RX STATUS fw=N20Motor2Ccw10s-v1 hw=1 used=1 running=1 ENA=0 ENB=1 IN3=0 IN4=1 STBY=0 elapsed=2463
+9.265s TX STATUS
+9.281s RX STATUS fw=N20Motor2Ccw10s-v1 hw=1 used=1 running=1 ENA=0 ENB=1 IN3=0 IN4=1 STBY=0 elapsed=2715
+9.531s TX STATUS
+9.531s RX STATUS fw=N20Motor2Ccw10s-v1 hw=1 used=1 running=1 ENA=0 ENB=1 IN3=0 IN4=1 STBY=0 elapsed=2972
+9.781s TX STATUS
+9.797s RX STATUS fw=N20Motor2Ccw10s-v1 hw=1 used=1 running=1 ENA=0 ENB=1 IN3=0 IN4=1 STBY=0 elapsed=3237
+10.047s TX STATUS
+10.062s RX STATUS fw=N20Motor2Ccw10s-v1 hw=1 used=1 running=1 ENA=0 ENB=1 IN3=0 IN4=1 STBY=0 elapsed=3498
+10.312s TX STATUS
+10.312s RX STATUS fw=N20Motor2Ccw10s-v1 hw=1 used=1 running=1 ENA=0 ENB=1 IN3=0 IN4=1 STBY=0 elapsed=3754
+10.562s TX STATUS
+10.562s RX STATUS fw=N20Motor2Ccw10s-v1 hw=1 used=1 running=1 ENA=0 ENB=1 IN3=0 IN4=1 STBY=0 elapsed=4004
+10.875s TX STATUS
+10.875s RX STATUS fw=N20Motor2Ccw10s-v1 hw=1 used=1 running=1 ENA=0 ENB=1 IN3=0 IN4=1 STBY=0 elapsed=4316
+11.172s TX STATUS
+11.172s RX STATUS fw=N20Motor2Ccw10s-v1 hw=1 used=1 running=1 ENA=0 ENB=1 IN3=0 IN4=1 STBY=0 elapsed=4614
+11.422s TX STATUS
+11.422s RX STATUS fw=N20Motor2Ccw10s-v1 hw=1 used=1 running=1 ENA=0 ENB=1 IN3=0 IN4=1 STBY=0 elapsed=4864
+11.734s TX STATUS
+11.734s RX STATUS fw=N20Motor2Ccw10s-v1 hw=1 used=1 running=1 ENA=0 ENB=1 IN3=0 IN4=1 STBY=0 elapsed=5178
+11.984s TX STATUS
+11.984s RX STATUS fw=N20Motor2Ccw10s-v1 hw=1 used=1 running=1 ENA=0 ENB=1 IN3=0 IN4=1 STBY=0 elapsed=5426
+12.265s TX STATUS
+12.281s RX STATUS fw=N20Motor2Ccw10s-v1 hw=1 used=1 running=1 ENA=0 ENB=1 IN3=0 IN4=1 STBY=0 elapsed=5716
+12.531s TX STATUS
+12.531s RX STATUS fw=N20Motor2Ccw10s-v1 hw=1 used=1 running=1 ENA=0 ENB=1 IN3=0 IN4=1 STBY=0 elapsed=5979
+12.781s TX STATUS
+12.797s RX STATUS fw=N20Motor2Ccw10s-v1 hw=1 used=1 running=1 ENA=0 ENB=1 IN3=0 IN4=1 STBY=0 elapsed=6231
+13.031s TX STATUS
+13.047s RX STATUS fw=N20Motor2Ccw10s-v1 hw=1 used=1 running=1 ENA=0 ENB=1 IN3=0 IN4=1 STBY=0 elapsed=6481
+13.281s TX STATUS
+13.281s RX STATUS fw=N20Motor2Ccw10s-v1 hw=1 used=1 running=1 ENA=0 ENB=1 IN3=0 IN4=1 STBY=0 elapsed=6724
+13.531s TX STATUS
+13.531s RX STATUS fw=N20Motor2Ccw10s-v1 hw=1 used=1 running=1 ENA=0 ENB=1 IN3=0 IN4=1 STBY=0 elapsed=6978
+13.781s TX STATUS
+13.781s RX STATUS fw=N20Motor2Ccw10s-v1 hw=1 used=1 running=1 ENA=0 ENB=1 IN3=0 IN4=1 STBY=0 elapsed=7236
+14.031s TX STATUS
+14.047s RX STATUS fw=N20Motor2Ccw10s-v1 hw=1 used=1 running=1 ENA=0 ENB=1 IN3=0 IN4=1 STBY=0 elapsed=7480
+14.281s TX STATUS
+14.281s RX STATUS fw=N20Motor2Ccw10s-v1 hw=1 used=1 running=1 ENA=0 ENB=1 IN3=0 IN4=1 STBY=0 elapsed=7724
+14.547s TX STATUS
+14.547s RX STATUS fw=N20Motor2Ccw10s-v1 hw=1 used=1 running=1 ENA=0 ENB=1 IN3=0 IN4=1 STBY=0 elapsed=7988
+14.843s TX STATUS
+14.843s RX STATUS fw=N20Motor2Ccw10s-v1 hw=1 used=1 running=1 ENA=0 ENB=1 IN3=0 IN4=1 STBY=0 elapsed=8287
+15.093s TX STATUS
+15.093s RX STATUS fw=N20Motor2Ccw10s-v1 hw=1 used=1 running=1 ENA=0 ENB=1 IN3=0 IN4=1 STBY=0 elapsed=8536
+15.390s TX STATUS
+15.406s RX STATUS fw=N20Motor2Ccw10s-v1 hw=1 used=1 running=1 ENA=0 ENB=1 IN3=0 IN4=1 STBY=0 elapsed=8840
+15.656s TX STATUS
+15.656s RX STATUS fw=N20Motor2Ccw10s-v1 hw=1 used=1 running=1 ENA=0 ENB=1 IN3=0 IN4=1 STBY=0 elapsed=9100
+15.953s TX STATUS
+15.953s RX STATUS fw=N20Motor2Ccw10s-v1 hw=1 used=1 running=1 ENA=0 ENB=1 IN3=0 IN4=1 STBY=0 elapsed=9399
+16.250s TX STATUS
+16.265s RX STATUS fw=N20Motor2Ccw10s-v1 hw=1 used=1 running=1 ENA=0 ENB=1 IN3=0 IN4=1 STBY=0 elapsed=9700
+16.500s TX STATUS
+16.500s RX STATUS fw=N20Motor2Ccw10s-v1 hw=1 used=1 running=1 ENA=0 ENB=1 IN3=0 IN4=1 STBY=0 elapsed=9945
+16.547s RX DONE CCW10S elapsed=10000 ENB=0; no automatic repeat
+16.797s TX STATUS
+16.797s RX STATUS fw=N20Motor2Ccw10s-v1 hw=1 used=1 running=0 ENA=0 ENB=0 IN3=0 IN4=0 STBY=0 elapsed=10000
+16.797s PASS firmware start/10s completion/disable; physical motion requires user observation
+16.797s TX STOP
+16.797s TX STATUS
+16.797s FINAL OK STOP; motor 1 disabled
+16.812s FINAL STATUS fw=N20Motor2Ccw10s-v1 hw=1 used=1 running=0 ENA=0 ENB=0 IN3=0 IN4=0 STBY=0 elapsed=10000

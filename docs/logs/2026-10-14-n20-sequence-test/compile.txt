@@ -1,0 +1,4 @@
+$ arduino-cli compile --fqbn esp32:esp32:esp32 --build-path D:\Temp\chariot-n20-sequence-9mxlmle7\build D:\Temp\chariot-n20-sequence-9mxlmle7\N20SequenceTest
+(rc=0)
+Sketch uses 276180 bytes (21%) of program storage space. Maximum is 1310720 bytes.
+Global variables use 22188 bytes (6%) of dynamic memory, leaving 305492 bytes for local variables. Maximum is 327680 bytes.

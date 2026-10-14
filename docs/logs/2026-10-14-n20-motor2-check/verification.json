@@ -10,11 +10,11 @@
   "app_image_sha256": "D60EDD21A470AFCFBF845E54B42824ACC4618277EDE71A562AE275AFB241FB58",
   "app_bytes": 275296,
   "flash_write_hash_verified": true,
-  "motor2_forward_command_count": 6,
+  "motor2_forward_command_count": 7,
   "firmware_elapsed_ms": 3000,
   "motor1_ena_during_test": 0,
   "final_enb": 0,
-  "physical_direction": "Awaiting user observation",
+  "physical_direction": "User confirmed IN3=1, IN4=0 is clockwise from output shaft end",
   "runs": [
     {
       "log": "motor2-forward-3s.txt",
@@ -51,6 +51,18 @@
       "command_count": 1,
       "elapsed_ms": 3000,
       "final_disabled": true
+    },
+    {
+      "log": "motor2-forward-3s-repeat-07.txt",
+      "command_count": 1,
+      "elapsed_ms": 3000,
+      "final_disabled": true,
+      "motor1_always_disabled": true
     }
-  ]
+  ],
+  "motor1_clockwise_polarity": {
+    "IN1": 0,
+    "IN2": 1,
+    "source": "User observed IN1=1, IN2=0 was counterclockwise in the sequence test"
+  }
 }

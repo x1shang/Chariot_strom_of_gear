@@ -1,0 +1,39 @@
+{
+  "sketch": "D:\\Temp\\chariot-ps2-check-grhhc44h\\PS2SignalCheck",
+  "build": "D:\\Temp\\chariot-ps2-check-grhhc44h\\build",
+  "port": "COM9",
+  "firmware": "PS2SignalCheck-v1",
+  "source_sha256": "2d5d3054ed7a45a25441a239f4fe2dda2c24658c1cff808f33216d2d18e2f68b",
+  "fqbn": "esp32:esp32:esp32",
+  "core": "3.3.12",
+  "app_bytes": 275744,
+  "app_image_sha256": "fa13149343d4f9849d5e4dd17513e1a2382de04e7ef4b4c1dac03eecebf31808",
+  "flash_write_hash_verified": true,
+  "final_status": {
+    "fw": "PS2SignalCheck-v1",
+    "hw": "1",
+    "ps": "1",
+    "mode": "73",
+    "marker": "5A",
+    "buttons": "0000",
+    "frames": "11544",
+    "good": "11544",
+    "bad": "0",
+    "changes": "36",
+    "STBY": "0",
+    "ENA": "0",
+    "ENB": "0"
+  },
+  "serial_closed": true,
+  "observed_button_masks": [
+    "0000",
+    "0002",
+    "0020"
+  ],
+  "all_four_dpad_directions_verified": false,
+  "wireless_disconnect_tested": false,
+  "original_drive_source_sha256": {
+    "firmware/chassis/MecanumPS2Dpad/MecanumPS2Dpad.ino": "aa8d2e03a3d6d1e91bccbfc1031c3ce8b643761258fe8ee9759ad9dc99ac6743",
+    "firmware/chassis/MecanumPS2/MecanumPS2.ino": "23e5a4b697e4fdc9ea4ae40fa2e34f0c228a34038e02b34bc341562664ee671f"
+  }
+}
