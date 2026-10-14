@@ -1,0 +1,25 @@
+Check started 2026-10-14T11:24:15.531748 COM9 baud=115200
+User confirmed four wheels raised, controller ON, chassis power ON.
+No reset/upload. Only STOP and STATUS serial commands. Physical inputs supplied by user.
+0.016s OK STOP; release all buttons before driving
+0.016s STATUS hw=1 ps=1 mode=73 buttons=0000 ready=0 STBY=0 duty=0,0,0,0
+0.438s STATUS hw=1 ps=1 mode=73 buttons=0000 ready=1 STBY=0 duty=0,0,0,0
+0.469s STATUS hw=1 ps=1 mode=73 buttons=0000 ready=1 STBY=0 duty=0,0,0,0
+0.859s STATUS hw=1 ps=1 mode=73 buttons=0000 ready=1 STBY=0 duty=0,0,0,0
+0.969s STATUS hw=1 ps=1 mode=73 buttons=0000 ready=1 STBY=0 duty=0,0,0,0
+1.266s STATUS hw=1 ps=1 mode=73 buttons=0000 ready=1 STBY=0 duty=0,0,0,0
+1.469s STATUS hw=1 ps=1 mode=73 buttons=0000 ready=1 STBY=0 duty=0,0,0,0
+1.672s STATUS hw=1 ps=1 mode=73 buttons=0000 ready=1 STBY=0 duty=0,0,0,0
+1.969s STATUS hw=1 ps=1 mode=73 buttons=0000 ready=1 STBY=0 duty=0,0,0,0
+2.109s STATUS hw=1 ps=1 mode=73 buttons=0000 ready=1 STBY=0 duty=0,0,0,0
+2.469s STATUS hw=1 ps=1 mode=73 buttons=0000 ready=1 STBY=0 duty=0,0,0,0
+2.547s STATUS hw=1 ps=1 mode=73 buttons=0000 ready=1 STBY=0 duty=0,0,0,0
+2.938s STATUS hw=1 ps=1 mode=73 buttons=0000 ready=1 STBY=0 duty=0,0,0,0
+2.969s STATUS hw=1 ps=1 mode=73 buttons=0000 ready=1 STBY=0 duty=0,0,0,0
+3.375s STATUS hw=1 ps=1 mode=73 buttons=0000 ready=1 STBY=0 duty=0,0,0,0
+3.469s STATUS hw=1 ps=1 mode=73 buttons=0000 ready=1 STBY=0 duty=0,0,0,0
+3.781s STATUS hw=1 ps=1 mode=73 buttons=0000 ready=1 STBY=0 duty=0,0,0,0
+3.969s STATUS hw=1 ps=1 mode=73 buttons=0000 ready=1 STBY=0 duty=0,0,0,0
+FINAL OK STOP; release all buttons before driving
+FINAL STATUS hw=1 ps=1 mode=73 buttons=0000 ready=0 STBY=0 duty=0,0,0,0
+FINAL STATUS hw=1 ps=1 mode=73 buttons=0000 ready=1 STBY=0 duty=0,0,0,0

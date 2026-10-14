@@ -1,0 +1,4 @@
+Checked 2026-10-14T11:57:02.646984 COM9 115200
+User confirmed L298N motor power OFF for upload. Only STOP/STATUS; no reset or movement.
+OK STOP; motor 1 disabled
+STATUS fw=N20Motor2Fwd3s-v1 hw=1 used=0 running=0 ENA=1 ENB=1 IN3=0 IN4=0 STBY=0 elapsed=0

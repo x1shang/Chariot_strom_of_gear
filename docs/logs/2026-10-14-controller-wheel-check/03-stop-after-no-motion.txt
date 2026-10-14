@@ -1,0 +1,79 @@
+Check started 2026-10-14T11:27:28.615395 COM9 baud=115200
+User confirmed four wheels raised, controller ON, chassis power ON.
+No reset/upload. Only STOP and STATUS serial commands. Physical inputs supplied by user.
+0.000s OK STOP; release all buttons before driving
+0.000s STATUS hw=1 ps=1 mode=41 buttons=0000 ready=0 STBY=0 duty=0,0,0,0
+0.000s OK STOP; release all buttons before driving
+0.047s OK STOP; release all buttons before driving
+0.094s OK STOP; release all buttons before driving
+0.172s OK STOP; release all buttons before driving
+0.219s OK STOP; release all buttons before driving
+0.265s OK STOP; release all buttons before driving
+0.312s OK STOP; release all buttons before driving
+0.359s OK STOP; release all buttons before driving
+0.390s STATUS hw=1 ps=1 mode=41 buttons=0000 ready=0 STBY=0 duty=0,0,0,0
+0.422s OK STOP; release all buttons before driving
+0.422s STATUS hw=1 ps=1 mode=41 buttons=0000 ready=0 STBY=0 duty=0,0,0,0
+0.469s OK STOP; release all buttons before driving
+0.547s OK STOP; release all buttons before driving
+0.578s OK STOP; release all buttons before driving
+0.656s OK STOP; release all buttons before driving
+0.687s OK STOP; release all buttons before driving
+0.750s OK STOP; release all buttons before driving
+0.781s OK STOP; release all buttons before driving
+0.875s OK STOP; release all buttons before driving
+0.875s STATUS hw=1 ps=1 mode=41 buttons=0000 ready=0 STBY=0 duty=0,0,0,0
+0.890s STATUS hw=1 ps=1 mode=41 buttons=0000 ready=0 STBY=0 duty=0,0,0,0
+0.922s OK STOP; release all buttons before driving
+0.984s OK STOP; release all buttons before driving
+1.015s OK STOP; release all buttons before driving
+1.109s OK STOP; release all buttons before driving
+1.140s OK STOP; release all buttons before driving
+1.187s OK STOP; release all buttons before driving
+1.250s OK STOP; release all buttons before driving
+1.281s OK STOP; release all buttons before driving
+1.281s STATUS hw=1 ps=1 mode=41 buttons=0000 ready=0 STBY=0 duty=0,0,0,0
+1.344s OK STOP; release all buttons before driving
+1.390s STATUS hw=1 ps=1 mode=41 buttons=0000 ready=0 STBY=0 duty=0,0,0,0
+1.390s OK STOP; release all buttons before driving
+1.437s OK STOP; release all buttons before driving
+1.484s OK STOP; release all buttons before driving
+1.547s OK STOP; release all buttons before driving
+1.578s OK STOP; release all buttons before driving
+1.656s OK STOP; release all buttons before driving
+1.703s OK STOP; release all buttons before driving
+1.719s STATUS hw=1 ps=1 mode=41 buttons=0000 ready=0 STBY=0 duty=0,0,0,0
+1.765s OK STOP; release all buttons before driving
+1.812s OK STOP; release all buttons before driving
+1.859s OK STOP; release all buttons before driving
+1.890s STATUS hw=1 ps=1 mode=41 buttons=0000 ready=0 STBY=0 duty=0,0,0,0
+1.890s OK STOP; release all buttons before driving
+1.937s OK STOP; release all buttons before driving
+1.984s OK STOP; release all buttons before driving
+2.047s OK STOP; release all buttons before driving
+2.094s OK STOP; release all buttons before driving
+2.140s OK STOP; release all buttons before driving
+2.140s STATUS hw=1 ps=1 mode=41 buttons=0000 ready=0 STBY=0 duty=0,0,0,0
+2.203s OK STOP; release all buttons before driving
+2.250s OK STOP; release all buttons before driving
+2.281s OK STOP; release all buttons before driving
+2.359s OK STOP; release all buttons before driving
+2.390s STATUS hw=1 ps=1 mode=41 buttons=0000 ready=0 STBY=0 duty=0,0,0,0
+2.390s OK STOP; release all buttons before driving
+2.437s OK STOP; release all buttons before driving
+2.484s OK STOP; release all buttons before driving
+2.562s OK STOP; release all buttons before driving
+2.562s STATUS hw=1 ps=1 mode=41 buttons=0000 ready=0 STBY=0 duty=0,0,0,0
+2.609s OK STOP; release all buttons before driving
+2.640s OK STOP; release all buttons before driving
+2.687s OK STOP; release all buttons before driving
+2.750s OK STOP; release all buttons before driving
+2.844s OK STOP; release all buttons before driving
+2.890s STATUS hw=1 ps=1 mode=41 buttons=0000 ready=0 STBY=0 duty=0,0,0,0
+2.890s OK STOP; release all buttons before driving
+2.937s OK STOP; release all buttons before driving
+2.984s OK STOP; release all buttons before driving
+2.984s STATUS hw=1 ps=1 mode=41 buttons=0000 ready=0 STBY=0 duty=0,0,0,0
+FINAL OK STOP; release all buttons before driving
+FINAL STATUS hw=1 ps=1 mode=41 buttons=0000 ready=0 STBY=0 duty=0,0,0,0
+FINAL STATUS hw=1 ps=1 mode=41 buttons=0000 ready=1 STBY=0 duty=0,0,0,0

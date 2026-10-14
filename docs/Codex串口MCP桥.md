@@ -1,3 +1,5 @@
+> **2026-10-14 方案变更：** 本文的 DRV8313 / 2804 / AS5600 抛投接线与 FOC 结论已归入[旧方案档案](archive/2026-10-14-DRV8313-AS5600/README.md)。新抛投采用 [L298N + 双 N20](抛投装置-L298N双N20接线与GPIO分配.md)；历史实测保留，当前引脚与供电以新方案为准。
+
 # Codex 串口 / Arduino MCP 桥（tools/mcp-bridge）
 
 让 **Codex CLI 直接操作本机的串口和 Arduino 工具链** 的 MCP 服务器。

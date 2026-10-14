@@ -1,0 +1,4 @@
+Arduino-ESP32 3.3.12; fqbn=esp32:esp32:esp32
+Sketch uses 274756 bytes (20%); globals 22164 bytes (6%).
+PASS native firmware test: forward pins, 3000ms expiry/wrap, STOP, duplicate refusal, idle boot, motor1/chassis disabled.
+

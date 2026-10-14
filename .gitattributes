@@ -50,3 +50,10 @@
 *.csv      text eol=lf
 .gitignore     text eol=lf
 .gitattributes text eol=lf
+
+# ---------- 归档快照：按字节原样保存，不做行尾归一化 ----------
+# docs/archive/** 是冻结的快照，其 manifest.json 为每个文件记录了归档当时的
+# 工作区字节的 SHA-256。若上面的通用 eol 规则改写这些文件，克隆后哈希就对不上，
+# 归档的逐字节校验会失效（含 *.ps1 的 eol=crlf，会反过来把 LF 改成 CRLF）。
+# 因此对归档目录一律关闭文本转换：-text = 不碰任何行尾。
+docs/archive/** -text

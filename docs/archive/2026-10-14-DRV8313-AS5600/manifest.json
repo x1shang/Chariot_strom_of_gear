@@ -1,0 +1,763 @@
+{
+  "archived_on": "2026-10-14",
+  "source_commit": "53a1e5e24588215b056a407356b92d71419a6ab8",
+  "reason": "用户报告 DRV8313 烧坏；改用 L298N + 双 N20，移除 AS5600；选用 12V 动力方案。",
+  "files": [
+    {
+      "source_path": "README.md",
+      "snapshot_path": "snapshot/README.md",
+      "sha256": "7d36cc7b1f7e6f9f8e0d75d900258ae46f6f3586f05a5885c67dde460c356d0e",
+      "reason": "old_scheme_or_shared_context"
+    },
+    {
+      "source_path": "docs/Codex串口MCP桥.md",
+      "snapshot_path": "snapshot/docs/Codex串口MCP桥.md",
+      "sha256": "c11bcaf53669b1a51bdd18660c441b71dca6972f95d9d1a61e2517d1349c3185",
+      "reason": "old_scheme_or_shared_context"
+    },
+    {
+      "source_path": "docs/ESP32-2804-FOC-guide.md",
+      "snapshot_path": "snapshot/docs/ESP32-2804-FOC-guide.md",
+      "sha256": "d48f1930a26aeb2da8a8cd8a759c2135dc13925b777c1fb96d5dc9fd30914b8c",
+      "reason": "old_scheme_or_shared_context"
+    },
+    {
+      "source_path": "docs/PS2遥控实现与调试.md",
+      "snapshot_path": "snapshot/docs/PS2遥控实现与调试.md",
+      "sha256": "d488c3cac5d91c664c1c9be56806b89c8e7249ca2d3c3182f5b175caf0250eb5",
+      "reason": "old_scheme_or_shared_context"
+    },
+    {
+      "source_path": "docs/TT两线电机与麦轮分层验收.md",
+      "snapshot_path": "snapshot/docs/TT两线电机与麦轮分层验收.md",
+      "sha256": "468de9fc21249ef1659e19bd04fe5f255cb701065cc2fb88d3f6807683ad37fe",
+      "reason": "old_scheme_or_shared_context"
+    },
+    {
+      "source_path": "docs/TT电机测试方案.md",
+      "snapshot_path": "snapshot/docs/TT电机测试方案.md",
+      "sha256": "3f8b0ff4995a410aafe8fc5c890313212c5845bf11835bb743bcfe74b930fe42",
+      "reason": "local_link_dependency"
+    },
+    {
+      "source_path": "docs/assets/02cec176d8672e7d400d2b986632414d.jpg",
+      "snapshot_path": "snapshot/docs/assets/02cec176d8672e7d400d2b986632414d.jpg",
+      "sha256": "f3d47f4f3c5e6d6a151054dd8b2c76e087cfbe18a8883cb676d0b2ded999d485",
+      "reason": "old_scheme_or_shared_context"
+    },
+    {
+      "source_path": "docs/assets/203057240cc96969cc30a48af07484ad.jpg",
+      "snapshot_path": "snapshot/docs/assets/203057240cc96969cc30a48af07484ad.jpg",
+      "sha256": "51368cb9955790113a2d88533329552cc58157e1ddf311e5f84eb9e4c457dd94",
+      "reason": "old_scheme_or_shared_context"
+    },
+    {
+      "source_path": "docs/assets/60d4df2088c4f4ae2b890196908f64bf.jpg",
+      "snapshot_path": "snapshot/docs/assets/60d4df2088c4f4ae2b890196908f64bf.jpg",
+      "sha256": "e193005577a818050fa40b0790a854a4d6a897b6edef2e857d4127451d9a396c",
+      "reason": "old_scheme_or_shared_context"
+    },
+    {
+      "source_path": "docs/assets/8d026409f15da554c0698b05e2c8f11a.jpg",
+      "snapshot_path": "snapshot/docs/assets/8d026409f15da554c0698b05e2c8f11a.jpg",
+      "sha256": "78c27738fdeecb5b31c6f7ab065180a551489d4dad64349e803c404730f1cbbb",
+      "reason": "old_scheme_or_shared_context"
+    },
+    {
+      "source_path": "docs/assets/_ocr_driverboard.txt",
+      "snapshot_path": "snapshot/docs/assets/_ocr_driverboard.txt",
+      "sha256": "c71c5b5daa4d9ceb553ea2693470ebc0445f1ace4d8af255766fcc459047a13e",
+      "reason": "old_scheme_or_shared_context"
+    },
+    {
+      "source_path": "docs/assets/_ocr_result.txt",
+      "snapshot_path": "snapshot/docs/assets/_ocr_result.txt",
+      "sha256": "2dc6ab82a2832a4302ddea1e2cd2f3920640345bd86f1b016916de0618ad2eba",
+      "reason": "old_scheme_or_shared_context"
+    },
+    {
+      "source_path": "docs/assets/a9c2a7ad0204ca2d75682873badeca4e.jpg",
+      "snapshot_path": "snapshot/docs/assets/a9c2a7ad0204ca2d75682873badeca4e.jpg",
+      "sha256": "92fe0f8f5c879debc314bd3c9d2b725a8d55c85da50702eb68746e67cbc8e43d",
+      "reason": "old_scheme_or_shared_context"
+    },
+    {
+      "source_path": "docs/assets/cc612679d195754dd7da25badf9ae344.jpg",
+      "snapshot_path": "snapshot/docs/assets/cc612679d195754dd7da25badf9ae344.jpg",
+      "sha256": "9d2064417107b4e36a539dc6d0510d7f051eecc8d6baaf71e04ea34ac662bebd",
+      "reason": "old_scheme_or_shared_context"
+    },
+    {
+      "source_path": "docs/assets/cf740fe5e1c7d5f88c907b9585950989.jpg",
+      "snapshot_path": "snapshot/docs/assets/cf740fe5e1c7d5f88c907b9585950989.jpg",
+      "sha256": "5fce37838303d3758ef9ca3c4a158d69f5e03496d2fc271596272ca97defa4b6",
+      "reason": "old_scheme_or_shared_context"
+    },
+    {
+      "source_path": "docs/assets/d4184f2874bcdc8fea3b3960f6a12dfb.jpg",
+      "snapshot_path": "snapshot/docs/assets/d4184f2874bcdc8fea3b3960f6a12dfb.jpg",
+      "sha256": "ffd899a38ad269a8eb76e62963671e9885468796e251a236fb3fe4b260c4f7b6",
+      "reason": "old_scheme_or_shared_context"
+    },
+    {
+      "source_path": "docs/assets/面包板.xlsx",
+      "snapshot_path": "snapshot/docs/assets/面包板.xlsx",
+      "sha256": "3d042fbe5981aeb25d380ca46f91a318504924837d5aef3ad4a6ef5ca3fe88ee",
+      "reason": "old_scheme_or_shared_context"
+    },
+    {
+      "source_path": "docs/diagnostics/2026-10-07/D1-B端子测量记录-2026-10-07.md",
+      "snapshot_path": "snapshot/docs/diagnostics/2026-10-07/D1-B端子测量记录-2026-10-07.md",
+      "sha256": "86780f1a7be47c2a0f1bb963e08dfd52d9726cf42a1cc54caa770495a6f04f8a",
+      "reason": "local_link_dependency"
+    },
+    {
+      "source_path": "docs/diagnostics/2026-10-07/D1-B输入补测-逐步操作单.md",
+      "snapshot_path": "snapshot/docs/diagnostics/2026-10-07/D1-B输入补测-逐步操作单.md",
+      "sha256": "8f674d31860026b5baea65956c5b755e3c96dfa5f4c620db03cbc62e126a83bc",
+      "reason": "local_link_dependency"
+    },
+    {
+      "source_path": "docs/diagnostics/2026-10-07/PS2连接检查-2026-10-07.txt",
+      "snapshot_path": "snapshot/docs/diagnostics/2026-10-07/PS2连接检查-2026-10-07.txt",
+      "sha256": "7f785a36eeb696cbe2d2c50fe818e4d7eb85f5eb5a1814a969cd00e3d3aa97fa",
+      "reason": "local_link_dependency"
+    },
+    {
+      "source_path": "docs/diagnostics/2026-10-07/README.md",
+      "snapshot_path": "snapshot/docs/diagnostics/2026-10-07/README.md",
+      "sha256": "a33ce923f2318a28915d02933782cc81c2d2509890d4ae43cb53d1a03065ee17",
+      "reason": "local_link_dependency"
+    },
+    {
+      "source_path": "docs/diagnostics/2026-10-07/TT电机排错复核与下一步-2026-10-07.md",
+      "snapshot_path": "snapshot/docs/diagnostics/2026-10-07/TT电机排错复核与下一步-2026-10-07.md",
+      "sha256": "1318d5891e0b8a3cd5d3fa1fd515bb0a43f83536ef174db1792eafb7addfb867",
+      "reason": "old_scheme_or_shared_context"
+    },
+    {
+      "source_path": "docs/diagnostics/2026-10-07/其他三个通道-同一电机对照测试.md",
+      "snapshot_path": "snapshot/docs/diagnostics/2026-10-07/其他三个通道-同一电机对照测试.md",
+      "sha256": "45581412811c50964fc8124ce9efc6cc430ba62be77d6ff136e452c99707f145",
+      "reason": "local_link_dependency"
+    },
+    {
+      "source_path": "docs/diagnostics/2026-10-07/四轮接回与逐轮验收-2026-10-07.md",
+      "snapshot_path": "snapshot/docs/diagnostics/2026-10-07/四轮接回与逐轮验收-2026-10-07.md",
+      "sha256": "dcf14f842bc0e13b9adde038e4efa66b096a6b4982d7f6d64096c629f5b20caa",
+      "reason": "local_link_dependency"
+    },
+    {
+      "source_path": "docs/diagnostics/2026-10-07/诊断固件-限时占空比测试.md",
+      "snapshot_path": "snapshot/docs/diagnostics/2026-10-07/诊断固件-限时占空比测试.md",
+      "sha256": "4f67ab4bcdbdc9e964589974e7dfc817fb5244ef831f59f71860ae229c23bde0",
+      "reason": "local_link_dependency"
+    },
+    {
+      "source_path": "docs/diagnostics/2026-10-07/麦轮运动组合验收-2026-10-07.md",
+      "snapshot_path": "snapshot/docs/diagnostics/2026-10-07/麦轮运动组合验收-2026-10-07.md",
+      "sha256": "f597bce27dc0c0a24b05b68bd2b5975cfa218ee5a10ccd02d54bebae4fecd683",
+      "reason": "local_link_dependency"
+    },
+    {
+      "source_path": "docs/logs/2026-10-07-retest/compensated-fwd-2s.txt",
+      "snapshot_path": "snapshot/docs/logs/2026-10-07-retest/compensated-fwd-2s.txt",
+      "sha256": "34d4e2b5e2011eb24f19676ea044496c22ce2c19b30304d568a12ae3915a1865",
+      "reason": "local_link_dependency"
+    },
+    {
+      "source_path": "docs/logs/2026-10-07-retest/compensated-v2-fwd-2s.txt",
+      "snapshot_path": "snapshot/docs/logs/2026-10-07-retest/compensated-v2-fwd-2s.txt",
+      "sha256": "d1563c06f8e9521e6ea7cd4310310751946d404589ee74599002ef837fb7c011",
+      "reason": "local_link_dependency"
+    },
+    {
+      "source_path": "docs/logs/2026-10-07-retest/compensation-v2-vm-off-2026-10-07.txt",
+      "snapshot_path": "snapshot/docs/logs/2026-10-07-retest/compensation-v2-vm-off-2026-10-07.txt",
+      "sha256": "be586ac91c581cb4b9f06ccbd1032287ca6ecfbe39c144b22926b73b6e9a759a",
+      "reason": "local_link_dependency"
+    },
+    {
+      "source_path": "docs/logs/2026-10-07-retest/compensation-vm-off-2026-10-07.txt",
+      "snapshot_path": "snapshot/docs/logs/2026-10-07-retest/compensation-vm-off-2026-10-07.txt",
+      "sha256": "17b3558472d87adf9dbcff7c6f1e0621d71b2ce770989635d28736b8be8fbc94",
+      "reason": "local_link_dependency"
+    },
+    {
+      "source_path": "docs/logs/2026-10-07-retest/four-comp-start-v3-powered-2s.txt",
+      "snapshot_path": "snapshot/docs/logs/2026-10-07-retest/four-comp-start-v3-powered-2s.txt",
+      "sha256": "f6aa7020794fe0f1ac439a0ceceafc92b094bdfad6b2a0bbc62309f0838510bb",
+      "reason": "local_link_dependency"
+    },
+    {
+      "source_path": "docs/logs/2026-10-07-retest/four-comp-start-v3-vm-off.txt",
+      "snapshot_path": "snapshot/docs/logs/2026-10-07-retest/four-comp-start-v3-vm-off.txt",
+      "sha256": "1593b67b041f3b39ba2eda5898cfb79cde66241e145f73f65966e1df6de2d2ba",
+      "reason": "local_link_dependency"
+    },
+    {
+      "source_path": "docs/logs/2026-10-07-retest/four-start-hold-host-vm-off.txt",
+      "snapshot_path": "snapshot/docs/logs/2026-10-07-retest/four-start-hold-host-vm-off.txt",
+      "sha256": "4258aff1fffe47d85fed491ec9ea560db157048d75fc07dc7409e11eceec3dbc",
+      "reason": "local_link_dependency"
+    },
+    {
+      "source_path": "docs/logs/2026-10-07-retest/four-start-hold-powered-2s.txt",
+      "snapshot_path": "snapshot/docs/logs/2026-10-07-retest/four-start-hold-powered-2s.txt",
+      "sha256": "969356ddf5905eeed112866bf4c8c0c09d2ad1ade92ae31fec0c9737d93a1b2c",
+      "reason": "local_link_dependency"
+    },
+    {
+      "source_path": "docs/logs/2026-10-07-retest/four-start-hold-powered-30s.txt",
+      "snapshot_path": "snapshot/docs/logs/2026-10-07-retest/four-start-hold-powered-30s.txt",
+      "sha256": "e0390792d897866d7f29101248f78567f79a70af6d90cf00fe2994053215e7c4",
+      "reason": "local_link_dependency"
+    },
+    {
+      "source_path": "docs/logs/2026-10-07-retest/four-start-hold-vm-off.txt",
+      "snapshot_path": "snapshot/docs/logs/2026-10-07-retest/four-start-hold-vm-off.txt",
+      "sha256": "1a7d0051e997ad4303c62e93cc1610be575944c0242e0b4264364575469d2bb7",
+      "reason": "local_link_dependency"
+    },
+    {
+      "source_path": "docs/logs/2026-10-07-retest/lateral-left-right-10s-173635.txt",
+      "snapshot_path": "snapshot/docs/logs/2026-10-07-retest/lateral-left-right-10s-173635.txt",
+      "sha256": "aec81e91089c2752ceb39f68dc34de36cd3f2b0a84014331eb0fd204465690ca",
+      "reason": "local_link_dependency"
+    },
+    {
+      "source_path": "docs/logs/2026-10-07-retest/ramp-fwd-back-10s-173635.txt",
+      "snapshot_path": "snapshot/docs/logs/2026-10-07-retest/ramp-fwd-back-10s-173635.txt",
+      "sha256": "0d908116960362880aad32aea46c6f0ed02f1c5bd21fe1d3dffa3f30eca469f7",
+      "reason": "local_link_dependency"
+    },
+    {
+      "source_path": "docs/logs/2026-10-07-retest/raw-after-compensation-v2-fwd-2s.txt",
+      "snapshot_path": "snapshot/docs/logs/2026-10-07-retest/raw-after-compensation-v2-fwd-2s.txt",
+      "sha256": "794e88b2386ed6c1b5c7513bfc68577ccee60eb637896028d22dd975f0075ec0",
+      "reason": "local_link_dependency"
+    },
+    {
+      "source_path": "docs/logs/2026-10-07-retest/raw-after-compensation-v2-fwd-30s.txt",
+      "snapshot_path": "snapshot/docs/logs/2026-10-07-retest/raw-after-compensation-v2-fwd-30s.txt",
+      "sha256": "6db69ca953dad8cd54a40f7b8186b4d976057719131e3fbc6ea34e41fe9b6edd",
+      "reason": "local_link_dependency"
+    },
+    {
+      "source_path": "docs/logs/2026-10-07-retest/rl-start-hold-180-after-v3-failure.txt",
+      "snapshot_path": "snapshot/docs/logs/2026-10-07-retest/rl-start-hold-180-after-v3-failure.txt",
+      "sha256": "e0a2d5006eec8f0d44aaadf060898abfed501c7c09bed3a73f874b273bf1bc40",
+      "reason": "local_link_dependency"
+    },
+    {
+      "source_path": "docs/logs/2026-10-07-retest/rr-single-192-after-raw30s-failure.txt",
+      "snapshot_path": "snapshot/docs/logs/2026-10-07-retest/rr-single-192-after-raw30s-failure.txt",
+      "sha256": "f3a8585d57b8bdceb32d57c255a8fad79cf68867384662e74078a8e972a4d79a",
+      "reason": "local_link_dependency"
+    },
+    {
+      "source_path": "docs/logs/2026-10-07-retest/rr-single-192-bo-output-voltage-audible-2.txt",
+      "snapshot_path": "snapshot/docs/logs/2026-10-07-retest/rr-single-192-bo-output-voltage-audible-2.txt",
+      "sha256": "8f5b27c05ab849229af6bd3ace93512ba372e5a267dc2ed17bbc45e07041024c",
+      "reason": "local_link_dependency"
+    },
+    {
+      "source_path": "docs/logs/2026-10-07-retest/rr-single-192-bo-output-voltage.txt",
+      "snapshot_path": "snapshot/docs/logs/2026-10-07-retest/rr-single-192-bo-output-voltage.txt",
+      "sha256": "1f842e8ffe71e73057063ed7019865a8ec0516b54994755be7cdb71f30aeabcc",
+      "reason": "local_link_dependency"
+    },
+    {
+      "source_path": "docs/logs/2026-10-07-retest/rr-single-192-bo-voltage-wav-cues.txt",
+      "snapshot_path": "snapshot/docs/logs/2026-10-07-retest/rr-single-192-bo-voltage-wav-cues.txt",
+      "sha256": "01c2ab25efcae4ac021e6d44d931a59b520e311b1a8feac115c37246552b6262",
+      "reason": "local_link_dependency"
+    },
+    {
+      "source_path": "docs/logs/2026-10-07-retest/rr-single-192-powered-retest-2.txt",
+      "snapshot_path": "snapshot/docs/logs/2026-10-07-retest/rr-single-192-powered-retest-2.txt",
+      "sha256": "fa75bfd5bf83891b4c54da8153131d944ffa0b0bc7389ab92957f90dd6b0c000",
+      "reason": "local_link_dependency"
+    },
+    {
+      "source_path": "docs/logs/2026-10-07-retest/rr-single-255-bo-voltage-wav-cues.txt",
+      "snapshot_path": "snapshot/docs/logs/2026-10-07-retest/rr-single-255-bo-voltage-wav-cues.txt",
+      "sha256": "c48655533dc5b176cbed40ab63e7d00fb914df8588bd12986ed53ceb3041c2d7",
+      "reason": "local_link_dependency"
+    },
+    {
+      "source_path": "docs/logs/2026-10-07-retest/rr-start-hold-powered.txt",
+      "snapshot_path": "snapshot/docs/logs/2026-10-07-retest/rr-start-hold-powered.txt",
+      "sha256": "0b096685ba82a7b07792b453a4d3a37a96a888759fede4d177eef5a98cce7e4c",
+      "reason": "local_link_dependency"
+    },
+    {
+      "source_path": "docs/logs/2026-10-07-retest/rr-start-hold-vm-off.txt",
+      "snapshot_path": "snapshot/docs/logs/2026-10-07-retest/rr-start-hold-vm-off.txt",
+      "sha256": "fab0bccca4749c74261728dadbea23c4a5e83e7703726583f143670e5b5e1505",
+      "reason": "local_link_dependency"
+    },
+    {
+      "source_path": "docs/logs/2026-10-07-retest/simultaneous-fwd-back-2s-172816.txt",
+      "snapshot_path": "snapshot/docs/logs/2026-10-07-retest/simultaneous-fwd-back-2s-172816.txt",
+      "sha256": "ff68605eb43885286ab0508a8daf4b113b088164dd16100f2ad2db1c8b7789f5",
+      "reason": "local_link_dependency"
+    },
+    {
+      "source_path": "docs/logs/2026-10-07-retest/test1-forward-75pct-30s-180445.txt",
+      "snapshot_path": "snapshot/docs/logs/2026-10-07-retest/test1-forward-75pct-30s-180445.txt",
+      "sha256": "5ce5b2809d9d9f59225a147f558523f2076391782e0e8cf0b4702218dd998b95",
+      "reason": "local_link_dependency"
+    },
+    {
+      "source_path": "docs/logs/2026-10-07-retest/unchanged-rerun-172334-FL--192.txt",
+      "snapshot_path": "snapshot/docs/logs/2026-10-07-retest/unchanged-rerun-172334-FL--192.txt",
+      "sha256": "1b1d3839183d0e48019926afaea5dfad153a588f7d8c10682abe907b03c7939e",
+      "reason": "local_link_dependency"
+    },
+    {
+      "source_path": "docs/logs/2026-10-07-retest/unchanged-rerun-172334-FL-192.txt",
+      "snapshot_path": "snapshot/docs/logs/2026-10-07-retest/unchanged-rerun-172334-FL-192.txt",
+      "sha256": "dc5e75017fa12136dad291ff0f06092cd87d2bbbb46e263453233fba7837124c",
+      "reason": "local_link_dependency"
+    },
+    {
+      "source_path": "docs/logs/2026-10-07-retest/unchanged-rerun-172334-FR--192.txt",
+      "snapshot_path": "snapshot/docs/logs/2026-10-07-retest/unchanged-rerun-172334-FR--192.txt",
+      "sha256": "70a59375ea238fda4c1b505888a1c1cd2163dd62e08f3fa9389b61b9e2130e12",
+      "reason": "local_link_dependency"
+    },
+    {
+      "source_path": "docs/logs/2026-10-07-retest/unchanged-rerun-172334-FR-192.txt",
+      "snapshot_path": "snapshot/docs/logs/2026-10-07-retest/unchanged-rerun-172334-FR-192.txt",
+      "sha256": "6b0ebfdc1fcc4558c7ca773a857c2562e506e6d1a92626c9895c8365756209b6",
+      "reason": "local_link_dependency"
+    },
+    {
+      "source_path": "docs/logs/2026-10-07-retest/unchanged-rerun-172334-RL--192.txt",
+      "snapshot_path": "snapshot/docs/logs/2026-10-07-retest/unchanged-rerun-172334-RL--192.txt",
+      "sha256": "89137c10d2bc14792a8f780da1a98d36eff7d6de5cf5deb2137b8e5f4a153e7f",
+      "reason": "local_link_dependency"
+    },
+    {
+      "source_path": "docs/logs/2026-10-07-retest/unchanged-rerun-172334-RL-192.txt",
+      "snapshot_path": "snapshot/docs/logs/2026-10-07-retest/unchanged-rerun-172334-RL-192.txt",
+      "sha256": "20e0c046f2df1a32f8b7ec57847c66ad3f72642311011cda87fe2a2da60780a6",
+      "reason": "local_link_dependency"
+    },
+    {
+      "source_path": "docs/logs/2026-10-07-retest/unchanged-rerun-172334-RR--192.txt",
+      "snapshot_path": "snapshot/docs/logs/2026-10-07-retest/unchanged-rerun-172334-RR--192.txt",
+      "sha256": "81a9a18854b29f86bcd9975ab76e3407f3640f2cfdc88f705634a12b29e9b8d7",
+      "reason": "local_link_dependency"
+    },
+    {
+      "source_path": "docs/logs/2026-10-07-retest/unchanged-rerun-172334-RR-192.txt",
+      "snapshot_path": "snapshot/docs/logs/2026-10-07-retest/unchanged-rerun-172334-RR-192.txt",
+      "sha256": "606640fb4c9c73f25c0e46ade59712f28c0768da95b8c67035c631bfe77dcac6",
+      "reason": "local_link_dependency"
+    },
+    {
+      "source_path": "docs/logs/2026-10-07-retest/占空比补偿-30秒视频校准.md",
+      "snapshot_path": "snapshot/docs/logs/2026-10-07-retest/占空比补偿-30秒视频校准.md",
+      "sha256": "4a6db36ef283c5ecdafa162ff462bd5c3e58058354b9ec9e9ae87d9fd0efe300",
+      "reason": "local_link_dependency"
+    },
+    {
+      "source_path": "docs/logs/2026-10-07-retest/四轮渐变与左右平移10秒.md",
+      "snapshot_path": "snapshot/docs/logs/2026-10-07-retest/四轮渐变与左右平移10秒.md",
+      "sha256": "73c25f44f805ca492ceb0239e3482d9d3e07e6fa5d63881982d1dc3ea8a24d17",
+      "reason": "old_scheme_or_shared_context"
+    },
+    {
+      "source_path": "docs/logs/2026-10-07-retest/测试一-四轮前进75百分比30秒.md",
+      "snapshot_path": "snapshot/docs/logs/2026-10-07-retest/测试一-四轮前进75百分比30秒.md",
+      "sha256": "2a5a9a21223f31ea7cff1854949ec32b61fd70537a8444383de542a7e0c2402d",
+      "reason": "local_link_dependency"
+    },
+    {
+      "source_path": "docs/logs/2026-10-07-retest/程序检查与原参数复跑.md",
+      "snapshot_path": "snapshot/docs/logs/2026-10-07-retest/程序检查与原参数复跑.md",
+      "sha256": "53bf485d99deaecb2712ae5c5e804658f589bc7594f9b1b8a82d6e38334d31a5",
+      "reason": "old_scheme_or_shared_context"
+    },
+    {
+      "source_path": "docs/logs/2026-10-07-retest/重新烧录与四轮同时正反2秒.md",
+      "snapshot_path": "snapshot/docs/logs/2026-10-07-retest/重新烧录与四轮同时正反2秒.md",
+      "sha256": "1ba0088b06aab4a8faeb62394a64378a284fc9cb969ca14fff2124106eed0e36",
+      "reason": "local_link_dependency"
+    },
+    {
+      "source_path": "docs/logs/2026-10-07/四轮前进2秒-降压输入电压测量-2026-10-07.txt",
+      "snapshot_path": "snapshot/docs/logs/2026-10-07/四轮前进2秒-降压输入电压测量-2026-10-07.txt",
+      "sha256": "d331f4db1cf698a42b380c3918ded52442e4b9e73f814a622a086a01257e20ac",
+      "reason": "local_link_dependency"
+    },
+    {
+      "source_path": "docs/logs/2026-10-07/四轮联动诊断-VM关闭验证-2026-10-07.txt",
+      "snapshot_path": "snapshot/docs/logs/2026-10-07/四轮联动诊断-VM关闭验证-2026-10-07.txt",
+      "sha256": "27efabc6ced9a8bd55119e6fa07143fa6accf7bcd1c853f272605e55c6c2abd6",
+      "reason": "local_link_dependency"
+    },
+    {
+      "source_path": "docs/logs/2026-10-07/四通道诊断程序-VM关闭验证-2026-10-07.txt",
+      "snapshot_path": "snapshot/docs/logs/2026-10-07/四通道诊断程序-VM关闭验证-2026-10-07.txt",
+      "sha256": "3de30803f5aa7d9d1bd3232d2be59e686211ac7b5a3ae1d1a018ba93eb25dd16",
+      "reason": "local_link_dependency"
+    },
+    {
+      "source_path": "docs/logs/2026-10-07/诊断程序-VM关闭验证-2026-10-07.txt",
+      "snapshot_path": "snapshot/docs/logs/2026-10-07/诊断程序-VM关闭验证-2026-10-07.txt",
+      "sha256": "a54ea67da3bf33b1b2fd1c528b0f7f8b08e9fab593f3376767fb821bc19eac95",
+      "reason": "local_link_dependency"
+    },
+    {
+      "source_path": "docs/logs/2026-10-07/麦轮组合脚本-完整10秒VM关闭验证-2026-10-07.txt",
+      "snapshot_path": "snapshot/docs/logs/2026-10-07/麦轮组合脚本-完整10秒VM关闭验证-2026-10-07.txt",
+      "sha256": "e00495e2f45e434caa3d0f01287dd7bd0a48bf0b0d54c3f63131c11b41326d32",
+      "reason": "local_link_dependency"
+    },
+    {
+      "source_path": "docs/logs/2026-10-07/麦轮运动组合诊断-VM关闭验证-2026-10-07.txt",
+      "snapshot_path": "snapshot/docs/logs/2026-10-07/麦轮运动组合诊断-VM关闭验证-2026-10-07.txt",
+      "sha256": "26f60d20931779f881e38dc356172c9eb3875f25571164c5e1972e711a715b13",
+      "reason": "local_link_dependency"
+    },
+    {
+      "source_path": "docs/logs/MecanumPS2Dpad-100pct-validation-2026-10-10.txt",
+      "snapshot_path": "snapshot/docs/logs/MecanumPS2Dpad-100pct-validation-2026-10-10.txt",
+      "sha256": "7a0ff308c58acbda915714ebb9b9ddeca4afbfdf938515308b8bb6c8889ab5b7",
+      "reason": "local_link_dependency"
+    },
+    {
+      "source_path": "docs/logs/MecanumPS2Dpad-upload-check-2026-10-10.txt",
+      "snapshot_path": "snapshot/docs/logs/MecanumPS2Dpad-upload-check-2026-10-10.txt",
+      "sha256": "bb935625e8085dcdf6ab1c7db0ff8f5678ad7eb0234c72db82281d3d81dfe0aa",
+      "reason": "local_link_dependency"
+    },
+    {
+      "source_path": "docs/logs/connection-current.txt",
+      "snapshot_path": "snapshot/docs/logs/connection-current.txt",
+      "sha256": "0c873f5b4ba04dbd4930994553625c9e75c8e268e77d6fa4722d9af0f7a57079",
+      "reason": "old_scheme_or_shared_context"
+    },
+    {
+      "source_path": "docs/logs/connection-low-speed.txt",
+      "snapshot_path": "snapshot/docs/logs/connection-low-speed.txt",
+      "sha256": "63d280f75a3ea92e97d13221df55510af119d6a2201c27c35d1a2cf389e84383",
+      "reason": "old_scheme_or_shared_context"
+    },
+    {
+      "source_path": "docs/logs/mecanum-fl-jog-2026-10-06.txt",
+      "snapshot_path": "snapshot/docs/logs/mecanum-fl-jog-2026-10-06.txt",
+      "sha256": "8d9182a2a91ebbafd22134cd840f5e8cee35e059ca2c612cceb6be690d68b109",
+      "reason": "local_link_dependency"
+    },
+    {
+      "source_path": "docs/logs/mecanum-fl-jog-3v-2026-10-06.txt",
+      "snapshot_path": "snapshot/docs/logs/mecanum-fl-jog-3v-2026-10-06.txt",
+      "sha256": "a8c9e205a36c387360eb69a9aa7f4e1c1bdd31230931a025faa50a6cd2df2cb1",
+      "reason": "local_link_dependency"
+    },
+    {
+      "source_path": "docs/logs/mecanum-fl-jog-3v-50pct-2026-10-06.txt",
+      "snapshot_path": "snapshot/docs/logs/mecanum-fl-jog-3v-50pct-2026-10-06.txt",
+      "sha256": "71e81525526627557755a959d6ad2377af0197c8e463bd5569386cbeb99774c0",
+      "reason": "local_link_dependency"
+    },
+    {
+      "source_path": "docs/logs/mecanum-ps2-2026-10-06.txt",
+      "snapshot_path": "snapshot/docs/logs/mecanum-ps2-2026-10-06.txt",
+      "sha256": "457e733696000c701b2602ef269e96fbcecf7db5c449ef93ea2cf8552a5e8cc0",
+      "reason": "local_link_dependency"
+    },
+    {
+      "source_path": "docs/logs/ps2-button-check.txt",
+      "snapshot_path": "snapshot/docs/logs/ps2-button-check.txt",
+      "sha256": "702ce7fd9be7372aa9600c65c02f3c8d9c1b472871253a8b76c36199be8f2c05",
+      "reason": "old_scheme_or_shared_context"
+    },
+    {
+      "source_path": "docs/logs/ps2-encoder-diagnosis.txt",
+      "snapshot_path": "snapshot/docs/logs/ps2-encoder-diagnosis.txt",
+      "sha256": "6f9167bdef6a1b5cb161160bd7093229bd5474b2b2288e9b29d81dfda0bf6418",
+      "reason": "old_scheme_or_shared_context"
+    },
+    {
+      "source_path": "docs/logs/ps2-encoder-recheck.txt",
+      "snapshot_path": "snapshot/docs/logs/ps2-encoder-recheck.txt",
+      "sha256": "494324b989bc850940cc0fecb7fa49b0008eeea017add44b09924a8c581f3fac",
+      "reason": "old_scheme_or_shared_context"
+    },
+    {
+      "source_path": "docs/logs/ps2-first-boot.txt",
+      "snapshot_path": "snapshot/docs/logs/ps2-first-boot.txt",
+      "sha256": "8f3ca274bd89956ea4cec7190f8969917d7ba514d4bb21b183af4b2261c96d99",
+      "reason": "old_scheme_or_shared_context"
+    },
+    {
+      "source_path": "docs/logs/ps2-stability-check.txt",
+      "snapshot_path": "snapshot/docs/logs/ps2-stability-check.txt",
+      "sha256": "408c8416d80522b4024620710f3a2c5c4d65318d920b3233c8808346269ecd3f",
+      "reason": "old_scheme_or_shared_context"
+    },
+    {
+      "source_path": "docs/logs/stage1-recheck.txt",
+      "snapshot_path": "snapshot/docs/logs/stage1-recheck.txt",
+      "sha256": "14fd6e28c8f4396397cf9845789b2338c20cb1a0e64f718731e54de78cb3f752",
+      "reason": "old_scheme_or_shared_context"
+    },
+    {
+      "source_path": "docs/logs/stage1-rotation.txt",
+      "snapshot_path": "snapshot/docs/logs/stage1-rotation.txt",
+      "sha256": "a95e09db62bc0116c09bd603be8e127df27caafdf266f8ccdbc6b6c6980460bd",
+      "reason": "old_scheme_or_shared_context"
+    },
+    {
+      "source_path": "docs/logs/stage1-startup.txt",
+      "snapshot_path": "snapshot/docs/logs/stage1-startup.txt",
+      "sha256": "db69356c0d78f787bacfb1bf25687616bbf644cfa043ab63997bd634b44849ef",
+      "reason": "old_scheme_or_shared_context"
+    },
+    {
+      "source_path": "docs/logs/tb6612-acceptance-2026-10-06.txt",
+      "snapshot_path": "snapshot/docs/logs/tb6612-acceptance-2026-10-06.txt",
+      "sha256": "e85e231f9d67adb5ee959d6af60a590e339c0b418bfb2f2d2d4d0ab44bde235f",
+      "reason": "local_link_dependency"
+    },
+    {
+      "source_path": "docs/logs/tb6612-stage2-2026-10-06.txt",
+      "snapshot_path": "snapshot/docs/logs/tb6612-stage2-2026-10-06.txt",
+      "sha256": "e7182cbbd53d8d6468ffc2d261528676fd4b606209eb644c293f3670c31a620f",
+      "reason": "local_link_dependency"
+    },
+    {
+      "source_path": "docs/全车连接检验-GPIO与降压端子索引.md",
+      "snapshot_path": "snapshot/docs/全车连接检验-GPIO与降压端子索引.md",
+      "sha256": "4aed2e9a0bc25149628121633a4a0d9d6c2c6d81d61371338a641bf968d67035",
+      "reason": "old_scheme_or_shared_context"
+    },
+    {
+      "source_path": "docs/底盘链路检测与驱动.md",
+      "snapshot_path": "snapshot/docs/底盘链路检测与驱动.md",
+      "sha256": "e6c199c2263e2d30ca955edefb6044a9fed28966812bbc874a8434056c9be65d",
+      "reason": "local_link_dependency"
+    },
+    {
+      "source_path": "docs/投掷机构-设计与安全.md",
+      "snapshot_path": "snapshot/docs/投掷机构-设计与安全.md",
+      "sha256": "9394b02951cd4c043ea8900e9cb7854029ba848eb76f8762d3b2118ee4d45fb3",
+      "reason": "old_scheme_or_shared_context"
+    },
+    {
+      "source_path": "docs/烧录测试记录.md",
+      "snapshot_path": "snapshot/docs/烧录测试记录.md",
+      "sha256": "4f83a7761ff86558203e0430a0e230bf3bd2d622d7aff4bd507d7bb5abffb397",
+      "reason": "old_scheme_or_shared_context"
+    },
+    {
+      "source_path": "docs/环境检查报告.md",
+      "snapshot_path": "snapshot/docs/环境检查报告.md",
+      "sha256": "dccfed60006d7e8bf92f3e3cb5c8aa0b2f527b8d7a18cf9560f630ce9d8f1caf",
+      "reason": "old_scheme_or_shared_context"
+    },
+    {
+      "source_path": "docs/线路检查记录.md",
+      "snapshot_path": "snapshot/docs/线路检查记录.md",
+      "sha256": "7173e3698a0dda21c09cad0abf80166d9b6ac7824f24222c5ffe5011c9af05df",
+      "reason": "old_scheme_or_shared_context"
+    },
+    {
+      "source_path": "docs/诊断记录-第一阶段.md",
+      "snapshot_path": "snapshot/docs/诊断记录-第一阶段.md",
+      "sha256": "d3024c06eb6cd730d358c31dacff4200854b53a87d34c93ade3b88f8bec25476",
+      "reason": "old_scheme_or_shared_context"
+    },
+    {
+      "source_path": "docs/阻塞问题与烧录实测.md",
+      "snapshot_path": "snapshot/docs/阻塞问题与烧录实测.md",
+      "sha256": "69303e2db8e3d41269fd5bff416e4ba5e554dddca7adb1ca6c28df14ce827c51",
+      "reason": "old_scheme_or_shared_context"
+    },
+    {
+      "source_path": "docs/麦轮TB6612分步验收记录-2026-10-06.md",
+      "snapshot_path": "snapshot/docs/麦轮TB6612分步验收记录-2026-10-06.md",
+      "sha256": "7dfc9b31655880d47d685551fc389014093c5cac311ca9a520a5b19d631354a8",
+      "reason": "old_scheme_or_shared_context"
+    },
+    {
+      "source_path": "docs/麦轮TB6612接线-两线法备选方案.md",
+      "snapshot_path": "snapshot/docs/麦轮TB6612接线-两线法备选方案.md",
+      "sha256": "3f4d4cf8e01a7b60cbd6c6978f25f66183bc17f9f64a1db5ae698b271d4b62d2",
+      "reason": "old_scheme_or_shared_context"
+    },
+    {
+      "source_path": "docs/麦轮TB6612接线与面包板排线.md",
+      "snapshot_path": "snapshot/docs/麦轮TB6612接线与面包板排线.md",
+      "sha256": "3ad62c8100c7e5c8857b61f397a9757cc7c9b843cf5c57f0863383036ece4b7a",
+      "reason": "old_scheme_or_shared_context"
+    },
+    {
+      "source_path": "firmware/catapult/PS2Catapult/PS2Catapult.ino",
+      "snapshot_path": "snapshot/firmware/catapult/PS2Catapult/PS2Catapult.ino",
+      "sha256": "ba1f2c1106346dc5b9d27354754d4e182abe5366b1c894ee970771b2a81ed88b",
+      "reason": "old_scheme_or_shared_context"
+    },
+    {
+      "source_path": "firmware/catapult/PS2Catapult/README.md",
+      "snapshot_path": "snapshot/firmware/catapult/PS2Catapult/README.md",
+      "sha256": "f1f259f59317a72933862ca613a8628366133997de8093c7450d650a180619c6",
+      "reason": "old_scheme_or_shared_context"
+    },
+    {
+      "source_path": "firmware/catapult/Stage1_AS5600Test/README.md",
+      "snapshot_path": "snapshot/firmware/catapult/Stage1_AS5600Test/README.md",
+      "sha256": "7a3ff3cd287edb4c50ab000bda31655ce3cc3c5628aae734e6a0414dc6b9b3c8",
+      "reason": "old_scheme_or_shared_context"
+    },
+    {
+      "source_path": "firmware/catapult/Stage1_AS5600Test/Stage1_AS5600Test.ino",
+      "snapshot_path": "snapshot/firmware/catapult/Stage1_AS5600Test/Stage1_AS5600Test.ino",
+      "sha256": "f5871520c936ea870b6bd1f65337fad4ac4931ffd97004f6a0739ca4e596c146",
+      "reason": "old_scheme_or_shared_context"
+    },
+    {
+      "source_path": "firmware/catapult/Stage2_FOCClosedLoop/README.md",
+      "snapshot_path": "snapshot/firmware/catapult/Stage2_FOCClosedLoop/README.md",
+      "sha256": "6e9106b47fa95df9a2e6386ff989abc5c486a5b8654a755a110bfbbff39e934a",
+      "reason": "old_scheme_or_shared_context"
+    },
+    {
+      "source_path": "firmware/catapult/Stage2_FOCClosedLoop/Stage2_FOCClosedLoop.ino",
+      "snapshot_path": "snapshot/firmware/catapult/Stage2_FOCClosedLoop/Stage2_FOCClosedLoop.ino",
+      "sha256": "eec88e186666561f2413947856ccf293386a4c5a207938f1a6f576abd7c75689",
+      "reason": "old_scheme_or_shared_context"
+    },
+    {
+      "source_path": "firmware/chassis/MecanumPS2/MecanumPS2.ino",
+      "snapshot_path": "snapshot/firmware/chassis/MecanumPS2/MecanumPS2.ino",
+      "sha256": "23e5a4b697e4fdc9ea4ae40fa2e34f0c228a34038e02b34bc341562664ee671f",
+      "reason": "local_link_dependency"
+    },
+    {
+      "source_path": "firmware/chassis/MecanumPS2/README.md",
+      "snapshot_path": "snapshot/firmware/chassis/MecanumPS2/README.md",
+      "sha256": "d48c6806fdb5f9d6c81f6a8e5ca4ea0cd15ea3c709fb6f818c5dcfa426fca366",
+      "reason": "old_scheme_or_shared_context"
+    },
+    {
+      "source_path": "firmware/chassis/MecanumPS2Diagnostic/README.md",
+      "snapshot_path": "snapshot/firmware/chassis/MecanumPS2Diagnostic/README.md",
+      "sha256": "79fbad7c00c8eedbb32bea5f7848eb0ce0e31f8ed25e72d73ca4852fe2351a6a",
+      "reason": "old_scheme_or_shared_context"
+    },
+    {
+      "source_path": "firmware/chassis/MecanumPS2Dpad/README.md",
+      "snapshot_path": "snapshot/firmware/chassis/MecanumPS2Dpad/README.md",
+      "sha256": "8fc8ba630e8535c5c92db48af185522e0bafc0aabf57ec65bbdb5419359c431d",
+      "reason": "old_scheme_or_shared_context"
+    },
+    {
+      "source_path": "firmware/chassis/MecanumPS2FourWheelDiagnostic/README.md",
+      "snapshot_path": "snapshot/firmware/chassis/MecanumPS2FourWheelDiagnostic/README.md",
+      "sha256": "18730d5a15efb758860ea11a1611bdc8f4759729d248a010eda91f17214fb4e0",
+      "reason": "old_scheme_or_shared_context"
+    },
+    {
+      "source_path": "firmware/chassis/MecanumPS2MotionDiagnostic/README.md",
+      "snapshot_path": "snapshot/firmware/chassis/MecanumPS2MotionDiagnostic/README.md",
+      "sha256": "e30249b9b912325a3174e92738c386ae3164b6892d444e0659ddecd2bdbdea53",
+      "reason": "old_scheme_or_shared_context"
+    },
+    {
+      "source_path": "firmware/chassis/MecanumPS2WheelDiagnostic/README.md",
+      "snapshot_path": "snapshot/firmware/chassis/MecanumPS2WheelDiagnostic/README.md",
+      "sha256": "c53751dacb7c9265b8d6b63064244511f5f24db05374c9e819939d2deb7f0283",
+      "reason": "old_scheme_or_shared_context"
+    },
+    {
+      "source_path": "firmware/chassis/MotorDriver/README.md",
+      "snapshot_path": "snapshot/firmware/chassis/MotorDriver/README.md",
+      "sha256": "f12268db80601d113604d9baf67d90d4f37f732beffc5bf5de13b9846973c0a5",
+      "reason": "local_link_dependency"
+    },
+    {
+      "source_path": "firmware/chassis/MotorLinkCheck/README.md",
+      "snapshot_path": "snapshot/firmware/chassis/MotorLinkCheck/README.md",
+      "sha256": "4bf8d40ecfedfa2902846a4c180f0232f27511e26cfb447131f61574a307eb25",
+      "reason": "local_link_dependency"
+    },
+    {
+      "source_path": "firmware/chassis/TB6612LogicCheck/README.md",
+      "snapshot_path": "snapshot/firmware/chassis/TB6612LogicCheck/README.md",
+      "sha256": "cdd844e0429576a157c45890d7e20ecd1854be4a89d0f5e390f6b6012042205d",
+      "reason": "old_scheme_or_shared_context"
+    },
+    {
+      "source_path": "firmware/chassis/TB6612LogicCheck/TB6612LogicCheck.ino",
+      "snapshot_path": "snapshot/firmware/chassis/TB6612LogicCheck/TB6612LogicCheck.ino",
+      "sha256": "f74b044b5ee4206d6c8014118967c469605d2f2a2122af8eb7222709c0e7b6b6",
+      "reason": "local_link_dependency"
+    },
+    {
+      "source_path": "host/README-diagnostics.md",
+      "snapshot_path": "snapshot/host/README-diagnostics.md",
+      "sha256": "97d8e8af0602d9bdc79bd72d2bbea847a9cc4011d5a5716ef617f190e88c5429",
+      "reason": "local_link_dependency"
+    },
+    {
+      "source_path": "host/i2c_pin_sweep.py",
+      "snapshot_path": "snapshot/host/i2c_pin_sweep.py",
+      "sha256": "15d94b59d665968330d0afc247a9c9a56ebf5544b3097924fecd34a1eb2fa19e",
+      "reason": "old_scheme_or_shared_context"
+    },
+    {
+      "source_path": "host/motion_sequence.py",
+      "snapshot_path": "snapshot/host/motion_sequence.py",
+      "sha256": "a1b79fc03835007bb0b653fb5f131ac7cb35dd33782747fe3140a01264bf6f8e",
+      "reason": "local_link_dependency"
+    },
+    {
+      "source_path": "host/ocr_driverboard.py",
+      "snapshot_path": "snapshot/host/ocr_driverboard.py",
+      "sha256": "13728b73fa68eae0e5c399fe69b5e0d6d7247f7ea6fe124b6a3150fe7d6f60ee",
+      "reason": "old_scheme_or_shared_context"
+    },
+    {
+      "source_path": "host/pulse_once.py",
+      "snapshot_path": "snapshot/host/pulse_once.py",
+      "sha256": "848b7f37bca8d5936a75b5e3556260c5befc20ecf15eb9f0b865ef3f35cb97c5",
+      "reason": "local_link_dependency"
+    },
+    {
+      "source_path": "host/verify_all_pulse_vm_off.py",
+      "snapshot_path": "snapshot/host/verify_all_pulse_vm_off.py",
+      "sha256": "24da1141dbda6f11bd86d088748c41afa6becfb7b212aa0705d64c09b0232e97",
+      "reason": "local_link_dependency"
+    },
+    {
+      "source_path": "host/verify_motion_vm_off.py",
+      "snapshot_path": "snapshot/host/verify_motion_vm_off.py",
+      "sha256": "9ad316b27ff66148217371267d1b40a3e8d9e311f895202dcacd49983c605db0",
+      "reason": "local_link_dependency"
+    },
+    {
+      "source_path": "host/verify_pulse_vm_off.py",
+      "snapshot_path": "snapshot/host/verify_pulse_vm_off.py",
+      "sha256": "12d60e2f72c4d3ede27b34b518453fd1ec86205a59141f02b0276d33b8505ee3",
+      "reason": "local_link_dependency"
+    },
+    {
+      "source_path": "host/verify_wheel_pulse_vm_off.py",
+      "snapshot_path": "snapshot/host/verify_wheel_pulse_vm_off.py",
+      "sha256": "b254ea6b2c01716d19bc3814711d77c81a7f3255da3381ea5cd691c0ced16981",
+      "reason": "local_link_dependency"
+    },
+    {
+      "source_path": "tools/flash-catapult.ps1",
+      "snapshot_path": "snapshot/tools/flash-catapult.ps1",
+      "sha256": "9d58aa70589cfacccbc7a3ac9d56807b7fc0ea181a1edf3d14e3cf7adaad667e",
+      "reason": "old_scheme_or_shared_context"
+    }
+  ]
+}

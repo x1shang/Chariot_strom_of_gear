@@ -1,0 +1,17 @@
+Checked 2026-10-10T10:57:00.373915 port=COM4
+Motor power confirmed OFF by user. No movement command sent.
+OK STOP; release all buttons before driving
+STATUS hw=1 ps=1 mode=41 buttons=0000 ready=0 STBY=0 duty=0,0,0,0
+STATUS hw=1 ps=1 mode=41 buttons=0000 ready=1 STBY=0 duty=0,0,0,0
+STATUS hw=1 ps=1 mode=41 buttons=0000 ready=1 STBY=0 duty=0,0,0,0
+STATUS hw=1 ps=1 mode=41 buttons=0000 ready=1 STBY=0 duty=0,0,0,0
+STATUS hw=1 ps=1 mode=41 buttons=0000 ready=1 STBY=0 duty=0,0,0,0
+STATUS hw=1 ps=1 mode=41 buttons=0000 ready=1 STBY=0 duty=0,0,0,0
+STATUS hw=1 ps=1 mode=41 buttons=0000 ready=1 STBY=0 duty=0,0,0,0
+STATUS hw=1 ps=1 mode=41 buttons=0000 ready=1 STBY=0 duty=0,0,0,0
+STATUS hw=1 ps=1 mode=41 buttons=0000 ready=1 STBY=0 duty=0,0,0,0
+OK STOP; release all buttons before driving
+STATUS hw=1 ps=1 mode=41 buttons=0000 ready=0 STBY=0 duty=0,0,0,0
+STATUS hw=1 ps=1 mode=41 buttons=0000 ready=1 STBY=0 duty=0,0,0,0
+STATUS hw=1 ps=1 mode=41 buttons=0000 ready=1 STBY=0 duty=0,0,0,0
+PASS startup: hw=1 ps=1 buttons=0000 STBY=0 duty=0,0,0,0

@@ -1,3 +1,6 @@
+> **2026-10-14 已停用并归档。** DRV8313 已烧坏，原 AS5600/2804 FOC 方案不再使用。以下内容为历史记录，不适用于 L298N；旧固件会操作已重新分配的 GPIO，请勿按旧命令烧录。
+> [归档原文](../../../docs/archive/2026-10-14-DRV8313-AS5600/snapshot/firmware/catapult/Stage2_FOCClosedLoop/README.md) · [当前 L298N 双 N20 方案](../../../docs/抛投装置-L298N双N20接线与GPIO分配.md)
+
 # Stage2_FOCClosedLoop：第二阶段（低电压闭环空载测试）
 
 > **导航**：[仓库总入口](../../../README.md) · [ESP32-2804 接线与烧录指南](../../../docs/ESP32-2804-FOC-guide.md) · [投掷机构-设计与安全](../../../docs/投掷机构-设计与安全.md) · [主固件 PS2Catapult](../PS2Catapult/README.md) · [Stage1](../Stage1_AS5600Test/README.md)

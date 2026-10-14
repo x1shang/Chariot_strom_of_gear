@@ -1,0 +1,370 @@
+---
+title: chariot — ESP32 投石小车
+type: project-index
+status: 原型 / 子系统控制状态见固件说明
+mcu: ESP32-D0WD-V3
+fqbn: esp32:esp32:esp32
+serial_port: COM9
+last_verified: 2026-10-10
+---
+
+# chariot — ESP32 投石小车
+
+一台"会跑的投石机"：**投掷机构**把球抛出去，**行驶底盘**负责开过去。另有一套让 Codex
+自己探测串口、编译、烧录、读串口的工具链。
+
+| 子系统 | 职责 | 硬件 | 代码 |
+|---|---|---|---|
+| **投掷机构** | PS2 手柄按住蓄力 → 90° 抛杆 → 自动复位 | 2804 无刷 + DRV8313 + AS5600 + SimpleFOC | `firmware/catapult/` |
+| **行驶底盘** | 四麦轮独立驱动（每轮一个 H 桥，不能并接） | **2 × TB6612FNG** 双路有刷驱动板 ← 当前方案 | [`MecanumPS2Dpad`](firmware/chassis/MecanumPS2Dpad/README.md)：方向键前后/横移，100% 目标占空比；另保留架空诊断固件 |
+| **MCP 桥** | 给 Codex 提供串口/编译/烧录工具 | pyserial + arduino-cli + esptool | `tools/mcp-bridge/` |
+
+> **投掷机构仍有待验收项。** 编码器通信、磁场及驱动功率供电的历史阻塞见 [§6 当前阻塞](#6-当前阻塞)，相关 FOC 固件保留配置锁。
+>
+> **2026-10-10 底盘更新：** 新增独立方向键固件 [`MecanumPS2Dpad`](firmware/chassis/MecanumPS2Dpad/README.md)，开机松开全部按键、通信有效后自动就绪，直接按方向键移动，无需 START/L1。松键撤销输出；投掷输出保持禁用。100% 版本已编译、烧录并通过动力关闭时的启动检查，带载速度、持续运行及无线断联表现仍待实车确认。
+
+---
+
+## 1. 目录地图（按用途）
+
+```
+chariot/
+├── README.md                  ← 总入口（本文件）；各模块另有自己的 README.md，见 §9.1
+├── firmware/                  固件源码，按子系统分
+│   ├── catapult/              投掷机构：2804 无刷 + AS5600 + SimpleFOC
+│   │   ├── PS2Catapult/       【当前主固件】PS2 遥控 + 蓄力 + 90° 往返
+│   │   ├── Stage1_AS5600Test/ 第一阶段：只读编码器，不驱动电机
+│   │   └── Stage2_FOCClosedLoop/ 第二阶段：闭环空载测试
+│   └── chassis/               底盘固件
+│       ├── MecanumPS2Dpad/    【方向键行驶】前后/左右平移，100% 目标占空比
+│       ├── MecanumPS2/        【当前主线】两线法麦轮 + PS2（本仓库基线 c762494）
+│       ├── MecanumPS2*Diagnostic/  4 个架空限时诊断固件，见 docs/diagnostics/2026-10-07/
+│       ├── MotorLinkCheck/    ⚠️ 奇果派 PCA9685：链路自检（不适用 TB6612）
+│       └── MotorDriver/       ⚠️ 奇果派 PCA9685：简易驱动（不适用 TB6612）
+├── host/                      上位机 Python（跑在电脑上）
+│   ├── jog_loop.py            【排查用】连续点动底盘某一轮，让 TB6612 输出
+│   │                          近似持续，便于配万用表实测 STBY/IN/VM/OUT
+│   ├── motion_sequence.py     【诊断】依次跑命名麦轮组合，限时 + 间隔静止核查
+│   ├── pulse_once.py          【诊断】单次限时点动（单轮 500ms / ALL 300ms）
+│   ├── verify_*_vm_off.py     【诊断】VM 关闭下的解析/时限/互锁验证（4 个）
+│   ├── README-diagnostics.md  ↑ 诊断脚本的复现说明与固件配对表
+│   ├── motor_link_check.py    奇果派底盘链路检测 + 电机点动
+│   ├── serial_test.py         通用串口采集（固定截止时间，不会卡住）
+│   ├── serial_watch.py        串口观察，供 flash-catapult.ps1 内部调用
+│   ├── i2c_pin_sweep.py       扫多组 I2C 引脚，找 AS5600 在哪两个 GPIO 上
+│   ├── ocr_photos.py          实物照片 OCR（丝印 → 文字）
+│   ├── ocr_driverboard.py     驱动板照片增强 OCR（这样读出 DRV8313 的）
+│   └── requirements.txt
+├── tools/                     构建 / 烧录脚本
+│   ├── flash-catapult.ps1     投掷机构：检测串口 → 认芯片 → 编译 → 烧录 → 读回
+│   ├── build-chassis.ps1      底盘：编译 / 烧录两个固件
+│   └── mcp-bridge/            Codex 的 MCP 服务器
+├── tests/                     主机侧单元测试（跑在电脑上，不上板）
+│   └── test_mecanum_drive_math.cpp  麦轮混控与斜坡，对应 MecanumPS2/DriveMath.h
+├── docs/                      文档与资料
+│   ├── 麦轮TB6612接线与面包板排线.md      ★ 底盘接线（当前方案，接线的唯一依据）
+│   ├── 麦轮TB6612接线-两线法备选方案.md   该方案的来源、取舍与代价论证
+│   ├── 投掷机构-设计与安全.md     ↓ 以下三份是重组前的原 README，
+│   ├── 底盘链路检测与驱动.md      ｜ 细节已并入本文件，保留作详细参考
+│   ├── Codex串口MCP桥.md         ↑
+│   ├── ESP32-2804-FOC-guide.md   原始接线与烧录指南
+│   ├── 诊断记录-第一阶段.md       等 5 份为实测记录（写于重组前）
+│   ├── 环境检查报告.md
+│   ├── 线路检查记录.md
+│   ├── 烧录测试记录.md
+│   ├── 阻塞问题与烧录实测.md
+│   ├── PS2遥控实现与调试.md
+│   ├── TT两线电机与麦轮分层验收.md / TT电机测试方案.md
+│   ├── 麦轮TB6612分步验收记录-2026-10-06.md / 全车连接检验-GPIO与降压端子索引.md
+│   ├── 排错对话log.md
+│   ├── diagnostics/2026-10-07/  ★ TB6612 四轮排错索引 + 9 份过程记录（本批新增）
+│   ├── assets/                8 张实物照片 + OCR 文本 + 面包板.xlsx
+│   └── logs/                  16 份 2026-10-06 + 48 份 2026-10-07 原始串口日志
+└── build/                     构建产物，已 gitignore（可重新生成）
+```
+
+## 2. 实测硬件事实（不是猜的）
+
+```
+串口   : COM9  USB-SERIAL CH340  (USB ID 1a86:7523)   ← COM7/COM8 是蓝牙虚拟串口，忽略
+芯片   : ESP32-D0WD-V3 rev3.1  = ESP32-WROOM-32E 那档   Flash 4MB   MAC 08:a6:f7:a8:95:94
+FQBN   : esp32:esp32:esp32      (ESP32 Dev Module)
+```
+
+> ⚠️ **接线照片上写的主控是 ESP32-S3，插在电脑上的实测是经典 ESP32。**
+> 两者 FQBN 不同，选错会烧出跑不起来的固件。`flash-catapult.ps1` 的做法是先用 esptool
+> 问芯片、拿实测结果决定编译目标，所以这个矛盾不会导致烧错；**但别照 S3 的示意图去插排针**。
+
+### 投掷机构
+
+| 信号 | GPIO | | 部件 | 参数 |
+|---|---:|---|---|---|
+| IN1 / IN2 / IN3 | 25 / 26 / 27 | | 电机 | 2804，12N14P → **极对数 7** |
+| EN | 14 | | | 12V（7.4–16V），KV220，37g |
+| SDA / SCL | 21 / 22 | | | Rs 2.3Ω，Ls 0.86mH |
+| FLT | 不接 | | | **额定 0.5A / 最大 2A**，0.03 N·m |
+| PS2 CLK / CS | 2 / 4 | | 驱动板 | **TI DRV8313**，功率输入 8.2–24V |
+| PS2 CMD / DAT | 12 / 13 | | 编码器 | **AS5600** @ I2C `0x36` |
+| GND | 必须共地 | | 降压模块 | 6–24V-IN / 5V-OUT / 3V3-OUT / VADJ-OUT |
+
+- ⚠️ **GPIO2 / GPIO12 是 ESP32 启动配置脚**，PS2 外设的上电电平可能干扰启动（尤其 GPIO12）。
+  遇到启动/下载问题，**不要盲目重烧** —— 但也**不能照旧建议改到 18/23**：那两个脚现在是
+  底盘电机线（18 = 左后 BIN1、23 = 右前 AIN1，见 §2.3）。若要避开 GPIO2/12，
+  必须**与底盘引脚表统一重排**并同步改代码。
+- DRV8313 丝印对照：板上 `EN` = 芯片 `nSLEEP`（**低 = 睡眠、三相高阻 = 最安全**）、
+  `IN1~3` = `EN1~3`（所以用 `BLDCDriver3PWM`）、`FLT` = `nFAULT` 开漏（所以不接是对的）。
+
+### 行驶底盘（当前方案）：2 × TB6612FNG，两线法
+
+**四麦轮必须四路独立控制，不能两轮并接。** 一块 TB6612FNG 只有 2 个 H 桥，所以用两块（D1 左板、D2 右板）。
+
+| 设备 / 车轮 | IN1 / IN2 | 说明 |
+|---|---|---|
+| D1-A 左前 FL | **16 / 17** | `PWMA`/`PWMB` 四个脚**全部接 3.3V**，不占 GPIO |
+| D1-B 左后 RL | **18 / 19** | 这是"两线法"：PWM 脚常高，用两个 IN 脚打 PWM |
+| D2-A 右前 FR | **23 / 32** | |
+| D2-B 右后 RR | **15 / 5** | 两个启动配置脚，**启动态必须实测** |
+| 两板共用 STBY | **33** ＋ **10kΩ 下拉到 GND** | **强制项**：不装则上电瞬间可能四轮全速 |
+| 两板 VCC | ESP32 3V3 | **不要接 5V**，否则 3.3V 高电平可能不被接受 |
+
+**合计 9 根输出，一根都不借投掷/PS2 的引脚** —— 这正是它能与投掷直接整合、不需要 IO 扩展器的原因。
+
+- **方向键行驶固件：** [`MecanumPS2Dpad`](firmware/chassis/MecanumPS2Dpad/README.md) 沿用此接线，轮向极性为 `{1,1,-1,-1}`，已完成编译、烧录和启动检查，100% 版本尚未进行带动力实测。`firmware/chassis/MecanumPS2*Diagnostic/` 是**架空诊断**固件
+  （只有限时点动，用来实测链路与命令解析）；`firmware/chassis/Motor*/` 是奇果派 PCA9685 的代码，烧进 TB6612 什么都不会发生。
+  实现要点（启动先拉低 STBY、换向先撤原方向 PWM、制动要让 PWM 外设真的输出常高）见接线文档 §3。
+- ⚠️ **9 根引脚用满，没有舵机信号脚了。** 投球机构若要 MG995 舵机，需改用下面的备选方案。
+- 完整接线表、面包板孔位、验收步骤：**`docs/麦轮TB6612接线与面包板排线.md`（接线以此文为准）**。
+
+### 行驶底盘（备选）：奇果派 QGPMaker PCA9685
+
+| 项目 | 值 |
+|---|---|
+| 驱动板 | 奇果派 QGPMaker，**PCA9685 @ I2C `0x60`**（只占 2 根 IO，与开发板型号无关） |
+| 能力 | 4 路直流电机 M1–M4 / 2 路步进 / **8 路舵机** ← 需要舵机时选它 |
+| ⚠️ 限制 | **编码器功能仅支持 Arduino UNO**；本项目电机不带编码器，正好绕开 |
+| ⚠️ 代价 | **依赖 I2C（GPIO21/22）—— 也就是当前有间歇 SDA 故障的那两根线** |
+| 供电 | 逻辑电来自开发板 USB；**动力必须外接 6–12V 到 DC 口**，否则"I2C 通了但电机不动" |
+| 引脚 | ESP32：SDA=21 SCL=22；UNO：SDA=A4 SCL=A5 |
+| 固件 | `firmware/chassis/` 现成，且 `host/motor_link_check.py` 可直接用 |
+
+## 3. 快速开始
+
+所有命令都在**仓库根目录**下执行（仓库路径含空格和中文，脚本内部已用 `$PSScriptRoot` 相对解析）。
+
+**投掷机构** —— 一键检测串口 / 编译 / 烧录 / 读回验证：
+
+```powershell
+.\tools\flash-catapult.ps1 -List                 # 只看串口和芯片，什么都不烧（安全）
+.\tools\flash-catapult.ps1 -Stage 1              # 烧第一阶段 AS5600 测试（推荐先做这个）
+.\tools\flash-catapult.ps1 -Stage 2              # 烧第二阶段 FOC 闭环测试
+.\tools\flash-catapult.ps1 -Stage 1 -CompileOnly # 只编译不烧录
+```
+
+**行驶底盘 · 奇果派 PCA9685（备选方案）** —— 编译 / 烧录。
+⚠️ 当前 TB6612 方案**没有对应固件**，下面这套只适用于奇果派板：
+
+```powershell
+python -m pip install -r host\requirements.txt          # 一次性
+.\tools\build-chassis.ps1 -ListBoards                    # 看板子插在哪个串口
+.\tools\build-chassis.ps1 -Sketch MotorLinkCheck -Upload # 先烧链路自检
+python host\motor_link_check.py                          # 跑检测，直接给结论
+.\tools\build-chassis.ps1 -Sketch MotorDriver -Upload    # 确认通信后再烧驱动
+python host\motor_link_check.py --drive 1 200            # M1 正转 200
+python host\motor_link_check.py --stop
+```
+
+**MCP 桥**（让 Codex 自己烧录）—— 已注册在 `~/.codex/config.toml` 的 `[mcp_servers.arduino]`：
+
+```powershell
+python tools\mcp-bridge\mcp_server.py --selftest   # 本地跑一遍每个工具
+python tools\mcp-bridge\test_mcp.py                # 验证 MCP 协议
+```
+
+## 4. 安全红线
+
+**电压上限只给 1.0V，是因为这颗电机堵转电流 ≈ 施加电压 ÷ Rs(2.3Ω)：**
+
+| 施加电压 | 堵转电流 | 判断 |
+|---:|---:|---|
+| **1.0V** | ≈ 0.43A | 与额定 0.5A 相当，**安全** |
+| 3.0V | ≈ 1.3A | 已超额定 |
+| 12.0V | ≈ **5.2A** | **远超 2A 上限，37g 小电机会烧** |
+
+- 本程序**没有电流采样**，是电压模式 FOC，**软件无法限制真实电流**。
+  不要因为"电机不转"就加大 `VOLTAGE_LIMIT`，先断电查接线、极对数、编码器。
+- **软件停止不能替代断开驱动功率电源。** 校准时（`c`）电机会动、响应变慢，急停就拔驱动功率。
+- **不要把 5V / 3.3V 逻辑电源当成功率输入**（驱动板功率端要 8.2–24V）。
+- 编码器供电有"接 5V"与"接 3.3V 但要去掉 R3"两种说法冲突。ESP32 的 SDA/SCL 是 3.3V 电平，
+  **5V 上拉需要电平转换**，别直连。
+- 首次上传建议**断开降压模块到 ESP32 的 5V 线**（保留 USB 供电与共地），避免两路电源对灌。
+- 电机电流走合适的电源线，**不要走杜邦线**。首次测试**不装投掷杆**。
+
+## 5. 投掷机构的工作流
+
+状态机：`READY → CHARGING → FORWARD → DWELL(300ms) → RETURNING → READY`
+
+- 蓄力**不是存弹簧能量**，而是记录按键时长：`speedCap = 0.3 + 1.2 × min(按住ms / 3000, 1)` rad/s。
+  满 3 秒后保持上限；**100ms 内的点击被忽略**。保持 L1，按住 × 开始蓄力，**松开 × 才开始动作**。
+- 正向参考轨迹 0 → π/2；按 2 rad/s² 限制参考加速度，剩余距离不足时按 `√(2·a·剩余角)` 减速。
+  到位判据：角度误差 < 1° 且角速度 < 0.1 rad/s，并持续 200ms。超时 15 秒进入故障。
+- **按住时间只提高速度上限，不保证实际最高速单调增加**；本版会在 90° 前减速，
+  不保证在 90° 位置以最高速出球。若需求是端点高速释放，需要另设释放角与制动余量。
+- 故障源：编码器读失败、磁场异常、PS2 帧非法/超时、动作中松 L1、按 ○、超时、角度越界。
+  **故障时不自动回零**；禁用后机构可能惯性运动或受重力下落，必须有独立硬限位与物理急停。
+
+### 首次调试顺序（务必按序）
+
+1. **驱动功率断开**，只留 USB，跑默认锁定代码。检查 `PS2=1`、按 L1/×/○ 看 buttons 变化；
+   `enc=1`、手转角度看 `MD/ML/MH`。串口发 `d` 可查 I2C 引脚电平与总线恢复（仅电机禁用时可用）。
+2. **修供电**：确认 ESP32 的 5V/VIN 与 GND 落点、驱动功率输入及极性、编码器逻辑供电；
+   实测驱动板输入电压后填入 `SUPPLY_VOLTAGE`。
+3. **卸下投掷杆和小球**，再改 `CONFIG_CONFIRMED=true`，重新编译上传。
+4. 串口 115200 发 `c` 做 FOC 对齐（**可能转过 90°**，且阻塞期间软件急停不保证响应）。
+5. 校准后驱动禁用。**断开驱动功率再装杆**，将杆置于机械原点，恢复功率后发 `h` 记录当前角度为 0
+   （`h` 是人工置零，不是自动找限位；重启后需重新校准/置零）。
+6. 松开所有手柄按键，发 `a` 使能。保持 L1、短按 × 再松开，低速验证正方向、90° 目标、返回与故障处理。
+7. 无球机构验证后再用轻软球测试，记录角速度、电流、温升、超调与释放角。
+
+## 6. 当前阻塞
+
+| # | 阻塞项 | 事实 | 出路 |
+|---|---|---|---|
+| 1 | 编码器通信**间歇失败** | 曾成功读出角度，随后持续 I2C 错误；恢复后又不应答 | 固定接线/供电，手转整圈 + 静置连续验证零错误 |
+| 2 | **磁场偏弱** | 实测 `MD=1 ML=1 MH=0`，程序明确拒绝使能 | 断电查磁铁是否随轴转动、对中与间距，调到 `MD=1 ML=0 MH=0` |
+| 3 | **驱动功率供电不明** | 代码故意锁 `SUPPLY_VOLTAGE=0`；驱动板标 8.2–24V | 实测驱动功率端电压与极性；若取自 5V 输出则不符合额定 |
+| 4 | FOC 未校准、机械原点未记录 | 功率与反馈未验证前不能校准 | 卸杆校准 `c` → 人工原点 `h` → 前提齐全后 `a` |
+| 5 | 90° 限位 / 急停 / 负载未验证 | 软件参考轨迹不能保证物理不越界 | 先做独立机械限位 + 缓冲 + 断电急停，空载后再验证负载 |
+
+**供电、接线、磁铁位置没有远程执行器，改不了代码解决**——这些必须动万用表。
+
+### 各子系统验证状态
+
+| 子系统 | 状态 |
+|---|---|
+| 投掷机构 · PS2Catapult | 已上传 COM9 并验证启动（332524 字节 / 25%，全局变量 24548 / 7%）。PS2 数字模式 `0x41` 帧已验证；**按键功能、自动往返、带杆运行未验证** |
+| 投掷机构 · Stage1 | 已烧录诊断过；串口与 I2C 电气正常，**编码器未通过** |
+| 行驶底盘 · 奇果派 PCA9685（备选） | 2 个固件 × 5 种开发板**编译全部通过**；**尚未实机烧录**；该方案已让位给 TB6612 |
+| 行驶底盘 · TB6612FNG（当前） | 接线按两线法装配；方向键固件 `MecanumPS2Dpad` 已编译、烧录，100% 目标占空比，启动时手柄在线且四轮输出零。100% 版本带载运动仍待确认。历史单轮双向及四轮 300ms 短测通过现场观察，持续联动异常仍保留于诊断记录 |
+| MCP 桥 | MCP 协议层与 Codex 端到端**均已验证** |
+
+## 7. 故障排查
+
+| 现象 | 先查 |
+|---|---|
+| 找不到串口 | 数据线（有些只能充电）、CH340/CP210x 驱动、板子插好没 |
+| 串口被占用 / `Access is denied` | 关掉 Arduino IDE 的串口监视器 |
+| 上传卡在下载阶段 | `-UploadSpeed 115200` 降速；必要时手动按 BOOT/EN |
+| 底盘 I2C 检测 PASS 但电机不转 | 十有八九**没接动力电源（VM）**——逻辑电来自 USB，电机要 6–12V |
+| 底盘检测 FAIL，总线上一个器件都没有 | 驱动板插到底没 / 插歪；驱动板电源灯；烧的是不是本项目固件；试 `--raw "I2C 21 22"` |
+| **TB6612：上电瞬间四轮就转** | **STBY 没装 10kΩ 下拉**（强制项），逐个确认两板 STBY 都真的被拉到低 |
+| **TB6612：方向线怎么动都不转** | 该轮 `PWMA`/`PWMB` 没接到 3.3V —— PWM 脚为低时是**一直短路制动**，不是没电 |
+| **TB6612：某轮只能转一个方向** | 该轮两个 IN 脚之一虚接；两线法两个脚都要到位 |
+| **TB6612：冷启动或下载异常** | GPIO15 / GPIO5 是启动配置脚，按接线文档实测启动态与下载 |
+| 第一阶段 `0x36` 无应答 | 程序会自动扫总线：扫不到 = 线/供电问题；扫到别的地址 = 芯片不对 |
+| `MD=0` | 磁铁没对准或没装；`ML=1` / `MH=1` 是磁场太弱 / 太强 |
+| `raw` 不变或乱跳 | 磁铁是否随转子转动、固定是否牢、磁场状态 |
+| 第二阶段打印 `LOCKED` | 正常，`CONFIG_CONFIRMED` 还是 `false` |
+| 对齐失败 | 编码器角度、极对数、相线顺序、EN 极性、驱动供电、磁铁位置 |
+| 抖动 / 不转却发热 | **立刻断电**，不要加大电压 |
+| ESP32 重启 | 供电跌落、共地、电流回路、接触不良、电机干扰 |
+
+## 8. 环境与依赖
+
+| 项目 | 值 |
+|---|---|
+| Arduino | 便携版 IDE 2.3.10 @ `D:\Download\arduino`，内置 arduino-cli 1.5.1、esptool 5.3.1 |
+| ⚠️ 坑 | arduino-cli **必须带 `--config-file`**（数据目录在 D 盘），否则找不到 esp32 核心；脚本已自动带上 |
+| 核心 / 库 | `esp32:esp32` **3.3.12**、`Simple FOC` **2.4.0**（库名有空格：`arduino-cli lib install "Simple FOC"`） |
+| Python | `pyserial` 3.5、`mcp` 2.3.0（用了 v2 的 `MCPServer` API）、`rapidocr-onnxruntime`、`opencv-python` |
+| MCP 注册 | `~/.codex/config.toml` → `[mcp_servers.arduino]`，含 `PYTHONUTF8=1`（否则 Windows 中文乱码） |
+
+## 9. 文档索引
+
+> **接底盘请先看 §9.1 与 §9.2 的前两行**；其余为投掷机构、工具链与历史记录。
+
+### 9.1 模块 README（与总入口互相链接）
+
+根 `README.md` 是**总入口**。下列**每个 sketch / 诊断目录各带自己的 `README.md`**，其顶部都有返回总入口的导航块，模块之间也互相链接。
+
+**投掷机构**
+
+| 模块 README | 内容 |
+|---|---|
+| [`firmware/catapult/PS2Catapult/README.md`](firmware/catapult/PS2Catapult/README.md) | 【投掷主线】PS2 遥控 + 蓄力 + 90° 往返：引脚、命令、配置锁、安全红线 |
+| [`firmware/catapult/Stage1_AS5600Test/README.md`](firmware/catapult/Stage1_AS5600Test/README.md) | 第一阶段：只读编码器 + I2C 电气诊断（`G`/`W`/`L`/`P` 命令） |
+| [`firmware/catapult/Stage2_FOCClosedLoop/README.md`](firmware/catapult/Stage2_FOCClosedLoop/README.md) | 第二阶段：闭环空载测试，与解除配置锁前的核对清单 |
+
+**行驶底盘（TB6612 两线法，当前方案）**
+
+| 模块 README | 内容 |
+|---|---|
+| [`firmware/chassis/MecanumPS2Dpad/README.md`](firmware/chassis/MecanumPS2Dpad/README.md) | 【方向键行驶】前后/左右平移、100% 目标占空比、测试和启动日志 |
+| [`firmware/chassis/MecanumPS2/README.md`](firmware/chassis/MecanumPS2/README.md) | 【底盘主线】两线法麦轮 + PS2：命令表、占空比/时限、安全边界 |
+| [`firmware/chassis/MecanumPS2MotionDiagnostic/README.md`](firmware/chassis/MecanumPS2MotionDiagnostic/README.md) | ★ 当前诊断版：4 个诊断固件的版本/极性/命令总表 + `MOVEPULSE` |
+| [`firmware/chassis/TB6612LogicCheck/README.md`](firmware/chassis/TB6612LogicCheck/README.md) | 第 2 步逻辑验收固件（只回读引脚，不含使能与运动） |
+| [`firmware/chassis/MecanumPS2FourWheelDiagnostic/README.md`](firmware/chassis/MecanumPS2FourWheelDiagnostic/README.md) | 历史：首版装车校准（极性 `{1,1,-1,-1}`）+ `ALLPULSE` 四轮同时脉冲 |
+| [`firmware/chassis/MecanumPS2WheelDiagnostic/README.md`](firmware/chassis/MecanumPS2WheelDiagnostic/README.md) | 历史：四标签单轮 `PULSE`（极性仍未校准） |
+| [`firmware/chassis/MecanumPS2Diagnostic/README.md`](firmware/chassis/MecanumPS2Diagnostic/README.md) | 历史：只允许 `PULSE RL` 的单轮脉冲 |
+
+**工具与记录**
+
+| 模块 README | 内容 |
+|---|---|
+| [`host/README-diagnostics.md`](host/README-diagnostics.md) | 诊断上位机脚本：前置条件、固件配对、逐脚本用法、证据边界 |
+| [`docs/diagnostics/2026-10-07/README.md`](docs/diagnostics/2026-10-07/README.md) | ★ TB6612 四轮排错索引：现场结论表、证据边界、下一步待测 |
+
+**⚠️ 已让位的奇果派 PCA9685（仅备选，烧到 TB6612 无反应）**
+
+| 模块 README | 内容 |
+|---|---|
+| [`firmware/chassis/MotorLinkCheck/README.md`](firmware/chassis/MotorLinkCheck/README.md) | 链路自检：写回读 PCA9685 寄存器；含可选 ACS712 电流检测 |
+| [`firmware/chassis/MotorDriver/README.md`](firmware/chassis/MotorDriver/README.md) | 简易驱动：ASCII + 二进制双协议、看门狗、8 路舵机 |
+
+> **覆盖情况**：`firmware/` 下 11 个 sketch 目录现已全部带 `README.md`（另有 `host/` 与 `docs/diagnostics/` 各 1 个）。
+
+### 9.2 文档表
+
+| 文档 | 内容 |
+|---|---|
+| **`docs/麦轮TB6612接线与面包板排线.md`** | ★ **底盘接线当前方案（两线法）**：全车 GPIO、四轮对应、面包板孔位表、分步验收。**取代旧三线法**，已对齐 §2.3 |
+| `docs/麦轮TB6612接线-两线法备选方案.md` | 该方案的来源与论证：13 根 vs 9 根、代价（用满引脚/无舵机余量）、对 I2C 扩展器的担心 |
+| `docs/ESP32-2804-FOC-guide.md` | 原始接线与烧录指南（第一阶段/第二阶段的完整依据） |
+| `docs/投掷机构-设计与安全.md` | 原 README：硬件参数、EN 极性推导、排查表、安全须知 |
+| `docs/底盘链路检测与驱动.md` | 原 README：**奇果派板**识别过程、固件协议、三层检测能力、常见问题 |
+| `docs/Codex串口MCP桥.md` | 原 README：9 个 MCP 工具、审批分级、管理命令、已知约束 |
+| `docs/PS2遥控实现与调试.md` | PS2 蓄力投掷的交付范围、控制原理、调试顺序、还缺什么 |
+| `docs/阻塞问题与烧录实测.md` | **投掷状态最权威**：已完成项 + 阻塞表 + 不可远程解决项 |
+| `docs/诊断记录-第一阶段.md` | AS5600 找不到的完整诊断过程（含三轮更正与决定性测法） |
+| `docs/环境检查报告.md` | 本机 Arduino / Codex / 串口 检查记录与改动清单 |
+| `docs/线路检查记录.md` | 五个模块（编码器/电机/降压/驱动板/蓝牙）的线路状态与待验证项 |
+| `docs/烧录测试记录.md` | 串口、芯片、编译产物大小、哈希校验记录 |
+| `docs/logs/*.txt` | 原始串口日志：2026-10-06 那批 16 份（`stage1-*`、`ps2-*`、`connection-*`）+ `2026-10-07/` 48 份 |
+| `docs/diagnostics/2026-10-07/` | 9 份 TB6612 四轮排错过程记录（接线测点、逐轮验收、麦轮组合、限时占空比） |
+| `docs/assets/*.jpg` | 8 张实物照片（TB6612 引脚图、驱动板、降压模块、编码器、接线） |
+| `docs/assets/面包板.xlsx` | 面包板孔位图（a–j × 1–30，两侧 +/− 轨），配合接线文档 §5 |
+
+> **日志命名约定**：`docs/logs/` 下，单批 **≥10 份**时建 `docs/logs/<日期>/` 子目录
+> （如 `2026-10-07/` 48 份）；份数少时直接平铺（如 2026-10-06 那批 16 份）。
+> 历史日志一律不平铺改目录 —— 多份文档已有指向原路径的链接，移动会全部打断。
+>
+> 5 份实测记录写于仓库重组前，其顶部已加路径说明；文中旧路径（`D:\dsh\1001\...`）已按新布局更新。
+
+## 10. 下一步优先级
+
+`供电与编码器验收 → 手柄独立验收 → 卸杆校准 → 低速空载往返 → 机械限位/负载验证 → 轻软球释放验证 → 底盘集成`
+
+距"能跑的投石车"还缺：独立机械限位与缓冲、原点开关、断电急停、保持制动与电流监测；
+球托座/释放机构、护罩与稳定底座；FOC 参数整定与刹停验证。
+
+**底盘侧待办（按顺序）**：
+
+1. **修 GPIO21/22 的 SDA 间歇故障** —— 它同时影响投掷和（若走备选方案的）I2C，是唯一两头都卡的故障。
+2. **验证方向键固件的带载速度、持续运行及断联停车** —— `MecanumPS2Dpad` 已编译、烧录并通过动力关闭启动检查；历史联动停转问题仍需结合供电和输出电压诊断排查，不能由软件测试推断实车正常。
+3. 核对手上是否有奇果派 PCA9685 板、以及投球机构是否要 MG995 舵机 —— 这两条决定底盘走哪条路。
+4. 底盘 ↔ 投掷**动作互锁**（本程序只控投掷电机，不控行驶）。
+
+## 参考
+
+- [SimpleFOC 位置控制](https://docs.simplefoc.com/angle_loop) · [3PWM 驱动](https://docs.simplefoc.com/bldcdriver3pwm) · [I²C 磁编码器](https://docs.simplefoc.com/magnetic_sensor_i2c) · [电压模式](https://docs.simplefoc.com/voltage_torque_mode)
+- [AS5600 产品页](https://ams-osram.com/products/sensors/position-sensors/ams-as5600-position-sensor) · [ESP32 GPIO 文档](https://docs.espressif.com/projects/esp-idf/en/stable/esp32/api-reference/peripherals/gpio.html)
+- [奇果派驱动板资料](https://www.7gp.cn/archives/308) · [Arduino-PS2X 作者源码](https://github.com/madsci1016/Arduino-PS2X)

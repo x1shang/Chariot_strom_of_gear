@@ -1,0 +1,75 @@
+{
+  "date": "2026-10-14",
+  "record_type": "user_on_site_observation",
+  "test": "抛投机构实机试验",
+  "instrument_data": false,
+  "serial_log": null,
+  "photos": null,
+  "summary": "用户报告本轮抛投试验四项失败，未能达成可用抛射。",
+  "findings": [
+    {
+      "id": 1,
+      "category": "electrical_power",
+      "report_verbatim": "电池坏了（像是断路），只能直连电源",
+      "confirmed": "电池供电下车辆不可用，只能直连电源运行",
+      "inferred_by_user": "像是断路",
+      "unverified": [
+        "坏的是电芯、保护板还是接插件",
+        "是否只是保护板跳闸未复位",
+        "电池开路电压 / 端电压 / 内阻 / 导通",
+        "损坏的是哪一块电池"
+      ],
+      "measurements": null
+    },
+    {
+      "id": 2,
+      "category": "mechanical_machining",
+      "report_verbatim": "3D打印的孔太大，齿轮一直会滑齿，加限位器失败",
+      "confirmed": "齿轮啮合打滑；用户尝试加限位器未成功",
+      "unverified": [
+        "孔径实测值",
+        "轴径实测值",
+        "齿轮齿数与模数",
+        "限位器形式与失效方式",
+        "滑齿的直接原因归因"
+      ],
+      "measurements": null
+    },
+    {
+      "id": 3,
+      "category": "mechanical_shaft_hub",
+      "report_verbatim": "没有半月形杆齿轮在线轴上会滑动，导致齿轮脱落，且无法安回去",
+      "confirmed": "卷线轴为圆轴（无 D 形切面），齿轮沿轴向滑动并脱落；用户反馈无法装回，卷线轴总成当前不可用",
+      "unverified": [
+        "齿轮内孔是否已磨圆",
+        "卡簧 / 挡圈 / 紧定螺钉是否缺失或损坏",
+        "轴是否已弯曲或磨损",
+        "是否已拆检"
+      ],
+      "measurements": null
+    },
+    {
+      "id": 4,
+      "category": "mechanism_geometry",
+      "report_verbatim": "就算人力把杆子拉满，抛射初始角度也是平的，过不了城墙",
+      "confirmed": "以人力满行程拉动抛射杆，初始抛射角度仍接近水平，用户判定无法越过城墙",
+      "independent_of_items_1_to_3": true,
+      "unverified": [
+        "实测抛射角度",
+        "抛射杆臂长",
+        "转轴高度",
+        "限位 / 停止位置",
+        "目标城墙高度与距离"
+      ],
+      "measurements": null
+    }
+  ],
+  "evidence_boundary": [
+    "全部结论来自用户现场口述，无串口日志、无仪器读数、无照片，不能作为实测数据引用。",
+    "不得据此修改任何供电标称值（12V / VM / 电流）。",
+    "不得据此认定 N20、L298N 或底盘模块损坏。",
+    "零件尺寸与抛射角度均未测量，不得写成具体数值。"
+  ],
+  "firmware_changed_this_test": false,
+  "flashed_this_test": false
+}

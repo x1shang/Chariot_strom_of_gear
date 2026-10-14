@@ -1,0 +1,41 @@
+{
+  "status_samples": 200,
+  "hw_errors": 0,
+  "observed_modes": [
+    "41",
+    "73",
+    "FF"
+  ],
+  "invalid_link_samples": [
+    "14.906s STATUS hw=1 ps=0 mode=FF buttons=0000 ready=0 STBY=0 duty=0,0,0,0"
+  ],
+  "directions": {
+    "UP": {
+      "active_samples": 9,
+      "max_abs_duty": 198,
+      "sign_mismatches": []
+    },
+    "DOWN": {
+      "active_samples": 5,
+      "max_abs_duty": 174,
+      "sign_mismatches": []
+    },
+    "LEFT": {
+      "active_samples": 7,
+      "max_abs_duty": 180,
+      "sign_mismatches": []
+    },
+    "RIGHT": {
+      "active_samples": 9,
+      "max_abs_duty": 96,
+      "sign_mismatches": []
+    }
+  },
+  "circle_samples": 3,
+  "final": "FINAL STATUS hw=1 ps=1 mode=41 buttons=0000 ready=1 STBY=0 duty=0,0,0,0",
+  "neutral_output_errors": [],
+  "circle_output_errors": [],
+  "physical_wheel_observation": "User reports all wheels unresponsive during direction-button test.",
+  "user_mode_action": "User pressed MODE/ANALOG.",
+  "drive_voltage_measurement": "Pending actual VM/VCC readings; historical records include both 3V and 6V."
+}

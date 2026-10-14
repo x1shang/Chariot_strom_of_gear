@@ -1,0 +1,5 @@
+串口: COM9  (用户指定)
+芯片: ESP32-D0WD-V3 (revision v3.1)
+Flash: 4 MB
+MAC: 08:a6:f7:a8:95:94
+建议 FQBN: esp32:esp32:esp32

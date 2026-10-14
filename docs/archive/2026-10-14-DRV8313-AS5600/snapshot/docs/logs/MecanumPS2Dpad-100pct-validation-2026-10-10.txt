@@ -1,0 +1,12 @@
+2026-10-10 MecanumPS2Dpad 100% validation
+Configured DRIVE_DUTY=255/255 (100%), previously 192/255 (75.3%)
+PASS tests\run-dpad-tests.cmd: full-duty D-pad GPIO mapping, release, neutral rearm, emergency/serial stops, invalid/stale link, full-duty reversal, timer wraparound
+PASS arduino-cli compile: esp32:esp32:esp32, Arduino-ESP32 3.3.12
+Sketch: 284079 bytes (21%); globals: 22440 bytes (6%)
+PASS upload to COM4: ESP32-D0WD-V3 rev3.1; final flash data verified by esptool 5.3.1; reset completed
+PASS startup check: hw=1 ps=1 mode=41 buttons=0000 ready=1 STBY=0 duty=0,0,0,0
+Only STOP and STATUS were sent after upload; serial port closed. Motor power OFF confirmed by user.
+Archived startup log: docs/logs/MecanumPS2Dpad-upload-check-2026-10-10.txt
+Archived software test log: docs/logs/MecanumPS2Dpad-software-tests-2026-10-10.txt
+Build binaries and the previous 75.3% binary backup are local only, excluded from the PR.
+No powered vehicle movement test of this 100% version performed.
