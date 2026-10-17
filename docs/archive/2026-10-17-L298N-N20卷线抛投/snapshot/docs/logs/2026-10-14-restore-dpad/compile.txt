@@ -1,0 +1,4 @@
+$ arduino-cli compile --fqbn esp32:esp32:esp32 --build-path D:\Temp\chariot-restore-dpad-1x7ey1_a\build D:\Temp\chariot-restore-dpad-1x7ey1_a\MecanumPS2Dpad
+(rc=0)
+Sketch uses 284047 bytes (21%) of program storage space. Maximum is 1310720 bytes.
+Global variables use 22440 bytes (6%) of dynamic memory, leaving 305240 bytes for local variables. Maximum is 327680 bytes.

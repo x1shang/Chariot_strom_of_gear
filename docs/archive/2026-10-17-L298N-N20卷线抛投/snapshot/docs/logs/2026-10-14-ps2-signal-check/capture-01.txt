@@ -1,0 +1,3 @@
+--- COM9 @ 115200 ---
+STATUS fw=PS2SignalCheck-v1 hw=1 ps=1 mode=73 marker=5A buttons=0000 frames=1688 good=1688 bad=0 changes=0 STBY=0 ENA=0 ENB=0
+RAW len=9 bytes=FF,73,5A,FF,FF,80,7F,80,7F

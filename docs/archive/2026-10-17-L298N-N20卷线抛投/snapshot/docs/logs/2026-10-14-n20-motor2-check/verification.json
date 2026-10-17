@@ -1,0 +1,68 @@
+{
+  "date": "2026-10-14",
+  "firmware": "N20Motor2Fwd3s-v2",
+  "port": "COM9",
+  "chip": "ESP32-D0WD-V3 rev3.1",
+  "mac": "08:a6:f7:a8:95:94",
+  "fqbn": "esp32:esp32:esp32",
+  "core": "3.3.12",
+  "source_sha256": "C21F1DADA0B93350FEEFF8D28D68A7DB0F649113AC1880F1F87DE31C317D8C82",
+  "app_image_sha256": "D60EDD21A470AFCFBF845E54B42824ACC4618277EDE71A562AE275AFB241FB58",
+  "app_bytes": 275296,
+  "flash_write_hash_verified": true,
+  "motor2_forward_command_count": 7,
+  "firmware_elapsed_ms": 3000,
+  "motor1_ena_during_test": 0,
+  "final_enb": 0,
+  "physical_direction": "User confirmed IN3=1, IN4=0 is clockwise from output shaft end",
+  "runs": [
+    {
+      "log": "motor2-forward-3s.txt",
+      "command_count": 1,
+      "elapsed_ms": 3000,
+      "final_disabled": true
+    },
+    {
+      "log": "motor2-forward-3s-repeat-02.txt",
+      "command_count": 1,
+      "elapsed_ms": 3000,
+      "final_disabled": true
+    },
+    {
+      "log": "motor2-forward-3s-repeat-03.txt",
+      "command_count": 1,
+      "elapsed_ms": 3000,
+      "final_disabled": true
+    },
+    {
+      "log": "motor2-forward-3s-repeat-04.txt",
+      "command_count": 1,
+      "elapsed_ms": 3000,
+      "final_disabled": true
+    },
+    {
+      "log": "motor2-forward-3s-repeat-05.txt",
+      "command_count": 1,
+      "elapsed_ms": 3000,
+      "final_disabled": true
+    },
+    {
+      "log": "motor2-forward-3s-repeat-06.txt",
+      "command_count": 1,
+      "elapsed_ms": 3000,
+      "final_disabled": true
+    },
+    {
+      "log": "motor2-forward-3s-repeat-07.txt",
+      "command_count": 1,
+      "elapsed_ms": 3000,
+      "final_disabled": true,
+      "motor1_always_disabled": true
+    }
+  ],
+  "motor1_clockwise_polarity": {
+    "IN1": 0,
+    "IN2": 1,
+    "source": "User observed IN1=1, IN2=0 was counterclockwise in the sequence test"
+  }
+}

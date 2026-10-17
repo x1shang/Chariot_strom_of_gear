@@ -1,0 +1,68 @@
+{
+  "date": "2026-10-17",
+  "record_type": "user_on_site_observation",
+  "test": "上次发射装置方案失效报告",
+  "themes": ["抛投装置", "方案变更"],
+  "instrument_data": false,
+  "serial_log": null,
+  "photos": null,
+  "disassembly": null,
+  "summary": "用户报告上次的发射装置方案已失败，原因是扭矩太大、电机被撕裂；决定改用原驱动板（L298N）驱动两个 130 电机摩擦飞轮发射装置。",
+  "report_verbatim": "请你写明上次的发射装置方案已经失败（原因是扭矩太大，电机被撕裂），改为新方案，使用原驱动板驱动两个130电机摩擦飞轮发射装置。",
+  "retired_scheme": {
+    "name": "L298N + 双 N20 卷线蓄力抛投",
+    "established": "2026-10-14",
+    "role_of_motor2": "连接转轴，拉绳蓄力",
+    "role_of_motor1": "控制2号电机的位置以实现释放",
+    "archive": "docs/archive/2026-10-17-L298N-N20卷线抛投/README.md"
+  },
+  "new_scheme": {
+    "name": "L298N + 双 130 摩擦飞轮",
+    "driver_board": "沿用原驱动板 L298N（用户明确要求）",
+    "motors": "两个 130 有刷直流电机，各带一个摩擦飞轮",
+    "gpio_unchanged": true,
+    "doc": "docs/抛投装置-双130摩擦飞轮接线与GPIO分配.md"
+  },
+  "findings": [
+    {
+      "id": 1,
+      "category": "scheme_status",
+      "report_verbatim": "上次的发射装置方案已经失败",
+      "confirmed_level": "用户明确陈述",
+      "unverified": []
+    },
+    {
+      "id": 2,
+      "category": "failure_cause_mechanical",
+      "report_verbatim": "原因是扭矩太大，电机被撕裂",
+      "confirmed": "用户判定失效原因；方案已弃用",
+      "attribution_status": "用户陈述 + 推断，未经拆检或测量复核",
+      "unverified": [
+        "被撕裂的是哪一台电机（1号释放电机 / 2号转轴电机）",
+        "撕裂部位与形式（电机轴 / 减速箱 / 输出轴 / 安装座）",
+        "失效顺序（哪一级先坏）",
+        "失效时的占空比、供电电压、是否堵转、是否卡入异物",
+        "失效时电机端电压与电流（无任何电气测量）",
+        "L298N 是否同时受损（未测量，不能推断）",
+        "是否已拆检、零件是否保留"
+      ],
+      "measurements": null
+    },
+    {
+      "id": 3,
+      "category": "decision",
+      "report_verbatim": "改为新方案，使用原驱动板驱动两个130电机摩擦飞轮发射装置",
+      "confirmed_level": "用户明确指示",
+      "unverified": []
+    }
+  ],
+  "evidence_boundary": [
+    "全部内容来自用户口述，无串口日志、无仪器读数、无照片、无拆检记录，不能作为实测数据引用。",
+    "不得据此修改任何供电标称值（12V / VM / 电流）。",
+    "不得据此认定 L298N、N20、TB6612、底盘或电池已损坏。",
+    "不得把『扭矩太大』写成带数值的结论。",
+    "旧方案的程序、脚本与日志全部保留，未删除、未合并。"
+  ],
+  "firmware_changed_this_test": false,
+  "related_previous_failures": "docs/logs/2026-10-14-throw-test/README.md（四项：电池像是断路、3D 打印孔过大滑齿、卷线轴无半月形杆导致齿轮脱落、人力满行程下抛射角仍接近水平）"
+}

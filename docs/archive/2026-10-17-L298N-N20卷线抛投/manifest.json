@@ -1,0 +1,469 @@
+{
+  "archived_on": "2026-10-17",
+  "source_commit": "c416898c3322f1742ddfac56a54ac7db6533da7c",
+  "reason": "用户报告上次发射装置方案失败：卷线/蓄力机构扭矩过大，电机被撕裂。改用原驱动板 L298N 驱动两个 130 电机摩擦飞轮。",
+  "files": [
+    {
+      "source_path": "docs/测试程序索引-2026-10-14.md",
+      "snapshot_path": "snapshot/docs/测试程序索引-2026-10-14.md",
+      "sha256": "1df98691a1671b1d98e52298fd7e48866f1f1915331ad1f13cb4958db4858f6a",
+      "reason": "test_program_index"
+    },
+    {
+      "source_path": "docs/麦轮TB6612接线与面包板排线.md",
+      "snapshot_path": "snapshot/docs/麦轮TB6612接线与面包板排线.md",
+      "sha256": "73c5602fb3cea159e1c5b104644a2fd0a2f2c5696dd8fa867895c5a8b18d912a",
+      "reason": "local_link_dependency"
+    },
+    {
+      "source_path": "docs/抛投装置-L298N双N20接线与GPIO分配.md",
+      "snapshot_path": "snapshot/docs/抛投装置-L298N双N20接线与GPIO分配.md",
+      "sha256": "1da1ff6bdc5e568624b0ffd0c090cc67e4747c50aba6a9a4f48b9e17884bc417",
+      "reason": "retired_scheme_wiring_doc"
+    },
+    {
+      "source_path": "docs/全车连接检验-GPIO与降压端子索引.md",
+      "snapshot_path": "snapshot/docs/全车连接检验-GPIO与降压端子索引.md",
+      "sha256": "fbe717cf42bf2f805b4c6efdbc2835893bae14b3de8fbb5900e38f5ed1e31dc6",
+      "reason": "local_link_dependency"
+    },
+    {
+      "source_path": "docs/archive/2026-10-14-DRV8313-AS5600/README.md",
+      "snapshot_path": "snapshot/docs/archive/2026-10-14-DRV8313-AS5600/README.md",
+      "sha256": "32a791532737c8f516789e03c6792ccc793a1e6ac803d0b9e3a1fc0a16035df8",
+      "reason": "local_link_dependency"
+    },
+    {
+      "source_path": "docs/logs/2026-10-14-controller-wheel-check/README.md",
+      "snapshot_path": "snapshot/docs/logs/2026-10-14-controller-wheel-check/README.md",
+      "sha256": "a4139496096a8b4ebc1688f13877102d85764e601ae97709fe0674219bb22567",
+      "reason": "local_link_dependency"
+    },
+    {
+      "source_path": "docs/logs/2026-10-14-n20-motor2-ccw10s/compile.txt",
+      "snapshot_path": "snapshot/docs/logs/2026-10-14-n20-motor2-ccw10s/compile.txt",
+      "sha256": "0b1d85a990690cf941dd99779bea547d83763d8ec09ade6ce9ead2e6213141be",
+      "reason": "retired_scheme_evidence"
+    },
+    {
+      "source_path": "docs/logs/2026-10-14-n20-motor2-ccw10s/counterclockwise-10s.txt",
+      "snapshot_path": "snapshot/docs/logs/2026-10-14-n20-motor2-ccw10s/counterclockwise-10s.txt",
+      "sha256": "afa332a7a08600250b2767086f2f9a15d5e98273b54b6193288db508b3cb455e",
+      "reason": "retired_scheme_evidence"
+    },
+    {
+      "source_path": "docs/logs/2026-10-14-n20-motor2-ccw10s/idle-after-upload.txt",
+      "snapshot_path": "snapshot/docs/logs/2026-10-14-n20-motor2-ccw10s/idle-after-upload.txt",
+      "sha256": "9e3686b4ddc4339fdfe1698ae9156fe5f2be00a5e1330e95bf6457164177b489",
+      "reason": "retired_scheme_evidence"
+    },
+    {
+      "source_path": "docs/logs/2026-10-14-n20-motor2-ccw10s/README.md",
+      "snapshot_path": "snapshot/docs/logs/2026-10-14-n20-motor2-ccw10s/README.md",
+      "sha256": "e9ed2be5a8a29cf60daf4ff7e9de11ad8a84e742d06478ce4daf6d6514abd45e",
+      "reason": "retired_scheme_evidence"
+    },
+    {
+      "source_path": "docs/logs/2026-10-14-n20-motor2-ccw10s/upload.txt",
+      "snapshot_path": "snapshot/docs/logs/2026-10-14-n20-motor2-ccw10s/upload.txt",
+      "sha256": "3e3b13d89af9ee61501a4ffe13e37648f1c31cc93c7c6a96b5d2654cc4dba5a2",
+      "reason": "retired_scheme_evidence"
+    },
+    {
+      "source_path": "docs/logs/2026-10-14-n20-motor2-ccw10s/verification.json",
+      "snapshot_path": "snapshot/docs/logs/2026-10-14-n20-motor2-ccw10s/verification.json",
+      "sha256": "2dfc12ebc65bb07b9eff12e7ff6b463448816f6ef65da450586ec150be07879e",
+      "reason": "retired_scheme_evidence"
+    },
+    {
+      "source_path": "docs/logs/2026-10-14-n20-motor2-check/chip-info.txt",
+      "snapshot_path": "snapshot/docs/logs/2026-10-14-n20-motor2-check/chip-info.txt",
+      "sha256": "c16433bdc06afed4b77a786325ec3cda191f667894aa96e904dedcd675be64cc",
+      "reason": "retired_scheme_evidence"
+    },
+    {
+      "source_path": "docs/logs/2026-10-14-n20-motor2-check/idle-after-jumper-removal.txt",
+      "snapshot_path": "snapshot/docs/logs/2026-10-14-n20-motor2-check/idle-after-jumper-removal.txt",
+      "sha256": "e9b30b4534baa9a1998310aca7cee3686755f20e67895c265053eb6bdc27f205",
+      "reason": "retired_scheme_evidence"
+    },
+    {
+      "source_path": "docs/logs/2026-10-14-n20-motor2-check/idle-after-upload-v2.txt",
+      "snapshot_path": "snapshot/docs/logs/2026-10-14-n20-motor2-check/idle-after-upload-v2.txt",
+      "sha256": "97de277447c00edfa98d0e5a985fabc3cd9712679d3880c34e67582b03a8f0dd",
+      "reason": "retired_scheme_evidence"
+    },
+    {
+      "source_path": "docs/logs/2026-10-14-n20-motor2-check/idle-after-upload.txt",
+      "snapshot_path": "snapshot/docs/logs/2026-10-14-n20-motor2-check/idle-after-upload.txt",
+      "sha256": "12cbb8e715388b16efcc85cf33e11b940b4c450ee29e775adc7bd51b026d4e82",
+      "reason": "retired_scheme_evidence"
+    },
+    {
+      "source_path": "docs/logs/2026-10-14-n20-motor2-check/idle-before-repeat-07.txt",
+      "snapshot_path": "snapshot/docs/logs/2026-10-14-n20-motor2-check/idle-before-repeat-07.txt",
+      "sha256": "72aaaa0830e6fbd18176159d8ef5bb76aff70cff1430e97ec63b331253f7769c",
+      "reason": "retired_scheme_evidence"
+    },
+    {
+      "source_path": "docs/logs/2026-10-14-n20-motor2-check/motor2-forward-3s-repeat-02.txt",
+      "snapshot_path": "snapshot/docs/logs/2026-10-14-n20-motor2-check/motor2-forward-3s-repeat-02.txt",
+      "sha256": "598a8b1d545a7fa6fd2a2a5aea0e8e0f36a115429e4659fe09ca7d4acd95bd7a",
+      "reason": "retired_scheme_evidence"
+    },
+    {
+      "source_path": "docs/logs/2026-10-14-n20-motor2-check/motor2-forward-3s-repeat-03.txt",
+      "snapshot_path": "snapshot/docs/logs/2026-10-14-n20-motor2-check/motor2-forward-3s-repeat-03.txt",
+      "sha256": "b8df6fdfef848303c131142b745b0ea67bcd602565653b5751a2225bd83a3318",
+      "reason": "retired_scheme_evidence"
+    },
+    {
+      "source_path": "docs/logs/2026-10-14-n20-motor2-check/motor2-forward-3s-repeat-04.txt",
+      "snapshot_path": "snapshot/docs/logs/2026-10-14-n20-motor2-check/motor2-forward-3s-repeat-04.txt",
+      "sha256": "d55c60c09b10bf547ba71bd5964a67509039cfb1816734d131ad9dd39e225e53",
+      "reason": "retired_scheme_evidence"
+    },
+    {
+      "source_path": "docs/logs/2026-10-14-n20-motor2-check/motor2-forward-3s-repeat-05.txt",
+      "snapshot_path": "snapshot/docs/logs/2026-10-14-n20-motor2-check/motor2-forward-3s-repeat-05.txt",
+      "sha256": "973e3f90cabbb397524c0c6f6674695d3bfe90c8b4a8ae9dc5840585b9180f8a",
+      "reason": "retired_scheme_evidence"
+    },
+    {
+      "source_path": "docs/logs/2026-10-14-n20-motor2-check/motor2-forward-3s-repeat-06.txt",
+      "snapshot_path": "snapshot/docs/logs/2026-10-14-n20-motor2-check/motor2-forward-3s-repeat-06.txt",
+      "sha256": "8f75858a0273ce956f36c0965e1c947f2c5305ae639f6396690955f93377d2ca",
+      "reason": "retired_scheme_evidence"
+    },
+    {
+      "source_path": "docs/logs/2026-10-14-n20-motor2-check/motor2-forward-3s-repeat-07.txt",
+      "snapshot_path": "snapshot/docs/logs/2026-10-14-n20-motor2-check/motor2-forward-3s-repeat-07.txt",
+      "sha256": "bf919ea5638d377dc86ae6141357c1e2734d60e4a313fe34b92c8d93eb586c60",
+      "reason": "retired_scheme_evidence"
+    },
+    {
+      "source_path": "docs/logs/2026-10-14-n20-motor2-check/motor2-forward-3s.txt",
+      "snapshot_path": "snapshot/docs/logs/2026-10-14-n20-motor2-check/motor2-forward-3s.txt",
+      "sha256": "7511125dfe1dc0c0ef9f7f6ed31feeac6fb22e1686a04903c098a54aa60401df",
+      "reason": "retired_scheme_evidence"
+    },
+    {
+      "source_path": "docs/logs/2026-10-14-n20-motor2-check/README.md",
+      "snapshot_path": "snapshot/docs/logs/2026-10-14-n20-motor2-check/README.md",
+      "sha256": "b52453f520f440d388b7d20559dea494423570e2e728f192f4b4370cbd0eed73",
+      "reason": "retired_scheme_evidence"
+    },
+    {
+      "source_path": "docs/logs/2026-10-14-n20-motor2-check/reset-before-repeat-02.txt",
+      "snapshot_path": "snapshot/docs/logs/2026-10-14-n20-motor2-check/reset-before-repeat-02.txt",
+      "sha256": "e00637fc600306b0d857f21564385db62953fc7d0e8eb5dcb498fa681b74633b",
+      "reason": "retired_scheme_evidence"
+    },
+    {
+      "source_path": "docs/logs/2026-10-14-n20-motor2-check/reset-before-repeat-03.txt",
+      "snapshot_path": "snapshot/docs/logs/2026-10-14-n20-motor2-check/reset-before-repeat-03.txt",
+      "sha256": "de5c1cdbedde5dd35dd8424c843acf7ef7fc770d7251f5b84d507952fee23833",
+      "reason": "retired_scheme_evidence"
+    },
+    {
+      "source_path": "docs/logs/2026-10-14-n20-motor2-check/reset-before-repeat-04.txt",
+      "snapshot_path": "snapshot/docs/logs/2026-10-14-n20-motor2-check/reset-before-repeat-04.txt",
+      "sha256": "0c86eeff990ba5ff6b783e357fd3b827bf6a4b6cfd344a410903781651ae516e",
+      "reason": "retired_scheme_evidence"
+    },
+    {
+      "source_path": "docs/logs/2026-10-14-n20-motor2-check/reset-before-repeat-05.txt",
+      "snapshot_path": "snapshot/docs/logs/2026-10-14-n20-motor2-check/reset-before-repeat-05.txt",
+      "sha256": "d8dbb8d6a82c053f5aeedd8d57b3cc01413d6ebc5d50b23acee58e5ad85ef429",
+      "reason": "retired_scheme_evidence"
+    },
+    {
+      "source_path": "docs/logs/2026-10-14-n20-motor2-check/reset-before-repeat-06.txt",
+      "snapshot_path": "snapshot/docs/logs/2026-10-14-n20-motor2-check/reset-before-repeat-06.txt",
+      "sha256": "5d6671f84b4fb650380d676ab9f5af339a510c4f8e6c9a063b05e8dfd84ef13f",
+      "reason": "retired_scheme_evidence"
+    },
+    {
+      "source_path": "docs/logs/2026-10-14-n20-motor2-check/restore-before-repeat-07.txt",
+      "snapshot_path": "snapshot/docs/logs/2026-10-14-n20-motor2-check/restore-before-repeat-07.txt",
+      "sha256": "64e38b2ea7ede2ab1a7f82c87e64fb5ef6d7bbfdb377a4a85c936371adbfbb02",
+      "reason": "retired_scheme_evidence"
+    },
+    {
+      "source_path": "docs/logs/2026-10-14-n20-motor2-check/software-checks-v2.txt",
+      "snapshot_path": "snapshot/docs/logs/2026-10-14-n20-motor2-check/software-checks-v2.txt",
+      "sha256": "a337eba65b33a04e1009fd0c23b93f3761f8fe0047327d6afb8d3e1090e691e7",
+      "reason": "retired_scheme_evidence"
+    },
+    {
+      "source_path": "docs/logs/2026-10-14-n20-motor2-check/software-checks.txt",
+      "snapshot_path": "snapshot/docs/logs/2026-10-14-n20-motor2-check/software-checks.txt",
+      "sha256": "ca19ee41c1d8bb370870c480f0b49534ae97822a69216946d3eef69963b6c912",
+      "reason": "retired_scheme_evidence"
+    },
+    {
+      "source_path": "docs/logs/2026-10-14-n20-motor2-check/upload-v2.txt",
+      "snapshot_path": "snapshot/docs/logs/2026-10-14-n20-motor2-check/upload-v2.txt",
+      "sha256": "3483278e12e3ccfb10a3535c1d3af653273cceb04fb3427aabb310baf685826e",
+      "reason": "retired_scheme_evidence"
+    },
+    {
+      "source_path": "docs/logs/2026-10-14-n20-motor2-check/upload.txt",
+      "snapshot_path": "snapshot/docs/logs/2026-10-14-n20-motor2-check/upload.txt",
+      "sha256": "97c08d5ecb6d73c599df19823b1ee08b1634277413546ff77c22190f0caee6e7",
+      "reason": "retired_scheme_evidence"
+    },
+    {
+      "source_path": "docs/logs/2026-10-14-n20-motor2-check/verification.json",
+      "snapshot_path": "snapshot/docs/logs/2026-10-14-n20-motor2-check/verification.json",
+      "sha256": "eb97e2089195b66a37cadfc4a9345b5272c44138f2de459fc364c0c33950ccd4",
+      "reason": "retired_scheme_evidence"
+    },
+    {
+      "source_path": "docs/logs/2026-10-14-n20-sequence-test/compile.txt",
+      "snapshot_path": "snapshot/docs/logs/2026-10-14-n20-sequence-test/compile.txt",
+      "sha256": "9f060883c84d68a83cc3e998d9d8007f1fe774c4265c597049fa18ebb860f36c",
+      "reason": "retired_scheme_evidence"
+    },
+    {
+      "source_path": "docs/logs/2026-10-14-n20-sequence-test/idle-after-upload.txt",
+      "snapshot_path": "snapshot/docs/logs/2026-10-14-n20-sequence-test/idle-after-upload.txt",
+      "sha256": "78ee5be55bddb5187907b42555a0db273a82e25bb343229898ceba5b2b66c4cd",
+      "reason": "retired_scheme_evidence"
+    },
+    {
+      "source_path": "docs/logs/2026-10-14-n20-sequence-test/README.md",
+      "snapshot_path": "snapshot/docs/logs/2026-10-14-n20-sequence-test/README.md",
+      "sha256": "e7bbc67ecd76eaaecbc32e59351fad89e4c24c31624f404aaf039c9e81d02e89",
+      "reason": "retired_scheme_evidence"
+    },
+    {
+      "source_path": "docs/logs/2026-10-14-n20-sequence-test/sequence-once.txt",
+      "snapshot_path": "snapshot/docs/logs/2026-10-14-n20-sequence-test/sequence-once.txt",
+      "sha256": "78e85940d14312a66063619e7ec72beccecd0005fbef9786b559fc3216c4912c",
+      "reason": "retired_scheme_evidence"
+    },
+    {
+      "source_path": "docs/logs/2026-10-14-n20-sequence-test/software-checks.txt",
+      "snapshot_path": "snapshot/docs/logs/2026-10-14-n20-sequence-test/software-checks.txt",
+      "sha256": "468cb5125ad22cae39c211b8afdac1c907526b727368652094aebc2e10f0ed84",
+      "reason": "retired_scheme_evidence"
+    },
+    {
+      "source_path": "docs/logs/2026-10-14-n20-sequence-test/upload.txt",
+      "snapshot_path": "snapshot/docs/logs/2026-10-14-n20-sequence-test/upload.txt",
+      "sha256": "45bc8e1d173c0d37d60fcc0213e6bd9775766c2b36423116c99d92b7c7c9535c",
+      "reason": "retired_scheme_evidence"
+    },
+    {
+      "source_path": "docs/logs/2026-10-14-n20-sequence-test/verification.json",
+      "snapshot_path": "snapshot/docs/logs/2026-10-14-n20-sequence-test/verification.json",
+      "sha256": "bb17178faf82dd6cfcdd232eacfc9c04722545046d8c72ded6dbd66c991044a2",
+      "reason": "retired_scheme_evidence"
+    },
+    {
+      "source_path": "docs/logs/2026-10-14-ps2-signal-check/capture-01.txt",
+      "snapshot_path": "snapshot/docs/logs/2026-10-14-ps2-signal-check/capture-01.txt",
+      "sha256": "af826c1cd4f0a611ce16b0c1b6b926c3be93d246625a64d7fc6d039ea551a8bf",
+      "reason": "retired_scheme_evidence"
+    },
+    {
+      "source_path": "docs/logs/2026-10-14-ps2-signal-check/capture-02.txt",
+      "snapshot_path": "snapshot/docs/logs/2026-10-14-ps2-signal-check/capture-02.txt",
+      "sha256": "95efe3feb128327c570d2e723405f9f66b0a867a0336de2f6b12e98ec9093080",
+      "reason": "retired_scheme_evidence"
+    },
+    {
+      "source_path": "docs/logs/2026-10-14-ps2-signal-check/capture-03.txt",
+      "snapshot_path": "snapshot/docs/logs/2026-10-14-ps2-signal-check/capture-03.txt",
+      "sha256": "84b693c48df56b77f0d0f27bf8af405de08b84debedc726461f0844c8fb1915d",
+      "reason": "retired_scheme_evidence"
+    },
+    {
+      "source_path": "docs/logs/2026-10-14-ps2-signal-check/compile.txt",
+      "snapshot_path": "snapshot/docs/logs/2026-10-14-ps2-signal-check/compile.txt",
+      "sha256": "0f1e6c1a62a92158a238c0e009df1b7824135f9e3bde6a2894c7eac4d6aee8d1",
+      "reason": "retired_scheme_evidence"
+    },
+    {
+      "source_path": "docs/logs/2026-10-14-ps2-signal-check/final-status.txt",
+      "snapshot_path": "snapshot/docs/logs/2026-10-14-ps2-signal-check/final-status.txt",
+      "sha256": "fb51b24747d1970074581a69b5a01280edb4c47216e28a5efd75305ccdfb3cb7",
+      "reason": "retired_scheme_evidence"
+    },
+    {
+      "source_path": "docs/logs/2026-10-14-ps2-signal-check/idle-after-upload.txt",
+      "snapshot_path": "snapshot/docs/logs/2026-10-14-ps2-signal-check/idle-after-upload.txt",
+      "sha256": "00e7962b30a4b96098bcda4bc3ef6f0844af78df386cc092003e62f1abac445b",
+      "reason": "retired_scheme_evidence"
+    },
+    {
+      "source_path": "docs/logs/2026-10-14-ps2-signal-check/README.md",
+      "snapshot_path": "snapshot/docs/logs/2026-10-14-ps2-signal-check/README.md",
+      "sha256": "a07640ba4d64b60c08a8b6bf7c8b8a56fb8078905023b57acfff2eb75954c676",
+      "reason": "retired_scheme_evidence"
+    },
+    {
+      "source_path": "docs/logs/2026-10-14-ps2-signal-check/upload.txt",
+      "snapshot_path": "snapshot/docs/logs/2026-10-14-ps2-signal-check/upload.txt",
+      "sha256": "7af8321b4f3e8a8d18290d0e98db82f3b64239fabed875043dd5625ea0a8d3b2",
+      "reason": "retired_scheme_evidence"
+    },
+    {
+      "source_path": "docs/logs/2026-10-14-ps2-signal-check/verification.json",
+      "snapshot_path": "snapshot/docs/logs/2026-10-14-ps2-signal-check/verification.json",
+      "sha256": "aa4962e70554b5cbfe07bea1b31c29ad1557d602b363acbcf651b84918f67500",
+      "reason": "retired_scheme_evidence"
+    },
+    {
+      "source_path": "docs/logs/2026-10-14-restore-dpad/compile.txt",
+      "snapshot_path": "snapshot/docs/logs/2026-10-14-restore-dpad/compile.txt",
+      "sha256": "ed7cd6e928a507806fb65357faf80a3dfbc20bf1ecb7e31b013283b9177e5aca",
+      "reason": "retired_scheme_evidence"
+    },
+    {
+      "source_path": "docs/logs/2026-10-14-restore-dpad/README.md",
+      "snapshot_path": "snapshot/docs/logs/2026-10-14-restore-dpad/README.md",
+      "sha256": "e80e3bbcf936af1cf8639f742a54ec7e028ed4846180870c1f7b94b0f7e4ee64",
+      "reason": "retired_scheme_evidence"
+    },
+    {
+      "source_path": "docs/logs/2026-10-14-restore-dpad/startup.txt",
+      "snapshot_path": "snapshot/docs/logs/2026-10-14-restore-dpad/startup.txt",
+      "sha256": "87658cb349c60e40708e165d4eabd306d035fa07d4d81a893ab84fe672876fce",
+      "reason": "retired_scheme_evidence"
+    },
+    {
+      "source_path": "docs/logs/2026-10-14-restore-dpad/upload.txt",
+      "snapshot_path": "snapshot/docs/logs/2026-10-14-restore-dpad/upload.txt",
+      "sha256": "7687899f1e15f01e4db0d135c556fbe8ea066b8814f0ea5e6ae06463dd6fa39e",
+      "reason": "retired_scheme_evidence"
+    },
+    {
+      "source_path": "docs/logs/2026-10-14-restore-dpad/verification.json",
+      "snapshot_path": "snapshot/docs/logs/2026-10-14-restore-dpad/verification.json",
+      "sha256": "ba0a988677070be96c93f03d86c26776d05135b6049d1ff91c8368515115d176",
+      "reason": "retired_scheme_evidence"
+    },
+    {
+      "source_path": "docs/logs/2026-10-14-throw-test/README.md",
+      "snapshot_path": "snapshot/docs/logs/2026-10-14-throw-test/README.md",
+      "sha256": "9b73762d1bf8cfb8e806bbf09f391dfb502212257fa56ec23925415d8d6bfe88",
+      "reason": "retired_scheme_evidence"
+    },
+    {
+      "source_path": "docs/logs/2026-10-14-throw-test/user-report.json",
+      "snapshot_path": "snapshot/docs/logs/2026-10-14-throw-test/user-report.json",
+      "sha256": "8474030ed972d51d3a027e01dba4d8fd7d4a4d55663ca2baab505ec697532b85",
+      "reason": "retired_scheme_evidence"
+    },
+    {
+      "source_path": "firmware/catapult/N20Motor2DirectionCheck/N20Motor2DirectionCheck.ino",
+      "snapshot_path": "snapshot/firmware/catapult/N20Motor2DirectionCheck/N20Motor2DirectionCheck.ino",
+      "sha256": "c21f1dada0b93350feeff8d28d68a7db0f649113ac1880f1f87de31c317d8c82",
+      "reason": "retired_scheme_program"
+    },
+    {
+      "source_path": "firmware/catapult/N20Motor2DirectionCheck/README.md",
+      "snapshot_path": "snapshot/firmware/catapult/N20Motor2DirectionCheck/README.md",
+      "sha256": "380631955bbeb873094f82e8f3c7de2ecef0c33c096463774f12052d721b85d5",
+      "reason": "retired_scheme_program"
+    },
+    {
+      "source_path": "firmware/catapult/N20Motor2Reverse10s/N20Motor2Reverse10s.ino",
+      "snapshot_path": "snapshot/firmware/catapult/N20Motor2Reverse10s/N20Motor2Reverse10s.ino",
+      "sha256": "ef63351559418c7cef1a501fd7828d593b882ef89b865c972a80fecc7ac47e94",
+      "reason": "retired_scheme_program"
+    },
+    {
+      "source_path": "firmware/catapult/N20Motor2Reverse10s/README.md",
+      "snapshot_path": "snapshot/firmware/catapult/N20Motor2Reverse10s/README.md",
+      "sha256": "53f7883ec1fcbfefb046fda08ed6aab2949a32a53593281139772478115fecbb",
+      "reason": "retired_scheme_program"
+    },
+    {
+      "source_path": "firmware/catapult/N20SequenceTest/N20SequenceTest.ino",
+      "snapshot_path": "snapshot/firmware/catapult/N20SequenceTest/N20SequenceTest.ino",
+      "sha256": "cc142b88a90823f9add2ab9b46d8d70c2dff4ff41fca935a6db0bd98351a70b5",
+      "reason": "retired_scheme_program"
+    },
+    {
+      "source_path": "firmware/catapult/N20SequenceTest/README.md",
+      "snapshot_path": "snapshot/firmware/catapult/N20SequenceTest/README.md",
+      "sha256": "d37b8bf3a13b4dd775e79785545293c0f65cde3ec397bcbf99b392fa9eb48561",
+      "reason": "retired_scheme_program"
+    },
+    {
+      "source_path": "firmware/chassis/MecanumPS2/README.md",
+      "snapshot_path": "snapshot/firmware/chassis/MecanumPS2/README.md",
+      "sha256": "d48c6806fdb5f9d6c81f6a8e5ca4ea0cd15ea3c709fb6f818c5dcfa426fca366",
+      "reason": "local_link_dependency"
+    },
+    {
+      "source_path": "firmware/chassis/MecanumPS2Dpad/README.md",
+      "snapshot_path": "snapshot/firmware/chassis/MecanumPS2Dpad/README.md",
+      "sha256": "8fc8ba630e8535c5c92db48af185522e0bafc0aabf57ec65bbdb5419359c431d",
+      "reason": "local_link_dependency"
+    },
+    {
+      "source_path": "firmware/chassis/PS2SignalCheck/PS2SignalCheck.ino",
+      "snapshot_path": "snapshot/firmware/chassis/PS2SignalCheck/PS2SignalCheck.ino",
+      "sha256": "2d5d3054ed7a45a25441a239f4fe2dda2c24658c1cff808f33216d2d18e2f68b",
+      "reason": "shared_diagnostic_program"
+    },
+    {
+      "source_path": "firmware/chassis/PS2SignalCheck/README.md",
+      "snapshot_path": "snapshot/firmware/chassis/PS2SignalCheck/README.md",
+      "sha256": "b6864cd0e48b0518ed2d5bce022ee24fb09895f300d9b0fa447f64faf8885704",
+      "reason": "shared_diagnostic_program"
+    },
+    {
+      "source_path": "host/motor2_counterclockwise_once.py",
+      "snapshot_path": "snapshot/host/motor2_counterclockwise_once.py",
+      "sha256": "1e8ae6da5e477775253eca00e06f30fc6b9635fead4b355d8cc6abd864275a89",
+      "reason": "retired_scheme_host_tool"
+    },
+    {
+      "source_path": "host/motor2_forward_once.py",
+      "snapshot_path": "snapshot/host/motor2_forward_once.py",
+      "sha256": "b1cadd80ea31e9f5e0be9e5d5cd62993a20f5b10a8bcd278d430df2e57d683ae",
+      "reason": "retired_scheme_host_tool"
+    },
+    {
+      "source_path": "host/n20_sequence_once.py",
+      "snapshot_path": "snapshot/host/n20_sequence_once.py",
+      "sha256": "b08200f6c78e1d93b27cfdde3e3c15456cc20089ecd635b456404dbc19930c4f",
+      "reason": "retired_scheme_host_tool"
+    },
+    {
+      "source_path": "README.md",
+      "snapshot_path": "snapshot/README.md",
+      "sha256": "ddcc457d31c401bee59bd897552f3cb9f61e129c8881353aa73141f65ed5d9a4",
+      "reason": "local_link_dependency_from_source_commit"
+    },
+    {
+      "source_path": "tests/test_n20_motor2_firmware.cpp",
+      "snapshot_path": "snapshot/tests/test_n20_motor2_firmware.cpp",
+      "sha256": "bd29f96982175c154b30bb471a514a79ae62579fc60ed57082dc4b427892ceef",
+      "reason": "retired_scheme_host_test"
+    },
+    {
+      "source_path": "tests/test_n20_motor2_reverse_firmware.cpp",
+      "snapshot_path": "snapshot/tests/test_n20_motor2_reverse_firmware.cpp",
+      "sha256": "c3097643a61b81e98150455417176e7f7563acf41611537951ea3251986a818a",
+      "reason": "retired_scheme_host_test"
+    },
+    {
+      "source_path": "tests/test_n20_sequence_firmware.cpp",
+      "snapshot_path": "snapshot/tests/test_n20_sequence_firmware.cpp",
+      "sha256": "b82cf47167f13eaa92898dd7c89080e264cc93c789278de1714726d61e7d56d9",
+      "reason": "retired_scheme_host_test"
+    },
+    {
+      "source_path": "tests/test_ps2_signal_check.cpp",
+      "snapshot_path": "snapshot/tests/test_ps2_signal_check.cpp",
+      "sha256": "d92de42d3cff269545640596a61dbfb9f81253554a3d71dbbb7c64f7be641c08",
+      "reason": "retired_scheme_host_test"
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "sketch": "D:\\Temp\\chariot-n20-sequence-9mxlmle7\\N20SequenceTest",
+  "build": "D:\\Temp\\chariot-n20-sequence-9mxlmle7\\build",
+  "source_sha256": "cc142b88a90823f9add2ab9b46d8d70c2dff4ff41fca935a6db0bd98351a70b5",
+  "port": "COM9",
+  "firmware": "N20Sequence-3s-500ms-v1",
+  "motor2_direction": "clockwise confirmed by user at IN3=1, IN4=0",
+  "motor1_direction": "unconfirmed; IN1=1, IN2=0 trial polarity",
+  "motor2_ms": 3000,
+  "motor1_ms": 500,
+  "chip": "ESP32-D0WD-V3 rev3.1",
+  "mac": "08:a6:f7:a8:95:94",
+  "core": "3.3.12",
+  "fqbn": "esp32:esp32:esp32",
+  "app_bytes": 276336,
+  "app_image_sha256": "2f5792531b3720b34d1d80790c1500a6d1d4541595618ee8b859f6ec11587072",
+  "flash_write_hash_verified": true,
+  "run_command_count": 1,
+  "firmware_elapsed_motor2_ms": 3000,
+  "firmware_elapsed_motor1_ms": 500,
+  "final_ena": 0,
+  "final_enb": 0,
+  "final_stby": 0,
+  "serial_closed": true,
+  "physical_motor1_direction": "User confirmed trial IN1=1, IN2=0 was counterclockwise",
+  "confirmed_clockwise_directions": {
+    "d1": -1,
+    "d2": 1
+  },
+  "current_board_firmware": "N20Motor2Fwd3s-v2; restored for subsequent motor2-only request"
+}

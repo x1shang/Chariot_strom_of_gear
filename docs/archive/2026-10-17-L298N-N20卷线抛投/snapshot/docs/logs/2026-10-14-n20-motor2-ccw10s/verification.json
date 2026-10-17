@@ -1,0 +1,29 @@
+{
+  "date": "2026-10-14",
+  "sketch": "D:\\Temp\\chariot-n20-ccw10s-4u6h7c5x\\N20Motor2Reverse10s",
+  "build": "D:\\Temp\\chariot-n20-ccw10s-4u6h7c5x\\build",
+  "source_sha256": "ef63351559418c7cef1a501fd7828d593b882ef89b865c972a80fecc7ac47e94",
+  "firmware": "N20Motor2Ccw10s-v1",
+  "port": "COM9",
+  "command": "CCW10S",
+  "requested_ms": 10000,
+  "motor1": "disabled",
+  "direction_gpio": {
+    "IN3": 0,
+    "IN4": 1
+  },
+  "chip": "ESP32-D0WD-V3 rev3.1",
+  "mac": "08:a6:f7:a8:95:94",
+  "fqbn": "esp32:esp32:esp32",
+  "core": "3.3.12",
+  "app_bytes": 275296,
+  "app_image_sha256": "bbd808e731bea70354b3132a33bf3f97b74490de7f4193d52e1861d9515b3537",
+  "flash_write_hash_verified": true,
+  "run_command_count": 1,
+  "firmware_elapsed_ms": 10000,
+  "motor1_ena_during_test": 0,
+  "final_ena": 0,
+  "final_enb": 0,
+  "final_stby": 0,
+  "serial_closed": true
+}

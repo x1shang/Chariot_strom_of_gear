@@ -1,0 +1,3 @@
+PASS: actual firmware simulation: 3s motor2 -> 500ms motor1; GPIO polarities, no overlap, STOP before release, faults, once-only, idle boot, timer wrap.
+PASS: host Python syntax.
+ESP32 compile: see compile.txt.

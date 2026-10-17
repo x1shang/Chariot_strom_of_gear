@@ -1,0 +1,42 @@
+Checked 2026-10-14T19:11:41.353093 port=COM9
+User confirmed L298N channel wiring/jumpers, remaining travel and test power.
+Motor1 release output must stay disabled. Single motor2 FWD3S only.
+0.000s TX STOP
+0.000s TX STATUS
+0.016s RX OK STOP; motor 1 disabled
+0.016s RX STATUS fw=N20Motor2Fwd3s-v2 hw=1 used=0 running=0 ENA=0 ENB=0 IN3=0 IN4=0 STBY=0 elapsed=0
+1.500s PREPARE 5s; motor2 will run forward for 3s once
+6.531s TX FWD3S
+6.531s TX STATUS
+6.547s RX START FWD3S motor=2 ms=3000 IN3=1 IN4=0 ENB=1 ENA=0
+6.547s RX STATUS fw=N20Motor2Fwd3s-v2 hw=1 used=1 running=1 ENA=0 ENB=1 IN3=1 IN4=0 STBY=0 elapsed=0
+6.781s TX STATUS
+6.797s RX STATUS fw=N20Motor2Fwd3s-v2 hw=1 used=1 running=1 ENA=0 ENB=1 IN3=1 IN4=0 STBY=0 elapsed=251
+7.047s TX STATUS
+7.047s RX STATUS fw=N20Motor2Fwd3s-v2 hw=1 used=1 running=1 ENA=0 ENB=1 IN3=1 IN4=0 STBY=0 elapsed=513
+7.297s TX STATUS
+7.313s RX STATUS fw=N20Motor2Fwd3s-v2 hw=1 used=1 running=1 ENA=0 ENB=1 IN3=1 IN4=0 STBY=0 elapsed=765
+7.594s TX STATUS
+7.610s RX STATUS fw=N20Motor2Fwd3s-v2 hw=1 used=1 running=1 ENA=0 ENB=1 IN3=1 IN4=0 STBY=0 elapsed=1063
+7.844s TX STATUS
+7.860s RX STATUS fw=N20Motor2Fwd3s-v2 hw=1 used=1 running=1 ENA=0 ENB=1 IN3=1 IN4=0 STBY=0 elapsed=1312
+8.094s TX STATUS
+8.110s RX STATUS fw=N20Motor2Fwd3s-v2 hw=1 used=1 running=1 ENA=0 ENB=1 IN3=1 IN4=0 STBY=0 elapsed=1558
+8.344s TX STATUS
+8.360s RX STATUS fw=N20Motor2Fwd3s-v2 hw=1 used=1 running=1 ENA=0 ENB=1 IN3=1 IN4=0 STBY=0 elapsed=1814
+8.594s TX STATUS
+8.610s RX STATUS fw=N20Motor2Fwd3s-v2 hw=1 used=1 running=1 ENA=0 ENB=1 IN3=1 IN4=0 STBY=0 elapsed=2065
+8.844s TX STATUS
+8.860s RX STATUS fw=N20Motor2Fwd3s-v2 hw=1 used=1 running=1 ENA=0 ENB=1 IN3=1 IN4=0 STBY=0 elapsed=2315
+9.094s TX STATUS
+9.110s RX STATUS fw=N20Motor2Fwd3s-v2 hw=1 used=1 running=1 ENA=0 ENB=1 IN3=1 IN4=0 STBY=0 elapsed=2568
+9.360s TX STATUS
+9.375s RX STATUS fw=N20Motor2Fwd3s-v2 hw=1 used=1 running=1 ENA=0 ENB=1 IN3=1 IN4=0 STBY=0 elapsed=2826
+9.547s RX DONE FWD3S elapsed=3000 ENB=0; no automatic repeat
+9.656s TX STATUS
+9.672s RX STATUS fw=N20Motor2Fwd3s-v2 hw=1 used=1 running=0 ENA=0 ENB=0 IN3=0 IN4=0 STBY=0 elapsed=3000
+9.672s PASS firmware start/3s completion/disable; physical direction requires user observation
+9.672s TX STOP
+9.672s TX STATUS
+9.672s FINAL OK STOP; motor 1 disabled
+9.688s FINAL STATUS fw=N20Motor2Fwd3s-v2 hw=1 used=1 running=0 ENA=0 ENB=0 IN3=0 IN4=0 STBY=0 elapsed=3000

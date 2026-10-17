@@ -1,0 +1,116 @@
+Checked 2026-10-14T19:07:36.987781+08:00 port=COM9
+Requested: motor2 forward 3000ms, disable motor2, motor1 forward 500ms, disable all.
+Polarity d1=1, d2=1; motor1 physical clockwise remains unconfirmed.
+One RUN only; never reset or retry motion.
+0.000s TX STOP
+0.000s TX STATUS
+0.031s RX OK STOP; both motors disabled
+0.047s RX STATUS fw=N20Sequence-3s-500ms-v1 hw=1 used=0 dirs=0 phase=STOPPED d1=1 d2=1 ENA=0 ENB=0 IN1=0 IN2=0 IN3=0 IN4=0 STBY=0 m2ms=0 m1ms=0
+1.016s TX DIR 1 1
+1.016s TX STATUS
+1.016s RX OK DIR d1=1 d2=1; no motion
+1.031s RX STATUS fw=N20Sequence-3s-500ms-v1 hw=1 used=0 dirs=1 phase=STOPPED d1=1 d2=1 ENA=0 ENB=0 IN1=0 IN2=0 IN3=0 IN4=0 STBY=0 m2ms=0 m1ms=0
+1.453s PREPARE 5s; then motor2 3s -> motor1 0.5s -> all stopped
+6.469s TX RUN
+6.469s TX STATUS
+6.485s RX START SEQUENCE motor=2 ms=3000 duty=100%; then motor=1 ms=500
+6.500s RX STATUS fw=N20Sequence-3s-500ms-v1 hw=1 used=1 dirs=1 phase=MOTOR2 d1=1 d2=1 ENA=0 ENB=1 IN1=0 IN2=0 IN3=1 IN4=0 STBY=0 m2ms=0 m1ms=0
+6.531s TX STATUS
+6.547s RX STATUS fw=N20Sequence-3s-500ms-v1 hw=1 used=1 dirs=1 phase=MOTOR2 d1=1 d2=1 ENA=0 ENB=1 IN1=0 IN2=0 IN3=1 IN4=0 STBY=0 m2ms=0 m1ms=0
+6.610s TX STATUS
+6.610s RX STATUS fw=N20Sequence-3s-500ms-v1 hw=1 used=1 dirs=1 phase=MOTOR2 d1=1 d2=1 ENA=0 ENB=1 IN1=0 IN2=0 IN3=1 IN4=0 STBY=0 m2ms=0 m1ms=0
+6.672s TX STATUS
+6.672s RX STATUS fw=N20Sequence-3s-500ms-v1 hw=1 used=1 dirs=1 phase=MOTOR2 d1=1 d2=1 ENA=0 ENB=1 IN1=0 IN2=0 IN3=1 IN4=0 STBY=0 m2ms=0 m1ms=0
+6.750s TX STATUS
+6.750s RX STATUS fw=N20Sequence-3s-500ms-v1 hw=1 used=1 dirs=1 phase=MOTOR2 d1=1 d2=1 ENA=0 ENB=1 IN1=0 IN2=0 IN3=1 IN4=0 STBY=0 m2ms=0 m1ms=0
+6.813s TX STATUS
+6.828s RX STATUS fw=N20Sequence-3s-500ms-v1 hw=1 used=1 dirs=1 phase=MOTOR2 d1=1 d2=1 ENA=0 ENB=1 IN1=0 IN2=0 IN3=1 IN4=0 STBY=0 m2ms=0 m1ms=0
+6.875s TX STATUS
+6.875s RX STATUS fw=N20Sequence-3s-500ms-v1 hw=1 used=1 dirs=1 phase=MOTOR2 d1=1 d2=1 ENA=0 ENB=1 IN1=0 IN2=0 IN3=1 IN4=0 STBY=0 m2ms=0 m1ms=0
+6.938s TX STATUS
+6.938s RX STATUS fw=N20Sequence-3s-500ms-v1 hw=1 used=1 dirs=1 phase=MOTOR2 d1=1 d2=1 ENA=0 ENB=1 IN1=0 IN2=0 IN3=1 IN4=0 STBY=0 m2ms=0 m1ms=0
+7.000s TX STATUS
+7.000s RX STATUS fw=N20Sequence-3s-500ms-v1 hw=1 used=1 dirs=1 phase=MOTOR2 d1=1 d2=1 ENA=0 ENB=1 IN1=0 IN2=0 IN3=1 IN4=0 STBY=0 m2ms=0 m1ms=0
+7.063s TX STATUS
+7.078s RX STATUS fw=N20Sequence-3s-500ms-v1 hw=1 used=1 dirs=1 phase=MOTOR2 d1=1 d2=1 ENA=0 ENB=1 IN1=0 IN2=0 IN3=1 IN4=0 STBY=0 m2ms=0 m1ms=0
+7.141s TX STATUS
+7.156s RX STATUS fw=N20Sequence-3s-500ms-v1 hw=1 used=1 dirs=1 phase=MOTOR2 d1=1 d2=1 ENA=0 ENB=1 IN1=0 IN2=0 IN3=1 IN4=0 STBY=0 m2ms=0 m1ms=0
+7.219s TX STATUS
+7.235s RX STATUS fw=N20Sequence-3s-500ms-v1 hw=1 used=1 dirs=1 phase=MOTOR2 d1=1 d2=1 ENA=0 ENB=1 IN1=0 IN2=0 IN3=1 IN4=0 STBY=0 m2ms=0 m1ms=0
+7.297s TX STATUS
+7.313s RX STATUS fw=N20Sequence-3s-500ms-v1 hw=1 used=1 dirs=1 phase=MOTOR2 d1=1 d2=1 ENA=0 ENB=1 IN1=0 IN2=0 IN3=1 IN4=0 STBY=0 m2ms=0 m1ms=0
+7.360s TX STATUS
+7.360s RX STATUS fw=N20Sequence-3s-500ms-v1 hw=1 used=1 dirs=1 phase=MOTOR2 d1=1 d2=1 ENA=0 ENB=1 IN1=0 IN2=0 IN3=1 IN4=0 STBY=0 m2ms=0 m1ms=0
+7.438s TX STATUS
+7.438s RX STATUS fw=N20Sequence-3s-500ms-v1 hw=1 used=1 dirs=1 phase=MOTOR2 d1=1 d2=1 ENA=0 ENB=1 IN1=0 IN2=0 IN3=1 IN4=0 STBY=0 m2ms=0 m1ms=0
+7.500s TX STATUS
+7.500s RX STATUS fw=N20Sequence-3s-500ms-v1 hw=1 used=1 dirs=1 phase=MOTOR2 d1=1 d2=1 ENA=0 ENB=1 IN1=0 IN2=0 IN3=1 IN4=0 STBY=0 m2ms=0 m1ms=0
+7.578s TX STATUS
+7.594s RX STATUS fw=N20Sequence-3s-500ms-v1 hw=1 used=1 dirs=1 phase=MOTOR2 d1=1 d2=1 ENA=0 ENB=1 IN1=0 IN2=0 IN3=1 IN4=0 STBY=0 m2ms=0 m1ms=0
+7.656s TX STATUS
+7.672s RX STATUS fw=N20Sequence-3s-500ms-v1 hw=1 used=1 dirs=1 phase=MOTOR2 d1=1 d2=1 ENA=0 ENB=1 IN1=0 IN2=0 IN3=1 IN4=0 STBY=0 m2ms=0 m1ms=0
+7.750s TX STATUS
+7.766s RX STATUS fw=N20Sequence-3s-500ms-v1 hw=1 used=1 dirs=1 phase=MOTOR2 d1=1 d2=1 ENA=0 ENB=1 IN1=0 IN2=0 IN3=1 IN4=0 STBY=0 m2ms=0 m1ms=0
+7.828s TX STATUS
+7.828s RX STATUS fw=N20Sequence-3s-500ms-v1 hw=1 used=1 dirs=1 phase=MOTOR2 d1=1 d2=1 ENA=0 ENB=1 IN1=0 IN2=0 IN3=1 IN4=0 STBY=0 m2ms=0 m1ms=0
+7.906s TX STATUS
+7.906s RX STATUS fw=N20Sequence-3s-500ms-v1 hw=1 used=1 dirs=1 phase=MOTOR2 d1=1 d2=1 ENA=0 ENB=1 IN1=0 IN2=0 IN3=1 IN4=0 STBY=0 m2ms=0 m1ms=0
+8.000s TX STATUS
+8.000s RX STATUS fw=N20Sequence-3s-500ms-v1 hw=1 used=1 dirs=1 phase=MOTOR2 d1=1 d2=1 ENA=0 ENB=1 IN1=0 IN2=0 IN3=1 IN4=0 STBY=0 m2ms=0 m1ms=0
+8.078s TX STATUS
+8.078s RX STATUS fw=N20Sequence-3s-500ms-v1 hw=1 used=1 dirs=1 phase=MOTOR2 d1=1 d2=1 ENA=0 ENB=1 IN1=0 IN2=0 IN3=1 IN4=0 STBY=0 m2ms=0 m1ms=0
+8.172s TX STATUS
+8.172s RX STATUS fw=N20Sequence-3s-500ms-v1 hw=1 used=1 dirs=1 phase=MOTOR2 d1=1 d2=1 ENA=0 ENB=1 IN1=0 IN2=0 IN3=1 IN4=0 STBY=0 m2ms=0 m1ms=0
+8.235s TX STATUS
+8.235s RX STATUS fw=N20Sequence-3s-500ms-v1 hw=1 used=1 dirs=1 phase=MOTOR2 d1=1 d2=1 ENA=0 ENB=1 IN1=0 IN2=0 IN3=1 IN4=0 STBY=0 m2ms=0 m1ms=0
+8.313s TX STATUS
+8.328s RX STATUS fw=N20Sequence-3s-500ms-v1 hw=1 used=1 dirs=1 phase=MOTOR2 d1=1 d2=1 ENA=0 ENB=1 IN1=0 IN2=0 IN3=1 IN4=0 STBY=0 m2ms=0 m1ms=0
+8.391s TX STATUS
+8.406s RX STATUS fw=N20Sequence-3s-500ms-v1 hw=1 used=1 dirs=1 phase=MOTOR2 d1=1 d2=1 ENA=0 ENB=1 IN1=0 IN2=0 IN3=1 IN4=0 STBY=0 m2ms=0 m1ms=0
+8.485s TX STATUS
+8.485s RX STATUS fw=N20Sequence-3s-500ms-v1 hw=1 used=1 dirs=1 phase=MOTOR2 d1=1 d2=1 ENA=0 ENB=1 IN1=0 IN2=0 IN3=1 IN4=0 STBY=0 m2ms=0 m1ms=0
+8.547s TX STATUS
+8.547s RX STATUS fw=N20Sequence-3s-500ms-v1 hw=1 used=1 dirs=1 phase=MOTOR2 d1=1 d2=1 ENA=0 ENB=1 IN1=0 IN2=0 IN3=1 IN4=0 STBY=0 m2ms=0 m1ms=0
+8.625s TX STATUS
+8.641s RX STATUS fw=N20Sequence-3s-500ms-v1 hw=1 used=1 dirs=1 phase=MOTOR2 d1=1 d2=1 ENA=0 ENB=1 IN1=0 IN2=0 IN3=1 IN4=0 STBY=0 m2ms=0 m1ms=0
+8.719s TX STATUS
+8.719s RX STATUS fw=N20Sequence-3s-500ms-v1 hw=1 used=1 dirs=1 phase=MOTOR2 d1=1 d2=1 ENA=0 ENB=1 IN1=0 IN2=0 IN3=1 IN4=0 STBY=0 m2ms=0 m1ms=0
+8.797s TX STATUS
+8.813s RX STATUS fw=N20Sequence-3s-500ms-v1 hw=1 used=1 dirs=1 phase=MOTOR2 d1=1 d2=1 ENA=0 ENB=1 IN1=0 IN2=0 IN3=1 IN4=0 STBY=0 m2ms=0 m1ms=0
+8.875s TX STATUS
+8.891s RX STATUS fw=N20Sequence-3s-500ms-v1 hw=1 used=1 dirs=1 phase=MOTOR2 d1=1 d2=1 ENA=0 ENB=1 IN1=0 IN2=0 IN3=1 IN4=0 STBY=0 m2ms=0 m1ms=0
+8.969s TX STATUS
+8.969s RX STATUS fw=N20Sequence-3s-500ms-v1 hw=1 used=1 dirs=1 phase=MOTOR2 d1=1 d2=1 ENA=0 ENB=1 IN1=0 IN2=0 IN3=1 IN4=0 STBY=0 m2ms=0 m1ms=0
+9.047s TX STATUS
+9.047s RX STATUS fw=N20Sequence-3s-500ms-v1 hw=1 used=1 dirs=1 phase=MOTOR2 d1=1 d2=1 ENA=0 ENB=1 IN1=0 IN2=0 IN3=1 IN4=0 STBY=0 m2ms=0 m1ms=0
+9.125s TX STATUS
+9.141s RX STATUS fw=N20Sequence-3s-500ms-v1 hw=1 used=1 dirs=1 phase=MOTOR2 d1=1 d2=1 ENA=0 ENB=1 IN1=0 IN2=0 IN3=1 IN4=0 STBY=0 m2ms=0 m1ms=0
+9.219s TX STATUS
+9.219s RX STATUS fw=N20Sequence-3s-500ms-v1 hw=1 used=1 dirs=1 phase=MOTOR2 d1=1 d2=1 ENA=0 ENB=1 IN1=0 IN2=0 IN3=1 IN4=0 STBY=0 m2ms=0 m1ms=0
+9.313s TX STATUS
+9.313s RX STATUS fw=N20Sequence-3s-500ms-v1 hw=1 used=1 dirs=1 phase=MOTOR2 d1=1 d2=1 ENA=0 ENB=1 IN1=0 IN2=0 IN3=1 IN4=0 STBY=0 m2ms=0 m1ms=0
+9.375s TX STATUS
+9.375s RX STATUS fw=N20Sequence-3s-500ms-v1 hw=1 used=1 dirs=1 phase=MOTOR2 d1=1 d2=1 ENA=0 ENB=1 IN1=0 IN2=0 IN3=1 IN4=0 STBY=0 m2ms=0 m1ms=0
+9.453s TX STATUS
+9.453s RX STATUS fw=N20Sequence-3s-500ms-v1 hw=1 used=1 dirs=1 phase=MOTOR2 d1=1 d2=1 ENA=0 ENB=1 IN1=0 IN2=0 IN3=1 IN4=0 STBY=0 m2ms=0 m1ms=0
+9.469s RX TRANSITION motor2_stopped=1 m2ms=3000 motor1_started=1 ms=500
+9.531s TX STATUS
+9.547s RX STATUS fw=N20Sequence-3s-500ms-v1 hw=1 used=1 dirs=1 phase=MOTOR1 d1=1 d2=1 ENA=1 ENB=0 IN1=1 IN2=0 IN3=0 IN4=0 STBY=0 m2ms=3000 m1ms=0
+9.610s TX STATUS
+9.610s RX STATUS fw=N20Sequence-3s-500ms-v1 hw=1 used=1 dirs=1 phase=MOTOR1 d1=1 d2=1 ENA=1 ENB=0 IN1=1 IN2=0 IN3=0 IN4=0 STBY=0 m2ms=3000 m1ms=0
+9.688s TX STATUS
+9.688s RX STATUS fw=N20Sequence-3s-500ms-v1 hw=1 used=1 dirs=1 phase=MOTOR1 d1=1 d2=1 ENA=1 ENB=0 IN1=1 IN2=0 IN3=0 IN4=0 STBY=0 m2ms=3000 m1ms=0
+9.750s TX STATUS
+9.766s RX STATUS fw=N20Sequence-3s-500ms-v1 hw=1 used=1 dirs=1 phase=MOTOR1 d1=1 d2=1 ENA=1 ENB=0 IN1=1 IN2=0 IN3=0 IN4=0 STBY=0 m2ms=3000 m1ms=0
+9.813s TX STATUS
+9.813s RX STATUS fw=N20Sequence-3s-500ms-v1 hw=1 used=1 dirs=1 phase=MOTOR1 d1=1 d2=1 ENA=1 ENB=0 IN1=1 IN2=0 IN3=0 IN4=0 STBY=0 m2ms=3000 m1ms=0
+9.891s TX STATUS
+9.891s RX STATUS fw=N20Sequence-3s-500ms-v1 hw=1 used=1 dirs=1 phase=MOTOR1 d1=1 d2=1 ENA=1 ENB=0 IN1=1 IN2=0 IN3=0 IN4=0 STBY=0 m2ms=3000 m1ms=0
+9.969s TX STATUS
+9.985s RX DONE SEQUENCE m2ms=3000 m1ms=500 ENA=0 ENB=0 STBY=0
+10.000s RX STATUS fw=N20Sequence-3s-500ms-v1 hw=1 used=1 dirs=1 phase=DONE d1=1 d2=1 ENA=0 ENB=0 IN1=0 IN2=0 IN3=0 IN4=0 STBY=0 m2ms=3000 m1ms=500
+10.000s PASS sequence m2ms=3000 m1ms=500 both disabled; motor1 physical direction needs observation
+10.000s TX STOP
+10.000s TX STATUS
+10.000s FINAL OK STOP; both motors disabled
+10.016s FINAL STATUS fw=N20Sequence-3s-500ms-v1 hw=1 used=1 dirs=1 phase=STOPPED d1=1 d2=1 ENA=0 ENB=0 IN1=0 IN2=0 IN3=0 IN4=0 STBY=0 m2ms=3000 m1ms=500

@@ -1,0 +1,5 @@
+Arduino-ESP32 3.3.12; fqbn=esp32:esp32:esp32
+Firmware=N20Motor2Fwd3s-v2
+Sketch 275140 bytes (20%); globals 22164 bytes (6%).
+PASS native firmware tests including GPIO readback fault rejection.
+

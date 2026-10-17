@@ -1,0 +1,4 @@
+$ arduino-cli compile --fqbn esp32:esp32:esp32 --build-path D:\Temp\chariot-ps2-check-grhhc44h\build D:\Temp\chariot-ps2-check-grhhc44h\PS2SignalCheck
+(rc=0)
+Sketch uses 275588 bytes (21%) of program storage space. Maximum is 1310720 bytes.
+Global variables use 22204 bytes (6%) of dynamic memory, leaving 305476 bytes for local variables. Maximum is 327680 bytes.

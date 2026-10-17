@@ -1,0 +1,9 @@
+--- COM9 @ 115200 ---
+BUTTONS previous=0020 current=0000 time=230039
+BUTTONS previous=0000 current=0020 time=230359
+BUTTONS previous=0020 current=0000 time=230539
+OK STOP; all motors disabled
+STATUS fw=PS2SignalCheck-v1 hw=1 ps=1 mode=73 marker=5A buttons=0000 frames=11544 good=11544 bad=0 changes=36 STBY=0 ENA=0 ENB=0
+RAW len=9 bytes=FF,73,5A,FF,FF,80,7F,80,7F
+BUTTONS previous=0000 current=0020 time=231039
+BUTTONS previous=0020 current=0000 time=231159

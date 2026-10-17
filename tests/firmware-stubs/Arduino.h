@@ -18,6 +18,7 @@ inline void delayMicroseconds(unsigned) {}
 inline void delay(unsigned ms) { simulatedMillis+=ms; }
 inline bool ledcAttachChannel(uint8_t,unsigned,uint8_t,uint8_t) { return true; }
 inline bool ledcWrite(uint8_t pin,unsigned duty) { simulatedDuty[pin]=int(duty); return true; }
+inline unsigned ledcRead(uint8_t pin) { return unsigned(simulatedDuty[pin]); }
 struct SimulatedSerial {
   std::string output;
   void begin(unsigned) {}

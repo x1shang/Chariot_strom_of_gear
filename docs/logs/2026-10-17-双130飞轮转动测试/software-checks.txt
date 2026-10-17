@@ -1,0 +1,3 @@
+PASS: actual firmware simulation (g++ -std=c++17 -Wall -Wextra -Itests/firmware-stubs, no warnings): dual 130 flywheel soft start (linear 0->target duty ramp, 5kHz PWM), duty/ms hard caps, both flywheels on one duty, once per boot, STOP priority in ramp and hold, PWM/pin readback interlocks, idle enable-jumper refusal, timer wrap, idle boot (146 checks).
+PASS: host Python syntax (python -m py_compile host/flywheel_spin_once.py).
+ESP32 compile: see compile.txt.
