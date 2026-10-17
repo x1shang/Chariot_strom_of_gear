@@ -1,4 +1,6 @@
 ---
+
+> 2026-10-17 整合入口：[手柄驾驶 + R2 双飞轮](firmware/chassis/MecanumPS2Flywheel/README.md)。保留当前方向键驾驶，按住 R2 两飞轮 100%，松开撤销输出；圆圈停止全车。
 title: chariot — ESP32 投石小车
 type: project-index
 status: 原型 / 子系统控制状态见固件说明
