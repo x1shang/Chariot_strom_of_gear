@@ -1,0 +1,5 @@
+TX STOP
+TX STATUS
+RX OK STOP; both flywheel enables 0; flywheel COASTS, not stopped
+RX STATUS fw=FlywheelSpin-v3-100 hw=1 used=0 dirs=0 phase=STOPPED d1=1 d2=1 pct=30 ms=3000 DUTY1=0 DUTY2=0 IN1=0 IN2=0 IN3=0 IN4=0 STBY=0 elapsed=0
+PASS ready for third 100% / 10000ms test; no SPIN sent

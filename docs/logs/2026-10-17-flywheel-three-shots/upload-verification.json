@@ -1,0 +1,21 @@
+{
+  "commit": "6e504aac2346005b745225fb824368e8452147e3",
+  "firmware": "FlywheelSpin-v3-100",
+  "source_sha256": "8A620F7BCF1506841384402B494B5E9CD62A0B33620E325D9719C148D6899377",
+  "staged_sha256": "8A620F7BCF1506841384402B494B5E9CD62A0B33620E325D9719C148D6899377",
+  "fqbn": "esp32:esp32:esp32",
+  "core": "3.3.12",
+  "compile_exit": 0,
+  "program_bytes": 285779,
+  "globals_bytes": 22384,
+  "host_simulation_checks": 161,
+  "python_syntax": "PASS",
+  "enumerated_port": "COM4",
+  "board_identity_probed": true,
+  "uploaded": true,
+  "motion_issued": false,
+  "idle_status": "PASS: two idle STATUS records; all outputs zero",
+  "chip": "ESP32-D0WD-V3 rev3.1",
+  "mac": "08:a6:f7:a8:95:94",
+  "image_sha256": "027491A137F58319F2EDD10D6A288AF848B186A3B575EE5BF29A4DE33CB05AF8"
+}

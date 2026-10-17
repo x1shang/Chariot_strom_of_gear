@@ -1,0 +1,21 @@
+TX STOP
+TX STATUS
+RX OK STOP; both flywheel enables 0; flywheel COASTS, not stopped
+RX STATUS fw=FlywheelSpin-v3-100 hw=1 used=1 dirs=1 phase=STOPPED d1=1 d2=1 pct=80 ms=3000 DUTY1=0 DUTY2=0 IN1=0 IN2=0 IN3=0 IN4=0 STBY=0 elapsed=3000
+RESET once to clear previous once-per-boot test; no motion command
+TX STATUS
+RX ets Jul 29 2019 12:21:46
+RX rst:0x1 (POWERON_RESET),boot:0x17 (SPI_FAST_FLASH_BOOT)
+RX configsip: 0, SPIWP:0xee
+RX clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+RX mode:DIO, clock div:1
+RX load:0x3fff0030,len:4876
+RX ho 0 tail 12 room 4
+RX load:0x40078000,len:16532
+RX load:0x40080400,len:3500
+RX entry 0x400805b4
+RX E (7) task_wdt: esp_task_wdt_init(517): TWDT already initialized
+RX BOOT FlywheelSpin-v3-100; idle; duty cap 100%; set polarity with DIR then SPIN once
+RX STATUS fw=FlywheelSpin-v3-100 hw=1 used=0 dirs=0 phase=IDLE d1=1 d2=1 pct=30 ms=3000 DUTY1=0 DUTY2=0 IN1=0 IN2=0 IN3=0 IN4=0 STBY=0 elapsed=0
+RX STATUS fw=FlywheelSpin-v3-100 hw=1 used=0 dirs=0 phase=IDLE d1=1 d2=1 pct=30 ms=3000 DUTY1=0 DUTY2=0 IN1=0 IN2=0 IN3=0 IN4=0 STBY=0 elapsed=0
+PASS ready for one new 100% / 10000ms test; no SPIN sent
