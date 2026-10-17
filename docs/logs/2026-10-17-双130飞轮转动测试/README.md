@@ -1,4 +1,4 @@
-# 2026-10-17 双 130 摩擦飞轮转动测试：编译、烧录与一次 30% 空载转动
+# 2026-10-17 双 130 摩擦飞轮转动测试：编译、烧录与两次 30% 空载转动
 
 方案变更背景：用户报告上次的发射装置方案**已失败（扭矩太大，电机被撕裂）**，决定改用**原驱动板 L298N 驱动两个 130 电机摩擦飞轮**。旧方案 77 个文件已归档，见[旧方案归档](../../archive/2026-10-17-L298N-N20卷线抛投/README.md)与[失败记录](../2026-10-17-卷线方案失败-电机撕裂/README.md)。
 
@@ -12,14 +12,27 @@
 - **烧录**：COM10（芯片 ESP32-D0WD-V3 rev3.1、Flash 4MB、MAC `08:a6:f7:a8:95:94`）上传 rc=0，应用映像 285888 字节，四个写入段全部收到 esptool 的 `Hash of data verified`。
 - **烧录后回读**：`BOOT FlywheelSpin-v1`，`hw=1 used=0 dirs=0 phase=IDLE DUTY1=0 DUTY2=0 IN1..IN4=0 STBY=0`。上电不自动运动。
 - **一次转动测试**：`DIR 1 1` → 8 秒准备 → 仅发一次 `SPIN 30 3000`。串口记录 `START SPIN duty=30% raw=77 ms=3000 ramp=1200ms dirs=1,1`，随后爬升段 17 个采样（raw 3 → 72），`HOLD duty=30% raw=77 elapsed=1200`，运行期 `DUTY1=DUTY2=77`、`IN1=IN3=1`、`IN2=IN4=0`、`STBY=0`，最后 `DONE SPIN elapsed=3000 DUTY1=0 DUTY2=0`。收尾 `STOP`/`STATUS` 回读 `used=1 phase=STOPPED DUTY1=0 DUTY2=0 全部方向脚 0 STBY=0`，串口关闭，无重试、无自动重复。
+- **第二次转动（重测）**：会话之外的操作以同参数重跑一次，结果一致，见下文「第二次转动」。
 
 ## 证据
 
 - [软件检查（仿真 + 主机语法）](software-checks.txt)
 - [编译](compile.txt) · [烧录与写入校验](upload.txt)
 - [烧录后空闲回读](idle-after-upload.txt)
-- [唯一一次转动的原始串口记录](spin-once.txt)
+- [会话内那一次转动的原始串口记录](spin-once.txt)
+- [第二次转动（重测）的原始串口记录](retest-spin-once.txt)
 - [源码/映像哈希、GPIO 与 PWM 参数、执行摘要](verification.json)
+
+## 第二次转动（重测，会话之外执行）
+
+本目录另有一份 [retest-spin-once.txt](retest-spin-once.txt)（09:00 写入）：同固件、同参数（`d1=1 d2=1`、30% / 3000ms、8 秒准备）的**第二次**转动记录。它**不是本次会话发出的命令**（本次会话只发过 1 条 `SPIN`），是会话之外的操作重跑了同一脚本的产物；两次之间板子被手动复位过（重测开局回读 `used=0`）。核对结果：
+
+- 无 `FAULT`、无 `ERR`、无异常退出。
+- 爬升段 16 个采样，`DUTY1=DUTY2` 从 5 单调升到 73，随后 `HOLD` 在 raw 77（30%）保持 24 个采样。
+- `DONE SPIN elapsed=3000 DUTY1=0 DUTY2=0`，全程 `DUTY1 == DUTY2`（0 处不一致）、`STBY=0`、方向脚为 `IN1=IN3=1`、`IN2=IN4=0`。
+- 收尾 `STOP`/`STATUS` 回读 `used=1 phase=STOPPED`、两路占空比与方向脚全 0。
+
+**这两次都只是电气输出与计时证据**：仍然没有证明电机已接线、已转动、两侧对转，也没有电流与温升数据。**两次合计共发出 2 条 `SPIN` 命令，每次都各自 "每次上电仅一次" 生效，中间靠复位重新授权。**
 
 ## 证据边界（不要把这些写成已确认）
 
