@@ -1,0 +1,107 @@
+Checked 2026-10-17T10:03:59.690949+08:00 port=COM10
+Requested: both flywheels soft-start to 45% (raw 115) for 3000ms, then disable.
+Polarity d1=1, d2=1 (experimental; counter-rotation not verified).
+One SPIN only; never reset or retry motion.
+DUTY readback is the LEDC peripheral value, not the pad level or motor voltage.
+0.000s TX STOP
+0.000s TX STATUS
+0.000s RX OK STOP; both flywheel enables 0; flywheel COASTS, not stopped
+0.016s RX STATUS fw=FlywheelSpin-v2-100 hw=1 used=0 dirs=0 phase=STOPPED d1=1 d2=1 pct=30 ms=3000 DUTY1=0 DUTY2=0 IN1=0 IN2=0 IN3=0 IN4=0 STBY=0 elapsed=0
+1.016s TX DIR 1 1
+1.016s TX STATUS
+1.031s RX OK DIR d1=1 d2=1; no motion; counter-rotation not yet verified
+1.047s RX STATUS fw=FlywheelSpin-v2-100 hw=1 used=0 dirs=1 phase=STOPPED d1=1 d2=1 pct=30 ms=3000 DUTY1=0 DUTY2=0 IN1=0 IN2=0 IN3=0 IN4=0 STBY=0 elapsed=0
+1.438s PREPARE 5s clear of the flywheels; then 45% for 3000ms -> both disabled (flywheel coasts)
+6.438s TX SPIN 45 3000
+6.438s TX STATUS
+6.438s RX START SPIN duty=45% raw=115 ms=3000 ramp=1200ms dirs=1,1
+6.453s RX STATUS fw=FlywheelSpin-v2-100 hw=1 used=1 dirs=1 phase=RAMP d1=1 d2=1 pct=45 ms=3000 DUTY1=0 DUTY2=0 IN1=1 IN2=0 IN3=1 IN4=0 STBY=0 elapsed=0
+6.516s TX STATUS
+6.531s RX STATUS fw=FlywheelSpin-v2-100 hw=1 used=1 dirs=1 phase=RAMP d1=1 d2=1 pct=45 ms=3000 DUTY1=8 DUTY2=8 IN1=1 IN2=0 IN3=1 IN4=0 STBY=0 elapsed=87
+6.578s TX STATUS
+6.594s RX STATUS fw=FlywheelSpin-v2-100 hw=1 used=1 dirs=1 phase=RAMP d1=1 d2=1 pct=45 ms=3000 DUTY1=13 DUTY2=13 IN1=1 IN2=0 IN3=1 IN4=0 STBY=0 elapsed=140
+6.656s TX STATUS
+6.672s RX STATUS fw=FlywheelSpin-v2-100 hw=1 used=1 dirs=1 phase=RAMP d1=1 d2=1 pct=45 ms=3000 DUTY1=22 DUTY2=22 IN1=1 IN2=0 IN3=1 IN4=0 STBY=0 elapsed=231
+6.735s TX STATUS
+6.750s RX STATUS fw=FlywheelSpin-v2-100 hw=1 used=1 dirs=1 phase=RAMP d1=1 d2=1 pct=45 ms=3000 DUTY1=28 DUTY2=28 IN1=1 IN2=0 IN3=1 IN4=0 STBY=0 elapsed=295
+6.813s TX STATUS
+6.828s RX STATUS fw=FlywheelSpin-v2-100 hw=1 used=1 dirs=1 phase=RAMP d1=1 d2=1 pct=45 ms=3000 DUTY1=36 DUTY2=36 IN1=1 IN2=0 IN3=1 IN4=0 STBY=0 elapsed=384
+6.875s TX STATUS
+6.891s RX STATUS fw=FlywheelSpin-v2-100 hw=1 used=1 dirs=1 phase=RAMP d1=1 d2=1 pct=45 ms=3000 DUTY1=41 DUTY2=41 IN1=1 IN2=0 IN3=1 IN4=0 STBY=0 elapsed=439
+6.938s TX STATUS
+6.953s RX STATUS fw=FlywheelSpin-v2-100 hw=1 used=1 dirs=1 phase=RAMP d1=1 d2=1 pct=45 ms=3000 DUTY1=48 DUTY2=48 IN1=1 IN2=0 IN3=1 IN4=0 STBY=0 elapsed=502
+7.000s TX STATUS
+7.000s RX STATUS fw=FlywheelSpin-v2-100 hw=1 used=1 dirs=1 phase=RAMP d1=1 d2=1 pct=45 ms=3000 DUTY1=53 DUTY2=53 IN1=1 IN2=0 IN3=1 IN4=0 STBY=0 elapsed=559
+7.078s TX STATUS
+7.094s RX STATUS fw=FlywheelSpin-v2-100 hw=1 used=1 dirs=1 phase=RAMP d1=1 d2=1 pct=45 ms=3000 DUTY1=61 DUTY2=61 IN1=1 IN2=0 IN3=1 IN4=0 STBY=0 elapsed=645
+7.141s TX STATUS
+7.156s RX STATUS fw=FlywheelSpin-v2-100 hw=1 used=1 dirs=1 phase=RAMP d1=1 d2=1 pct=45 ms=3000 DUTY1=67 DUTY2=67 IN1=1 IN2=0 IN3=1 IN4=0 STBY=0 elapsed=702
+7.235s TX STATUS
+7.250s RX STATUS fw=FlywheelSpin-v2-100 hw=1 used=1 dirs=1 phase=RAMP d1=1 d2=1 pct=45 ms=3000 DUTY1=76 DUTY2=76 IN1=1 IN2=0 IN3=1 IN4=0 STBY=0 elapsed=800
+7.328s TX STATUS
+7.344s RX STATUS fw=FlywheelSpin-v2-100 hw=1 used=1 dirs=1 phase=RAMP d1=1 d2=1 pct=45 ms=3000 DUTY1=85 DUTY2=85 IN1=1 IN2=0 IN3=1 IN4=0 STBY=0 elapsed=888
+7.406s TX STATUS
+7.422s RX STATUS fw=FlywheelSpin-v2-100 hw=1 used=1 dirs=1 phase=RAMP d1=1 d2=1 pct=45 ms=3000 DUTY1=92 DUTY2=92 IN1=1 IN2=0 IN3=1 IN4=0 STBY=0 elapsed=969
+7.485s TX STATUS
+7.500s RX STATUS fw=FlywheelSpin-v2-100 hw=1 used=1 dirs=1 phase=RAMP d1=1 d2=1 pct=45 ms=3000 DUTY1=100 DUTY2=100 IN1=1 IN2=0 IN3=1 IN4=0 STBY=0 elapsed=1054
+7.563s TX STATUS
+7.578s RX STATUS fw=FlywheelSpin-v2-100 hw=1 used=1 dirs=1 phase=RAMP d1=1 d2=1 pct=45 ms=3000 DUTY1=108 DUTY2=108 IN1=1 IN2=0 IN3=1 IN4=0 STBY=0 elapsed=1135
+7.625s TX STATUS
+7.641s RX STATUS fw=FlywheelSpin-v2-100 hw=1 used=1 dirs=1 phase=RAMP d1=1 d2=1 pct=45 ms=3000 DUTY1=113 DUTY2=113 IN1=1 IN2=0 IN3=1 IN4=0 STBY=0 elapsed=1187
+7.641s RX HOLD duty=45% raw=115 elapsed=1200; ramp done
+7.703s TX STATUS
+7.719s RX STATUS fw=FlywheelSpin-v2-100 hw=1 used=1 dirs=1 phase=HOLD d1=1 d2=1 pct=45 ms=3000 DUTY1=115 DUTY2=115 IN1=1 IN2=0 IN3=1 IN4=0 STBY=0 elapsed=1276
+7.766s TX STATUS
+7.781s RX STATUS fw=FlywheelSpin-v2-100 hw=1 used=1 dirs=1 phase=HOLD d1=1 d2=1 pct=45 ms=3000 DUTY1=115 DUTY2=115 IN1=1 IN2=0 IN3=1 IN4=0 STBY=0 elapsed=1332
+7.860s TX STATUS
+7.875s RX STATUS fw=FlywheelSpin-v2-100 hw=1 used=1 dirs=1 phase=HOLD d1=1 d2=1 pct=45 ms=3000 DUTY1=115 DUTY2=115 IN1=1 IN2=0 IN3=1 IN4=0 STBY=0 elapsed=1420
+7.953s TX STATUS
+7.969s RX STATUS fw=FlywheelSpin-v2-100 hw=1 used=1 dirs=1 phase=HOLD d1=1 d2=1 pct=45 ms=3000 DUTY1=115 DUTY2=115 IN1=1 IN2=0 IN3=1 IN4=0 STBY=0 elapsed=1520
+8.016s TX STATUS
+8.031s RX STATUS fw=FlywheelSpin-v2-100 hw=1 used=1 dirs=1 phase=HOLD d1=1 d2=1 pct=45 ms=3000 DUTY1=115 DUTY2=115 IN1=1 IN2=0 IN3=1 IN4=0 STBY=0 elapsed=1578
+8.110s TX STATUS
+8.125s RX STATUS fw=FlywheelSpin-v2-100 hw=1 used=1 dirs=1 phase=HOLD d1=1 d2=1 pct=45 ms=3000 DUTY1=115 DUTY2=115 IN1=1 IN2=0 IN3=1 IN4=0 STBY=0 elapsed=1673
+8.188s TX STATUS
+8.203s RX STATUS fw=FlywheelSpin-v2-100 hw=1 used=1 dirs=1 phase=HOLD d1=1 d2=1 pct=45 ms=3000 DUTY1=115 DUTY2=115 IN1=1 IN2=0 IN3=1 IN4=0 STBY=0 elapsed=1752
+8.250s TX STATUS
+8.266s RX STATUS fw=FlywheelSpin-v2-100 hw=1 used=1 dirs=1 phase=HOLD d1=1 d2=1 pct=45 ms=3000 DUTY1=115 DUTY2=115 IN1=1 IN2=0 IN3=1 IN4=0 STBY=0 elapsed=1815
+8.328s TX STATUS
+8.344s RX STATUS fw=FlywheelSpin-v2-100 hw=1 used=1 dirs=1 phase=HOLD d1=1 d2=1 pct=45 ms=3000 DUTY1=115 DUTY2=115 IN1=1 IN2=0 IN3=1 IN4=0 STBY=0 elapsed=1901
+8.391s TX STATUS
+8.406s RX STATUS fw=FlywheelSpin-v2-100 hw=1 used=1 dirs=1 phase=HOLD d1=1 d2=1 pct=45 ms=3000 DUTY1=115 DUTY2=115 IN1=1 IN2=0 IN3=1 IN4=0 STBY=0 elapsed=1956
+8.453s TX STATUS
+8.469s RX STATUS fw=FlywheelSpin-v2-100 hw=1 used=1 dirs=1 phase=HOLD d1=1 d2=1 pct=45 ms=3000 DUTY1=115 DUTY2=115 IN1=1 IN2=0 IN3=1 IN4=0 STBY=0 elapsed=2019
+8.531s TX STATUS
+8.547s RX STATUS fw=FlywheelSpin-v2-100 hw=1 used=1 dirs=1 phase=HOLD d1=1 d2=1 pct=45 ms=3000 DUTY1=115 DUTY2=115 IN1=1 IN2=0 IN3=1 IN4=0 STBY=0 elapsed=2104
+8.594s TX STATUS
+8.610s RX STATUS fw=FlywheelSpin-v2-100 hw=1 used=1 dirs=1 phase=HOLD d1=1 d2=1 pct=45 ms=3000 DUTY1=115 DUTY2=115 IN1=1 IN2=0 IN3=1 IN4=0 STBY=0 elapsed=2167
+8.656s TX STATUS
+8.672s RX STATUS fw=FlywheelSpin-v2-100 hw=1 used=1 dirs=1 phase=HOLD d1=1 d2=1 pct=45 ms=3000 DUTY1=115 DUTY2=115 IN1=1 IN2=0 IN3=1 IN4=0 STBY=0 elapsed=2225
+8.719s TX STATUS
+8.735s RX STATUS fw=FlywheelSpin-v2-100 hw=1 used=1 dirs=1 phase=HOLD d1=1 d2=1 pct=45 ms=3000 DUTY1=115 DUTY2=115 IN1=1 IN2=0 IN3=1 IN4=0 STBY=0 elapsed=2286
+8.797s TX STATUS
+8.813s RX STATUS fw=FlywheelSpin-v2-100 hw=1 used=1 dirs=1 phase=HOLD d1=1 d2=1 pct=45 ms=3000 DUTY1=115 DUTY2=115 IN1=1 IN2=0 IN3=1 IN4=0 STBY=0 elapsed=2370
+8.860s TX STATUS
+8.875s RX STATUS fw=FlywheelSpin-v2-100 hw=1 used=1 dirs=1 phase=HOLD d1=1 d2=1 pct=45 ms=3000 DUTY1=115 DUTY2=115 IN1=1 IN2=0 IN3=1 IN4=0 STBY=0 elapsed=2419
+8.938s TX STATUS
+8.953s RX STATUS fw=FlywheelSpin-v2-100 hw=1 used=1 dirs=1 phase=HOLD d1=1 d2=1 pct=45 ms=3000 DUTY1=115 DUTY2=115 IN1=1 IN2=0 IN3=1 IN4=0 STBY=0 elapsed=2503
+9.031s TX STATUS
+9.047s RX STATUS fw=FlywheelSpin-v2-100 hw=1 used=1 dirs=1 phase=HOLD d1=1 d2=1 pct=45 ms=3000 DUTY1=115 DUTY2=115 IN1=1 IN2=0 IN3=1 IN4=0 STBY=0 elapsed=2594
+9.110s TX STATUS
+9.125s RX STATUS fw=FlywheelSpin-v2-100 hw=1 used=1 dirs=1 phase=HOLD d1=1 d2=1 pct=45 ms=3000 DUTY1=115 DUTY2=115 IN1=1 IN2=0 IN3=1 IN4=0 STBY=0 elapsed=2676
+9.203s TX STATUS
+9.219s RX STATUS fw=FlywheelSpin-v2-100 hw=1 used=1 dirs=1 phase=HOLD d1=1 d2=1 pct=45 ms=3000 DUTY1=115 DUTY2=115 IN1=1 IN2=0 IN3=1 IN4=0 STBY=0 elapsed=2769
+9.297s TX STATUS
+9.313s RX STATUS fw=FlywheelSpin-v2-100 hw=1 used=1 dirs=1 phase=HOLD d1=1 d2=1 pct=45 ms=3000 DUTY1=115 DUTY2=115 IN1=1 IN2=0 IN3=1 IN4=0 STBY=0 elapsed=2863
+9.375s TX STATUS
+9.391s RX STATUS fw=FlywheelSpin-v2-100 hw=1 used=1 dirs=1 phase=HOLD d1=1 d2=1 pct=45 ms=3000 DUTY1=115 DUTY2=115 IN1=1 IN2=0 IN3=1 IN4=0 STBY=0 elapsed=2944
+9.438s TX STATUS
+9.453s RX STATUS fw=FlywheelSpin-v2-100 hw=1 used=1 dirs=1 phase=HOLD d1=1 d2=1 pct=45 ms=3000 DUTY1=115 DUTY2=115 IN1=1 IN2=0 IN3=1 IN4=0 STBY=0 elapsed=2999
+9.453s RX DONE SPIN elapsed=3010 DUTY1=0 DUTY2=0; flywheel COASTS now, not stopped
+9.500s TX STATUS
+9.516s RX STATUS fw=FlywheelSpin-v2-100 hw=1 used=1 dirs=1 phase=DONE d1=1 d2=1 pct=45 ms=3000 DUTY1=0 DUTY2=0 IN1=0 IN2=0 IN3=0 IN4=0 STBY=0 elapsed=3010
+9.516s PASS spin duty=45% raw=115 elapsed=3010ms ramp_samples=17 ramp_max=113 both disabled; electrical output only, no mechanical measurement
+9.516s TX STOP
+9.516s TX STATUS
+9.516s FINAL OK STOP; both flywheel enables 0; flywheel COASTS, not stopped
+9.531s FINAL STATUS fw=FlywheelSpin-v2-100 hw=1 used=1 dirs=1 phase=STOPPED d1=1 d2=1 pct=45 ms=3000 DUTY1=0 DUTY2=0 IN1=0 IN2=0 IN3=0 IN4=0 STBY=0 elapsed=3010

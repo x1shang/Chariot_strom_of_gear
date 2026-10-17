@@ -1,0 +1,15 @@
+{
+  "motor_power_disconnected_confirmed_by_user": true,
+  "stage_root": "D:\\Temp\\chariot-flywheel-v2-6a592ac5",
+  "cap_percent": 100,
+  "staged_sha256": "8B6F42679B6DFBD6B4FADCCB632FE6FE9D28EC57CF30335D066B0B33B330C41B",
+  "port": "COM10",
+  "fqbn": "esp32:esp32:esp32",
+  "source_sha256": "8B6F42679B6DFBD6B4FADCCB632FE6FE9D28EC57CF30335D066B0B33B330C41B",
+  "version": "FlywheelSpin-v2-100",
+  "motion_commands_sent": 0,
+  "upload_exit_code": 0,
+  "boot_version_verified": true,
+  "final_state": "hw=1 used=0 dirs=0 phase=IDLE DUTY1=0 DUTY2=0 IN1=0 IN2=0 IN3=0 IN4=0 STBY=0",
+  "software_state_checks": 156
+}

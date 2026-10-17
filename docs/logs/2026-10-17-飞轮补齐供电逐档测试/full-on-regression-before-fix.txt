@@ -1,0 +1,1 @@
+FAIL check #72 phase=HOLD active=1 hw=1 used=1 dirs=1 d1=1 d2=1 applied=255 DUTY1=256 DUTY2=256 IN1=1 IN2=0 IN3=1 IN4=0 STBY=0

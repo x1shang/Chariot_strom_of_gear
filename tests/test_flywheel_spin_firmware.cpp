@@ -8,7 +8,8 @@ int simulatedPins[40] = {}, simulatedDuty[40] = {};
 SimulatedSerial Serial;
 #include "../firmware/catapult/FlywheelSpinTest/FlywheelSpinTest.ino"
 
-const uint8_t PC30 = 77, PC60 = 153;  // raw 8-bit duty for 30% and 60%
+const uint8_t PC30 = 77, PC100 = 255;  // raw 8-bit duty for 30% and 100%
+const unsigned FULL_ON_READBACK = 256;  // Arduino-ESP32 3.3.12 full-on peripheral value
 int checkCalls = 0;
 
 void check() {
@@ -45,6 +46,7 @@ void start(const char *dir = "DIR 1 1", const char *spin = "SPIN 30 3000") {
   assert(phase == Phase::RAMP && used && active());
 }
 int main() {
+  simulatedFullOnReadback = true;
   // Boot: idle, no motion, no polarity assumed, both bridges disabled at the pad.
   setup(); idle();
   assert(hardwareOK && !used && !directionsSet && direction1 == 1 && direction2 == 1);
@@ -62,8 +64,8 @@ int main() {
 
   // Duty and duration are hard caps; a refused command costs nothing and moves nothing.
   armed(); rejected("SPIN 0 3000");
-  armed(); rejected("SPIN 61 3000");
-  armed(); rejected("SPIN 100 3000");
+  armed(); rejected("SPIN 101 3000");
+  armed(); rejected("SPIN 256 3000");
   armed(); rejected("SPIN -1 3000");
   armed(); rejected("SPIN 30 0");
   armed(); rejected("SPIN 30 10001");
@@ -95,11 +97,33 @@ int main() {
     send("SPIN 30 3000"); idle(); assert(used);  // once per boot, no retry
   }
 
-  // 60% / 10s are accepted as the extremes; the same run keeps the target duty.
-  start("DIR 1 1", "SPIN 60 10000");
-  assert(targetDuty == PC60);
+  // 100% / 10s are accepted as the extremes; both channels reach continuous enable.
+  start("DIR 1 1", "SPIN 100 10000");
+  assert(targetDuty == PC100);
+  simulatedMillis = startedAt + 600; tickSpin();
+  assert(phase == Phase::RAMP && simulatedDuty[FW1_EN] == PC100 / 2);
+  check();
   simulatedMillis = startedAt + 1200; tickSpin();
-  assert(phase == Phase::HOLD && simulatedDuty[FW1_EN] == PC60);
+  assert(phase == Phase::HOLD && simulatedDuty[FW1_EN] == FULL_ON_READBACK);
+  assert(ledcRead(FW1_EN) == 256 && ledcRead(FW2_EN) == 256);
+  assert(hardwareOK && enReadback(FW1_EN, 255) && enReadback(FW2_EN, 255));
+  // A later tick must keep full-on running rather than raising the old false fault.
+  simulatedMillis = startedAt + 1201; tickSpin();
+  assert(hardwareOK && phase == Phase::HOLD && appliedDuty == PC100);
+  check();
+  simulatedMillis = startedAt + 9999; tickSpin();
+  assert(phase == Phase::HOLD && simulatedDuty[FW2_EN] == FULL_ON_READBACK);
+  check();
+  simulatedMillis = startedAt + 10000; tickSpin(); idle();
+  assert(phase == Phase::DONE && elapsedMs == 10000);
+  start("DIR 1 1", "SPIN 100 3000");
+  simulatedMillis = startedAt + 1200; tickSpin();
+  assert(appliedDuty == PC100);
+  send("STOP"); idle(); assert(used && phase == Phase::STOPPED);
+  // At 100%, an actual readback mismatch still disables both outputs.
+  start("DIR 1 1", "SPIN 100 3000");
+  simulatedMillis = startedAt + 1200; tickSpin();
+  simulatedDuty[FW1_EN] = 255; tickSpin(); idle(); assert(!hardwareOK);
 
   // STOP wins during the ramp and during the hold; the flywheel then coasts.
   start(); simulatedMillis += 500; send("STOP");

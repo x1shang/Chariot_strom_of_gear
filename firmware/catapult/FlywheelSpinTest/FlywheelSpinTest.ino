@@ -8,7 +8,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-constexpr char VERSION[] = "FlywheelSpin-v1";
+constexpr char VERSION[] = "FlywheelSpin-v3-100";
 constexpr uint8_t FW1_EN = 14, FW1_IN1 = 25, FW1_IN2 = 26;  // OUT1/OUT2 -> left flywheel
 constexpr uint8_t FW2_EN = 27, FW2_IN3 = 21, FW2_IN4 = 22;  // OUT3/OUT4 -> right flywheel
 constexpr uint8_t CHASSIS_STBY = 33;                        // chassis stays disabled here
@@ -20,8 +20,9 @@ constexpr uint32_t PWM_FREQ = 5000;
 constexpr uint8_t PWM_BITS = 8, PWM_CH1 = 0, PWM_CH2 = 1;
 constexpr uint32_t PWM_FULL = (1u << PWM_BITS) - 1u;  // 255
 
-// First-test ceilings. Raising them requires a deliberate source edit and reflash.
-constexpr uint8_t DUTY_MIN_PERCENT = 1, DUTY_MAX_PERCENT = 60, DUTY_DEFAULT_PERCENT = 30;
+// User-requested 100% ceiling for staged diagnosis; default stays at 30%.
+// PWM duty is not a motor-voltage limit: verify the VS supply before a run.
+constexpr uint8_t DUTY_MIN_PERCENT = 1, DUTY_MAX_PERCENT = 100, DUTY_DEFAULT_PERCENT = 30;
 constexpr uint32_t RUN_MS_MAX = 10000, RUN_MS_DEFAULT = 3000;
 constexpr uint32_t RAMP_MS = 1200;  // soft start: limits flywheel inrush current
 
@@ -71,7 +72,9 @@ void stopSpin(Phase target) {
   phase = target;
 }
 bool enReadback(uint8_t pin, uint8_t expected) {
-  if (ledcRead(pin) != expected) return false;
+  // Arduino-ESP32 3.3.12 maps an 8-bit write of 255 to full-on register value 256.
+  const uint32_t expectedReadback = expected == PWM_FULL ? PWM_FULL + 1u : expected;
+  if (ledcRead(pin) != expectedReadback) return false;
   // Duty 0 parks the pad low, so an external pull-up / left-in enable jumper is
   // still visible at the pad. Readback under PWM is a peripheral (commanded duty)
   // value only and cannot prove the pad level.

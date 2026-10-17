@@ -13,9 +13,9 @@ from pathlib import Path
 import time
 import serial
 
-VERSION = 'FlywheelSpin-v1'
+VERSION = 'FlywheelSpin-v3-100'
 ZERO = dict(DUTY1='0', DUTY2='0', IN1='0', IN2='0', IN3='0', IN4='0', STBY='0')
-DUTY_MAX = 60
+DUTY_MAX = 100
 MS_MAX = 10000
 
 def main():
@@ -33,10 +33,12 @@ def main():
     if not 1 <= args.ms <= MS_MAX:
         parser.error(f'--ms must be 1..{MS_MAX}')
     raw = (args.duty * 255 + 50) // 100
+    readback_target = 256 if raw == 255 else raw
     output = Path(args.log)
     output.parent.mkdir(parents=True, exist_ok=True)
     entries = [f'Checked {datetime.now(timezone(timedelta(hours=8))).isoformat()} port={args.port}',
                f'Requested: both flywheels soft-start to {args.duty}% (raw {raw}) for {args.ms}ms, then disable.',
+               f'Expected hold peripheral readback: {readback_target} (full-on reads 256 on Arduino-ESP32 3.3.12).',
                f'Polarity d1={args.d1}, d2={args.d2} (experimental; counter-rotation not verified).',
                'One SPIN only; never reset or retry motion.',
                'DUTY readback is the LEDC peripheral value, not the pad level or motor voltage.']
@@ -75,11 +77,11 @@ def main():
             duty = int(s['DUTY1'])
             expected = dict(ZERO)
             if s.get('phase') == 'RAMP':
-                if not 0 <= duty <= raw:
+                if not 0 <= duty <= readback_target:
                     raise RuntimeError('Ramp duty outside 0..target; aborting')
             elif s.get('phase') == 'HOLD':
-                if not 0 < duty <= raw:
-                    raise RuntimeError('Hold duty outside 1..target; aborting')
+                if duty != readback_target:
+                    raise RuntimeError('Hold duty differs from expected peripheral value; aborting')
             elif s.get('phase') not in ('IDLE', 'STOPPED', 'DONE'):
                 raise RuntimeError('Unexpected phase')
             else:

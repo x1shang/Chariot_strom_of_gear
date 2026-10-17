@@ -1,0 +1,1 @@
+PASS: dual 130 flywheel soft start (linear 0->target duty ramp, 5kHz PWM), duty/ms hard caps, both flywheels on one duty, once per boot, STOP priority in ramp and hold, PWM/pin readback interlocks, idle enable-jumper refusal, timer wrap, idle boot (161 checks)

@@ -1,0 +1,9 @@
+{
+  "stage_root": "D:\\Temp\\chariot-flywheel-v3-8c157a7c",
+  "software_checks": 161,
+  "reason": "Arduino-ESP32 3.3.12 maps full-on write 255 to readback 256",
+  "uploaded": false,
+  "version": "FlywheelSpin-v3-100",
+  "source_sha256": "8A620F7BCF1506841384402B494B5E9CD62A0B33620E325D9719C148D6899377",
+  "staged_sha256": "8A620F7BCF1506841384402B494B5E9CD62A0B33620E325D9719C148D6899377"
+}
