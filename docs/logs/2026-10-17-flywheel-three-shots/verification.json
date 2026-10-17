@@ -1,0 +1,129 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-17",
+  "timezone": "Asia/Shanghai",
+  "baseline_commit": "6e504aac2346005b745225fb824368e8452147e3",
+  "firmware": "FlywheelSpin-v3-100",
+  "sources_sha256": {
+    "firmware/catapult/FlywheelSpinTest/FlywheelSpinTest.ino": "8A620F7BCF1506841384402B494B5E9CD62A0B33620E325D9719C148D6899377",
+    "host/flywheel_spin_once.py": "60F4F0C75CCD46030B052FC9B03A4766889D59C0992FC265EAF4456FE87E2229",
+    "tests/test_flywheel_spin_firmware.cpp": "F6CBFF5356574D82B8D13BE9B806D52DAE0608E195D51DA8EDDEBFDF27155181",
+    "tests/firmware-stubs/Arduino.h": "8623DB4BB45D46653F3CCFAB4C27E72C793407CCAD5E62FC6BE82BDBB29D1D26",
+    "tests/firmware-stubs/driver/gpio.h": "0F6CD58E42D8F0AAEEF00E6FDA8FE8F7D62FCF7CFD839802952DAC269A14B03E",
+    "tests/firmware-stubs/esp_task_wdt.h": "23E228CBDE07564135D026420BE406EF265EBD44B13B4F23BE49640357E104A0"
+  },
+  "evidence_sha256": {
+    ".gitattributes": "A433D746D4226AAC170DB64DAA37DF6809B3B9CF73707A77B348D92B50ECC94F",
+    "compile.txt": "4DB3C73DDEF954C8918AA59FC87E178C81D980E0999EB76C282028FB7E1E6D5F",
+    "host-tests.txt": "520C980D5A00D4E285185D181B3975C75277B49481283F6CAFD12B667BA80E79",
+    "idle-after-upload.txt": "E3F7E0F1164F22F95C34E22E6F0EC6B769B6C7E0157ECCC752CA853FA38060D8",
+    "prepare-100-10s-retest.txt": "E00D4715BA406B5EBF4D44C975D073AA6125B535E98A062DC4F3CDBE8124D4B1",
+    "prepare-100-10s-third.txt": "8B698BACE791B86AC5D533A715E72D479ACD33BBBBD0304EFA8DE2F6E381825E",
+    "prepare-100-10s.txt": "3A04116330769441D1C08608D76E346FB15AFB9EF8910F0BE633840FC77DE4DE",
+    "README.md": "B0204CC52B52994E6B85C0E794E5F98E40893E7B330AE1E5EE57BE5EFB196333",
+    "spin-100-10s-retest.txt": "9E9D89790B1576B4206859654C6136A437F48B3CA5109138BC4695E11FAB8409",
+    "spin-100-10s-third.txt": "D55071D815C617F7755051CE624ED00BE8DFD592929770B77A46423E0EC7BF60",
+    "spin-100-10s.txt": "55CEE8552F918F4054C51A4233265E3737736282E795D4B1888146105927EA7A",
+    "upload-verification.json": "C1B8C41C479742129E0FAD2F162E3E92B8B14AA2D782DC085CBCCD58A2C65A45",
+    "upload.txt": "465083EFD474898A3466D998687A2FF6033526CFBEA4B924D5CFF1F50674DDA5"
+  },
+  "software_validation": {
+    "core": "3.3.12",
+    "fqbn": "esp32:esp32:esp32",
+    "compile_exit_code": 0,
+    "program_bytes": 285779,
+    "global_bytes": 22384,
+    "host_simulation_checks": 161,
+    "host_compiler": "MSVC",
+    "python_syntax": "PASS"
+  },
+  "upload": {
+    "port": "COM4",
+    "chip": "ESP32-D0WD-V3 rev3.1",
+    "mac": "08:a6:f7:a8:95:94",
+    "image_sha256": "027491A137F58319F2EDD10D6A288AF848B186A3B575EE5BF29A4DE33CB05AF8",
+    "written_hashes_verified": 4
+  },
+  "supply": {
+    "user_reported_voltage_v": 6,
+    "independently_measured": false,
+    "measurement_location": null,
+    "motor_rated_voltage_v": null
+  },
+  "consecutive_user_confirmed_successes": 3,
+  "runs": [
+    {
+      "run": 1,
+      "log": "spin-100-10s.txt",
+      "preparation": "prepare-100-10s.txt",
+      "commanded_duty_percent": 100,
+      "commanded_total_ms": 10000,
+      "ramp_ms": 1200,
+      "direction_parameters": [
+        1,
+        1
+      ],
+      "completion_ms": 10000,
+      "full_on_peripheral_readback": [
+        256,
+        256
+      ],
+      "firmware_faults": false,
+      "script_exit_code": 0,
+      "final_outputs_zero": true,
+      "user_reported_ball_launch_success": true,
+      "user_confirmation": "成功，再来一次，确定可以复现"
+    },
+    {
+      "run": 2,
+      "log": "spin-100-10s-retest.txt",
+      "preparation": "prepare-100-10s-retest.txt",
+      "commanded_duty_percent": 100,
+      "commanded_total_ms": 10000,
+      "ramp_ms": 1200,
+      "direction_parameters": [
+        1,
+        1
+      ],
+      "completion_ms": 10000,
+      "full_on_peripheral_readback": [
+        256,
+        256
+      ],
+      "firmware_faults": false,
+      "script_exit_code": 0,
+      "final_outputs_zero": true,
+      "user_reported_ball_launch_success": true,
+      "user_confirmation": "这次也成功了，帮我记录连续两次试射成功。"
+    },
+    {
+      "run": 3,
+      "log": "spin-100-10s-third.txt",
+      "preparation": "prepare-100-10s-third.txt",
+      "commanded_duty_percent": 100,
+      "commanded_total_ms": 10000,
+      "ramp_ms": 1200,
+      "direction_parameters": [
+        1,
+        1
+      ],
+      "completion_ms": 10000,
+      "full_on_peripheral_readback": [
+        256,
+        256
+      ],
+      "firmware_faults": false,
+      "script_exit_code": 0,
+      "final_outputs_zero": true,
+      "user_reported_ball_launch_success": true,
+      "user_confirmation": "这次也成功了，帮我记录连续三次试射成功。"
+    }
+  ],
+  "limitations": [
+    "Launch success is user observation; serial logs verify commanded output only.",
+    "Range, angle, speed, current, temperature and ball dimensions/mass were not measured or recorded.",
+    "No unique root cause established for earlier intermittent single-motor operation.",
+    "Three independent runs do not establish long-term reliability or whole-vehicle acceptance."
+  ],
+  "evidence_byte_preservation": "Directory .gitattributes disables newline conversion for raw text logs and upload-verification.json. Source hashes also match baseline Git blobs byte for byte."
+}

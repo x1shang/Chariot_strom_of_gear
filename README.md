@@ -6,7 +6,7 @@ type: project-index
 status: 原型 / 子系统控制状态见固件说明
 mcu: ESP32-D0WD-V3
 fqbn: esp32:esp32:esp32
-serial_port: COM10
+serial_port: COM4
 last_verified: 2026-10-17
 last_updated: 2026-10-17
 ---
@@ -24,9 +24,9 @@ last_updated: 2026-10-17
 
 > **2026-10-17 抛投更新（方案变更）：** 用户报告上次的发射装置方案（L298N + 双 N20 卷线蓄力）**已失败，原因是扭矩太大、电机被撕裂**，决定改用**原驱动板 L298N 驱动两个 130 电机摩擦飞轮**。旧方案的程序、主机脚本、仿真测试、接线文档与全部 2026-10-14 证据已逐字节归档（70 个方案文件 + 7 个链接目标 = **77 个文件**），逐个 SHA-256 校验：缺失 0、不一致 0：[旧方案归档](docs/archive/2026-10-17-L298N-N20卷线抛投/README.md) · [失败记录与证据边界](docs/logs/2026-10-17-卷线方案失败-电机撕裂/README.md)。新方案接线见[双 130 摩擦飞轮接线与 GPIO 分配](docs/抛投装置-双130摩擦飞轮接线与GPIO分配.md)。
 >
-> **当前板上固件：** `FlywheelSpin-v2-100`，已重新烧录到 COM10 并回读确认，占空比上限 100%、默认 30%。上电静止、两路输出为零、底盘禁用；本次重烧录未发送运动命令。**用户反馈此前 30% 测试未观察到转动，机械转动验收未通过。** 用户说明降压模块的 5V 接入 L298N 的逻辑 `5V` 端、跳帽全断，`VS/+12V` 动力端供电待确认。[重烧录记录](docs/logs/2026-10-17-飞轮100上限重烧录/README.md) · [测试程序索引 2026-10-17](docs/测试程序索引-2026-10-17.md)
+> **当前板上固件与试射结果：** `FlywheelSpin-v3-100` 已在 COM4 烧录、写入校验及启动回读通过。本次以 `DIR 1 1`、100% 占空比、每次总时长 10 秒（含 1200ms 软启动）**连续三次小球试射成功，均由用户逐次现场确认**；三次均到时撤销输出，最终两路 DUTY、方向脚及底盘 STBY 为 0。v3 修正了满输出时 LEDC 回读 256 的判断；本机 161 项仿真检查通过。[三次试射与原始证据](docs/logs/2026-10-17-flywheel-three-shots/README.md) · [测试程序索引](docs/测试程序索引-2026-10-17.md)
 >
-> **⚠️ 机械侧与电流全部未确认：** 130 电机是否已接到 OUT1/OUT2 与 OUT3/OUT4、是否真的转动、两侧是否对转、飞轮是否装好、启动电流与 L298N 温升，本轮**都没有测量**；`DUTY` 回读是 LEDC 外设值，不证明引脚电平或电机端电压。**提高占空比前必须限流并监视电流与散热片温度。**
+> **证据边界：** 用户报告电机供电 6V，电机额定电压未知，供电测量位置与方法未记录。小球射出是现场观察；射程、角度、转速、电流、温升与装配固定强度未测量。三次短时成功不代表长期可靠性或全车验收，`DUTY` 回读也不证明实际引脚或电机端电压。前期单台不转现象保留在记录中，未据后续成功认定唯一根因。
 >
 > **2026-10-14 抛投更新（已终止）：** 用户报告 DRV8313 烧坏，移除旧驱动及 AS5600 编码器，改用 L298N + 两台 N20，采用 12V 动力方案；同日实机试验四项失败（电池像是断路、3D 打印孔过大滑齿、卷线轴无半月形杆导致齿轮脱落、人力满行程下抛射角仍接近水平）。该方案随后因**扭矩过大把电机撕裂**而终止，接线全文、程序与证据已归档：[旧 FOC 归档](docs/archive/2026-10-14-DRV8313-AS5600/README.md) · [2026-10-14 四项失败记录](docs/logs/2026-10-14-throw-test/README.md)。
 >
@@ -78,7 +78,7 @@ chariot/
 │   └── mcp-bridge/            Codex 的 MCP 服务器
 ├── tests/                     主机侧单元测试（跑在电脑上，不上板）
 │   ├── test_mecanum_drive_math.cpp  麦轮混控与斜坡，对应 MecanumPS2/DriveMath.h
-│   ├── test_flywheel_spin_firmware.cpp 【抛投·当前】FlywheelSpinTest 的仿真测试（146 项检查）
+│   ├── test_flywheel_spin_firmware.cpp 【抛投·当前】FlywheelSpinTest 的仿真测试（本次 161 项检查）
 │   ├── test_n20_motor2_firmware.cpp 【抛投·已停用】N20Motor2DirectionCheck v2 的仿真测试
 │   ├── test_n20_motor2_reverse_firmware.cpp / test_n20_sequence_firmware.cpp 【已停用】
 │   ├── test_dpad_firmware.cpp / test_motion_firmware.cpp / test_startup_firmware.cpp
@@ -121,12 +121,12 @@ chariot/
 ## 2. 实测硬件事实（不是猜的）
 
 ```
-串口   : COM10  USB-SERIAL CH340  (USB ID 1a86:7523)   ← COM7/COM8 是蓝牙虚拟串口，忽略
+串口   : COM4  USB-SERIAL CH340  (USB ID 1a86:7523)   ← 本次枚举与烧录端口
 芯片   : ESP32-D0WD-V3 rev3.1  = ESP32-WROOM-32E 那档   Flash 4MB   MAC 08:a6:f7:a8:95:94
 FQBN   : esp32:esp32:esp32      (ESP32 Dev Module)
 ```
 
-> 2026-10-17 实测：板子由旧记录的 **COM9 变为 COM10**——同一颗 CH340（USB ID `1a86:7523`）、同一颗芯片与 MAC，只是枚举到的端口号变了。本文件与脚本中的端口以 COM10 为准。
+> 2026-10-17 本次实测端口为 **COM4**，芯片与 MAC 同历史记录一致。历史日志保留 COM9/COM10 原值；其他电脑运行前应重新枚举端口，不直接照抄旧端口号。
 
 > ⚠️ **接线照片上写的主控是 ESP32-S3，插在电脑上的实测是经典 ESP32。**
 > 两者 FQBN 不同，选错会烧出跑不起来的固件。`flash-catapult.ps1` 的做法是先用 esptool
@@ -145,9 +145,9 @@ FQBN   : esp32:esp32:esp32      (ESP32 Dev Module)
 
 OUT1/OUT2 接 130-1（左），OUT3/OUT4 接 130-2（右）。取下 ENA/ENB 常高跳帽，两个 EN 各加 10kΩ 下拉。逻辑 5V 与动力分段照旧；底盘保留适配其电机的独立动力分支。GPIO21 的旧 SDA 线束故障需排除后再使用。
 
-与旧 N20 方案的区别只有两点：**EN 从「常高开关」改为 PWM 软启动脚**，以及**负载从卷线/齿轮机构改为飞轮惯性负载**。测试固件把占空比硬限制在 60%、默认 30%，单次不超过 10 秒，每次上电只允许一次；**130 电机的铭牌与额定电压本轮未记录，飞轮启动电流与 L298N 温升本轮未测量**，提高占空比前必须限流并监视电流与散热片温度。
+与旧 N20 方案的区别只有两点：**EN 从「常高开关」改为 PWM 软启动脚**，以及**负载从卷线/齿轮机构改为飞轮惯性负载**。当前 v3 测试固件占空比上限 100%、默认 30%，单次不超过 10 秒，每次上电只允许一次；电机额定电压、启动电流与 L298N 温升仍未测量，短时试射成功不能替代这些参数。
 
-完整电源、跳帽、电流风险与安全说明见[当前接线文档](docs/抛投装置-双130摩擦飞轮接线与GPIO分配.md)。当前只实现「双侧同占空比软启动转动测试」；对转极性、加球试射、底盘整合与互锁均待现场推进。
+完整电源、跳帽、电流风险与安全说明见[当前接线文档](docs/抛投装置-双130摩擦飞轮接线与GPIO分配.md)。当前只实现双侧同占空比软启动测试；已取得三次小球试射成功的现场反馈，独立转向记录、射程、电流/温升及底盘整合与互锁仍待完成。
 
 PS2 的 GPIO2/12 属启动配置脚，现有接线仍需核对冷启动；18/23 已用于底盘，不可挪作 PS2。
 
@@ -188,18 +188,20 @@ PS2 的 GPIO2/12 属启动配置脚，现有接线仍需核对冷启动；18/23 
 
 所有命令都在**仓库根目录**下执行（仓库路径含空格和中文，脚本内部已用 `$PSScriptRoot` 相对解析）。
 
-**抛投装置（双 130 摩擦飞轮）** —— 按[双 130 摩擦飞轮接线与 GPIO 分配](docs/抛投装置-双130摩擦飞轮接线与GPIO分配.md)准备，板上已烧 `FlywheelSpin-v1`。本次实际使用的三步（仓库路径含空格与中文，编译时复制到英文临时目录）：
+**抛投装置（双 130 摩擦飞轮）** —— 当前固件为 `FlywheelSpin-v3-100`，本次串口 COM4。[三次试射记录](docs/logs/2026-10-17-flywheel-three-shots/README.md)保留编译、烧录、源码哈希和运行日志。编译时将源码复制到英文目录，并按本机安装位置设置 CLI、配置文件及构建路径；下列为可调整的模板，运行前先按[接线文档](docs/抛投装置-双130摩擦飞轮接线与GPIO分配.md)完成准备：
 
 ```powershell
-# 1) 编译（--config-file 必须带，数据目录在 D 盘；源码与仓库文件逐字节一致）
-arduino-cli compile --config-file D:\Download\arduino\data\arduino-cli.yaml --fqbn esp32:esp32:esp32 `
-  --build-path D:\Temp\chariot-flywheel\build D:\Temp\chariot-flywheel\FlywheelSpinTest
+# 1) 将路径改为本机 CLI 配置及英文源码/构建目录
+$config = 'D:\Temp\chariot-flywheel\arduino-cli.yaml'
+$sketch = 'D:\Temp\chariot-flywheel\FlywheelSpinTest'
+$build = 'D:\Temp\chariot-flywheel\build'
+arduino-cli compile --config-file $config --fqbn esp32:esp32:esp32 --build-path $build $sketch
 # 2) 烧录（烧录时动力侧应断开）
-arduino-cli upload --config-file D:\Download\arduino\data\arduino-cli.yaml --fqbn esp32:esp32:esp32 `
-  --port COM10 --input-dir D:\Temp\chariot-flywheel\build --upload-property upload.speed=115200 `
-  D:\Temp\chariot-flywheel\FlywheelSpinTest
-# 3) 一次转动：核对状态 -> DIR -> 8 秒准备 -> 只发一次 SPIN -> 退出必 STOP
-python host\flywheel_spin_once.py --port COM10 --log docs\logs\2026-10-17-双130飞轮转动测试\spin-once.txt --duty 30 --ms 3000
+arduino-cli upload --config-file $config --fqbn esp32:esp32:esp32 `
+  --port COM4 --input-dir $build --upload-property upload.speed=115200 $sketch
+# 3) 准备并确认可运行后，再单独执行：核对状态 -> DIR -> 准备 -> 一次 SPIN -> STOP
+# 日志使用新文件名；每次上电仅一次，脚本不会自动复位或重试
+python host\flywheel_spin_once.py --port COM4 --log logs\flywheel-new-run.txt --duty 30 --ms 3000 --prepare 10
 ```
 
 原 `flash-catapult.ps1` 的 Stage1/Stage2 为旧 FOC 工具，不适用 L298N；旧 N20 的固件、主机脚本与仿真测试均已归档。
@@ -226,7 +228,7 @@ python tools\mcp-bridge\test_mcp.py                # 验证 MCP 协议
 
 ## 4. 供电与运动边界
 
-- 抛投分支沿用原 12V 动力设置，**但 130 电机的铭牌与额定电压本轮未记录，不得把 12V 写成它的额定值**；底盘 TT 额定 3–6V，现车 VM 以实测为准，不能把给底盘供电的 VADJ 一并升到 12V。
+- 本次用户报告抛投电机供电 **6V**，测量位置与方法未记录，电机额定电压仍未知。旧方案的 12V 设置不能直接视为当前供电或 130 电机额定值；底盘动力也应按其电机规格配置，现车 VM 以实测为准。
 - L298N 的电机动力与 5V 逻辑供电分开配置；外接 5V 前按实际模块说明隔离板载稳压器，ENA/ENB 跳帽与 5V 稳压跳帽不能混淆。
 - 两个 EN 各装 10kΩ 下拉，动力关闭时验证上电/复位默认禁用；各模块共地，电机动力与回流使用合适的电源线。**ENA/ENB 常高跳帽没取下来时，固件会把空闲引脚读成高电平、锁 `hw=0` 并拒绝运行**——这是接线问题，不能靠固件弥补。
 - **飞轮是惯性负载，启动电流接近该电压下的堵转电流**；L298 每路 2A 是直流绝对最大额定值，不是长期能力。首次带载必须限流、低占空比起步，并同时监视电流与散热片温度；超限就要重新评估驱动板。
@@ -241,7 +243,7 @@ python tools\mcp-bridge\test_mcp.py                # 验证 MCP 协议
 
 工程理由：旧方案把电机经齿轮与卷线轴硬联到拉绳和限位端，机构一旦到位或卡住就进入堵转/冲击工况，反作用于电机的力矩上限由**机构**决定——这是「电机被撕裂」的力学来源。飞轮方案把能量存进转子动能，负载是惯性负载，没有硬限位反冲，力矩由电机自身特性决定，从原理上避开该失效模式；代价是风险转移到**轮毂紧固、动平衡**与**启动电流/驱动板能力**。
 
-**当前状态：** 电气侧已编译、烧录并完成两次 30% / 3000ms 空载转动测试（会话内 1 次 + 会话外重测 1 次，[记录](docs/logs/2026-10-17-双130飞轮转动测试/README.md)）；机械侧（飞轮与轮毂装配、电机接线、对转方向、加球试射）与电流/温升**全部未确认**。
+**当前状态：** v3 已编译、烧录，161 项主机仿真通过；在 100% / 10000ms 下，**连续三次小球试射成功（用户现场确认）**，三次均到时归零。装配固定强度、独立转向记录、射程、启动电流与温升尚未测量。见[三次试射记录](docs/logs/2026-10-17-flywheel-three-shots/README.md)；[早期测试](docs/logs/2026-10-17-双130飞轮转动测试/README.md)作为历史保留。
 
 旧 PS2 蓄力 / FOC 轨迹 / 校准流程完整保存于[旧 FOC 归档](docs/archive/2026-10-14-DRV8313-AS5600/README.md)；旧 N20 卷线方案的程序与证据保存于[旧 N20 归档](docs/archive/2026-10-17-L298N-N20卷线抛投/README.md)。
 
@@ -264,7 +266,7 @@ python tools\mcp-bridge\test_mcp.py                # 验证 MCP 协议
 
 | 子系统 | 状态 |
 |---|---|
-| 抛投 · L298N + 双 130 摩擦飞轮（当前） | 电气侧：`FlywheelSpinTest` 已编译、烧录（COM10），完成**一次** 30% / 3000ms 软启动转动，主机侧 146 项仿真检查通过。机械侧（接线、转动、对转、飞轮装配）与电流/温升**均未验证** |
+| 抛投 · L298N + 双 130 摩擦飞轮（当前） | v3 编译、烧录（COM4）及 161 项主机仿真通过；100% / 10s **连续三次试射成功，用户逐次确认**。日志均到时归零；射程、独立转向、电流/温升、装配强度及长期可靠性未测量 |
 | 抛投 · L298N + 双 N20 卷线（已终止） | 2026-10-17 因**扭矩过大把电机撕裂**而终止，改用摩擦飞轮；77 个文件已归档并逐个 SHA-256 校验（缺失 0、不一致 0） |
 | 旧抛投 · DRV8313 / AS5600 / FOC | 2026-10-14 停用，文档、固件与实测证据已归档 |
 | 行驶底盘 · 奇果派 PCA9685（备选） | 2 个固件 × 5 种开发板**编译全部通过**；**尚未实机烧录**；该方案已让位给 TB6612 |
@@ -287,15 +289,15 @@ python tools\mcp-bridge\test_mcp.py                # 验证 MCP 协议
 | 130 飞轮不转或明显发热 | 断开动力，检查 ENA/ENB 跳帽是否取下、方向电平、实际输出电压与电流；固件 `hw=0` 时先解决接线 |
 | 飞轮启动瞬间电流很大 / L298N 发烫 | 飞轮是惯性负载，启动电流接近堵转电流；降低占空比、限制单次时长，检查散热与电源能力 |
 | `SPIN` 被拒绝（`ERR SPIN requires ...`） | 先 `DIR <d1> <d2>` 设极性；每次上电只允许一次，执行过就需复位重启 |
-| 端口从 COM9 变了 | 重新确认实际端口号（本次为 COM10），同一块板 MAC 不变 |
+| 端口从 COM9 变了 | 重新确认实际端口号（本次为 COM4），同一块板 MAC 不变 |
 | ESP32 重启 | 供电跌落、共地、电流回路、接触不良、电机干扰 |
 
 ## 8. 环境与依赖
 
 | 项目 | 值 |
 |---|---|
-| Arduino | 便携版 IDE 2.3.10 @ `D:\Download\arduino`，内置 arduino-cli 1.5.1、esptool 5.3.1 |
-| ⚠️ 坑 | arduino-cli **必须带 `--config-file`**（数据目录在 D 盘），否则找不到 esp32 核心；脚本已自动带上 |
+| Arduino | 本次使用 `D:\arduino\Arduino IDE` 内置 CLI，上传工具 esptool 5.3.1；早期日志中的 `D:\Download\arduino` 为历史路径 |
+| ⚠️ 坑 | 按实际安装配置 CLI 的数据目录；本次用独立 `--config-file` 指向 `C:\Users\33920\AppData\Local\Arduino15`，并在英文目录编译。旧脚本硬编码路径不代表本机当前路径 |
 | 核心 / 库 | `esp32:esp32` **3.3.12**、`Simple FOC` **2.4.0**（库名有空格：`arduino-cli lib install "Simple FOC"`） |
 | Python | `pyserial` 3.5、`mcp` 2.3.0（用了 v2 的 `MCPServer` API）、`rapidocr-onnxruntime`、`opencv-python` |
 | MCP 注册 | `~/.codex/config.toml` → `[mcp_servers.arduino]`，含 `PYTHONUTF8=1`（否则 Windows 中文乱码） |
@@ -310,7 +312,7 @@ python tools\mcp-bridge\test_mcp.py                # 验证 MCP 协议
 
 **抛投机构（当前方案：双 130 摩擦飞轮）**
 
-当前测试入口：[`FlywheelSpinTest`](firmware/catapult/FlywheelSpinTest/README.md)：两侧飞轮以同一占空比软启动转动（默认 30%、上限 60%、单次 ≤10s），每次上电只允许一次，底盘禁用。
+当前测试入口：[`FlywheelSpinTest`](firmware/catapult/FlywheelSpinTest/README.md)：v3 两侧飞轮以同一占空比软启动转动（默认 30%、上限 100%、单次 ≤10s），每次上电只允许一次，底盘禁用。[连续三次试射成功记录](docs/logs/2026-10-17-flywheel-three-shots/README.md)。
 
 **旧投掷机构（已停用，历史模块）**
 
@@ -375,7 +377,8 @@ python tools\mcp-bridge\test_mcp.py                # 验证 MCP 协议
 | `docs/环境检查报告.md` | 本机 Arduino / Codex / 串口 检查记录与改动清单 |
 | `docs/线路检查记录.md` | 五个模块（编码器/电机/降压/驱动板/蓝牙）的线路状态与待验证项 |
 | `docs/烧录测试记录.md` | 串口、芯片、编译产物大小、哈希校验记录 |
-| `docs/logs/2026-10-17-双130飞轮转动测试/` | ★ 本次：编译、烧录（COM10）、烧录后空闲回读、两次 30% / 3000ms 转动的原始串口记录、源码/映像哈希与证据边界 |
+| `docs/logs/2026-10-17-flywheel-three-shots/` | ★ 当前成果：v3 编译/烧录（COM4）、161 项主机仿真、100% / 10 秒连续三次试射成功（用户逐次确认）、原始日志及 SHA-256 清单 |
+| `docs/logs/2026-10-17-双130飞轮转动测试/` | 历史：COM10 上早期 30% / 3000ms 命令执行日志、源码/映像哈希及证据边界；后续用户反馈当时未观察到实际转动 |
 | `docs/logs/2026-10-17-卷线方案失败-电机撕裂/` | ★ 旧方案失效报告：用户口述「扭矩太大、电机被撕裂」、已知与未知、工程结论；`user-report.json` 为机器可读原件 |
 | `docs/logs/2026-10-14-throw-test/` | 实机抛投四项失败记录（电池断路、滑齿、齿轮脱落、抛射角过平）与证据边界（旧方案，已随批归档） |
 | `docs/logs/2026-10-14-n20-motor2-check/` | 【已停用方案】2号电机单次3秒正转、5 次追加复现、跳帽异常与源码/映像哈希 |

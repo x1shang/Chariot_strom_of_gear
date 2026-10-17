@@ -1,0 +1,5 @@
+# Preserve original evidence bytes so published SHA-256 digests remain valid.
+*.txt -text
+upload-verification.json -text
+README.md text eol=lf
+verification.json text eol=lf
