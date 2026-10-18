@@ -63,8 +63,8 @@ int main() {
   advance(2000,BTN_R2|BTN_R1); CHECK(flyReady() && !feedActive);
   CHECK(simulatedDuty[14]==256); // Installed 3.3.12 full-on representation.
   frame(BTN_R2); frame(BTN_R2|BTN_R1);
-  CHECK(feedActive && simulatedPins[22]==1 && simulatedDuty[25]>0 && simulatedDuty[26]==0);
-  advance(160,BTN_R2|BTN_R1); CHECK(!feedActive && simulatedPins[22]==0);
+  CHECK(feedActive && simulatedPins[Cfg::FEED_STBY]==1 && simulatedDuty[25]>0 && simulatedDuty[26]==0);
+  advance(160,BTN_R2|BTN_R1); CHECK(!feedActive && simulatedPins[Cfg::FEED_STBY]==0);
   advance(1000,BTN_R2|BTN_R1); CHECK(!feedActive); // Hold does not repeat.
   frame(BTN_R2); frame(BTN_R2|BTN_R1); CHECK(feedActive);
   frame(); motorIdle(); // Releasing fly deadman cancels a partial feed.
@@ -87,8 +87,8 @@ int main() {
   arm(); flyReadyHold(); frame(PAD_CIRCLE|BTN_R2); motorIdle(); CHECK(!launcherArmed);
   arm(); flyReadyHold(); cmd("STOP"); motorIdle(); CHECK(!pad.armed);
   // Explicit, time-bounded direction tests; no flywheel needed.
-  arm(); cmd("JOG 1 100"); CHECK(feedActive && simulatedPins[22]==1);
-  advance(110); CHECK(!feedActive && simulatedPins[22]==0);
+  arm(); cmd("JOG 1 100"); CHECK(feedActive && simulatedPins[Cfg::FEED_STBY]==1);
+  advance(110); CHECK(!feedActive && simulatedPins[Cfg::FEED_STBY]==0);
   cmd("JOG -1 100"); CHECK(!feedActive); advance(Cfg::FEED_COOLDOWN_MS);
   cmd("JOG -1 100"); CHECK(feedActive && simulatedDuty[26]>0 && simulatedDuty[25]==0);
   advance(110); cmd("JOG 1 501"); CHECK(!feedActive); cmd("JOG 1 0"); CHECK(!feedActive);
@@ -109,7 +109,7 @@ int main() {
   frame(BTN_CROSS); CHECK(!feedActive); frame(); // Old CROSS control is removed.
   // R1 is a single timed pulse with R2 released, not a deadman or a queued move.
   advance(Cfg::FEED_COOLDOWN_MS); frame(BTN_R1);
-  CHECK(feedActive && !flyActive && !feedNeedsFly && !feedJog && simulatedPins[22]==1);
+  CHECK(feedActive && !flyActive && !feedNeedsFly && !feedJog && simulatedPins[Cfg::FEED_STBY]==1);
   frame(); CHECK(feedActive); // A tap continues for its fixed duration after release.
   advance(120); CHECK(feedActive); frame(0,10); CHECK(!feedActive); motorIdle();
   frame(BTN_R1); CHECK(!feedActive); // Cooldown rejects the edge.
@@ -167,19 +167,23 @@ int main() {
   frame(BTN_R1); CHECK(feedActive); frame(); advance(150); motorIdle();
   advance(Cfg::FEED_COOLDOWN_MS); frame(BTN_R2); advance(2600,BTN_R2); CHECK(flyReady()); frame(); motorIdle();
   // Runtime write failure gates STBY before a fault is latched.
-  arm(); failWrite=25; cmd("JOG 1 100"); CHECK(!hardwareOK && !feedActive && simulatedPins[22]==0);
+  arm(); failWrite=25; cmd("JOG 1 100"); CHECK(!hardwareOK && !feedActive && simulatedPins[Cfg::FEED_STBY]==0);
   failWrite=-1; motorIdle();
   setup(); neutral(); cmd("ARM"); frame(BTN_R2); advance(500,BTN_R2);
   failWrite=14; cmd("STOP"); CHECK(!hardwareOK && !flyAttached && frequencyByPin[14]==0 && simulatedPins[14]==0);
   failWrite=-1; motorIdle();
   // Startup attach failure cannot be cleared by an ARM command.
   setup(); neutral(); advance(Cfg::FEED_COOLDOWN_MS); failFreq=25; frame(BTN_R1);
-  CHECK(!hardwareOK && !feedActive && simulatedPins[22]==0); failFreq=-1; motorIdle();
+  CHECK(!hardwareOK && !feedActive && simulatedPins[Cfg::FEED_STBY]==0); failFreq=-1; motorIdle();
   setup(); neutral(); failFreq=14; frame(BTN_R2); advance(50,BTN_R2);
   CHECK(!hardwareOK && !flyActive); failFreq=-1; motorIdle();
   setup(); neutral(); failFreq=16; frame(PAD_UP);
   CHECK(!hardwareOK && simulatedPins[33]==0); failFreq=-1; motorIdle();
   failAttach=14; setup(); CHECK(!hardwareOK); for(int i=0;i<5;++i) frame();
   cmd("ARM"); CHECK(!launcherArmed); motorIdle();
+  CHECK(Cfg::FEED_STBY==21);
+  failAttach=-1; setup(); neutral(); failHighReadPin=Cfg::FEED_STBY; frame(BTN_R1);
+  CHECK(!hardwareOK && !feedActive && !strcmp(faultReason,"feed_enable")); motorIdle();
+  failHighReadPin=-1;
   printf("PASS: %d integrated firmware checks; no serial hardware or motors accessed\n",checks);
 }

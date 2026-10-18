@@ -12,7 +12,9 @@ last_updated: 2026-10-18
 
 # chariot — ESP32 投石小车
 
-> **2026-10-18当前新接线入口：** [ChariotIntegrated-v3.1-R1完整版](firmware/robot/ChariotIntegrated/README.md)，方向键驾驶、右摇杆转向、R2双飞轮、停车点按R1定时N20。当前没有舵机，GPIO27不输出脉冲；R1默认150ms/30%，行程尚待标定。v3.1修复收到方向键后触发drive frequency误判的问题，改为直接查询LEDC定时器。681项主机检查通过；底盘有动力、四轮架空测试中，用户确认四轮均响应且松手停转；130/N20本轮未通电验证。[当前操作](docs/整合程序v3-R1对接器-2026-10-18.md) · [最新检查记录](docs/logs/2026-10-18-controller-response/README.md)。以下2026-10-17段落及v3.0USB记录保留历史状态。
+> **2026-10-18最新N20修改：** 当前源码为v3.2-STBY21，TB3 STBY从GPIO22改到GPIO21，其余GPIO不变；STBY下拉支路诊断性移除后使能恢复，N20仍无动作，待核对实物。先按[v3.2说明](docs/整合程序v3.2-STBY21-2026-10-18.md)完成空载与改线检查。
+
+> **此前v3.1新接线入口与验证：** [ChariotIntegrated-v3.1-R1完整版](firmware/robot/ChariotIntegrated/README.md)，方向键驾驶、右摇杆转向、R2双飞轮、停车点按R1定时N20。当前没有舵机，GPIO27不输出脉冲；R1默认150ms/30%，行程尚待标定。v3.1修复收到方向键后触发drive frequency误判的问题，改为直接查询LEDC定时器。681项主机检查通过；底盘有动力、四轮架空测试中，用户确认四轮均响应且松手停转；130/N20本轮未通电验证。[当前操作](docs/整合程序v3-R1对接器-2026-10-18.md) · [最新检查记录](docs/logs/2026-10-18-controller-response/README.md)。以下2026-10-17段落及v3.0USB记录保留历史状态。
 
 > 旧接线入口：[手柄驾驶 + R2 双飞轮](firmware/chassis/MecanumPS2Flywheel/README.md)仍使用六根飞轮信号，不能直接烧到已合并双EN的接线上。
 

@@ -160,7 +160,9 @@ bool startFeed(int direction,uint32_t duration,bool jog) {
   }
   feedDirection=actual; feedLastDirection=actual; feedDuration=duration; feedStarted=millis();
   feedActive=true; feedJog=jog; feedNeedsFly=!jog && flyActive;
-  digitalWrite(Cfg::FEED_STBY,HIGH); return true;
+  digitalWrite(Cfg::FEED_STBY,HIGH); delayMicroseconds(2);
+  if(digitalRead(Cfg::FEED_STBY)!=HIGH) { fault("feed enable"); return false; }
+  return true;
 }
 void receiveFrame(uint8_t mode,uint8_t marker,uint16_t rawButtons,uint8_t rightX=128) {
   psMode=mode; const bool wasFresh=pad.fresh(millis()), wasArmed=pad.armed;

@@ -11,7 +11,7 @@ import serial
 parser = argparse.ArgumentParser()
 parser.add_argument('--port', required=True)
 parser.add_argument('--output', type=Path, required=True)
-parser.add_argument('--version', default='ChariotIntegrated-v3.1-R1')
+parser.add_argument('--version', default='ChariotIntegrated-v3.2-STBY21')
 args = parser.parse_args()
 args.output.mkdir(parents=True, exist_ok=True)
 lines = []

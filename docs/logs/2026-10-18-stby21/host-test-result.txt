@@ -1,0 +1,2 @@
+Recorded from tests/run-integrated-tests.cmd output, exit 0:
+PASS: 691 integrated firmware checks; no serial hardware or motors accessed

@@ -1,0 +1,63 @@
+{
+  "started_at": "2026-10-18T10:15:06.446298+08:00",
+  "duration_s": 20,
+  "port": "COM4",
+  "chassis_power_state_confirmed_by_user": "off",
+  "wheels_raised_confirmed_by_user": true,
+  "host_commands_sent": [
+    "STATUS",
+    "STOP"
+  ],
+  "host_motion_commands_sent": false,
+  "reset_first": false,
+  "status_count": 181,
+  "input_sample_count": 33,
+  "drive_output_sample_count": 5,
+  "observed_button_values": [
+    "0000",
+    "0800"
+  ],
+  "versions_seen": [
+    "ChariotIntegrated-v3.1-R1"
+  ],
+  "timer_frequencies_seen": [
+    "20000,5000,20000"
+  ],
+  "fault_reasons_seen": [
+    "none"
+  ],
+  "observed_turn_range": [
+    0,
+    255
+  ],
+  "faults": [],
+  "last_status": {
+    "fw": "ChariotIntegrated-v3.1-R1",
+    "hw": "1",
+    "ps": "1",
+    "mode": "73",
+    "ready": "0",
+    "armed": "0",
+    "buttons": "0000",
+    "chassis": "0",
+    "fly": "0",
+    "duty": "0",
+    "pretime": "0",
+    "feed": "0",
+    "TB3": "0",
+    "servo": "0",
+    "us": "1500",
+    "target": "1500",
+    "RX": "128",
+    "turn": "0",
+    "analog": "1",
+    "N20ms": "150",
+    "N20pct": "30",
+    "drive": "0,0,0,0",
+    "fault": "none",
+    "pwmhz": "20000,5000,20000",
+    "elapsed_s": 20.079
+  },
+  "stopped_at_end": true,
+  "physical_wheel_motion_observation": "awaiting user report; telemetry alone is not motion evidence"
+}

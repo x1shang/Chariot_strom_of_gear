@@ -1,0 +1,13 @@
+{
+  "recorded_at": "2026-10-18T10:30:51.766186+08:00",
+  "evidence_type": "user reports, no instrument measurement",
+  "flywheel": "两台都转，松开后逐渐停下",
+  "n20_150ms_after_stby_recovery": "仍然完全没动",
+  "n20_300ms_30pct": "没有转动，也没有声音",
+  "buck_display_user_report": "6v",
+  "tb3_vm_voltage_measured": false,
+  "n20_model_and_rated_current_verified": false,
+  "stby_external_pulldown": "c23-d26 component removed after removal restored enable HIGH; exact resistance and fault mechanism unknown",
+  "final_wiring": "GPIO21 -> a23 -> b23 -> TB3 STBY; GPIO22 disconnected; GPIO25/26 AIN1/2 unchanged; no servo",
+  "completion": "flywheel start/stop observed; N20 physical operation unresolved; request current TB3/breadboard photo"
+}

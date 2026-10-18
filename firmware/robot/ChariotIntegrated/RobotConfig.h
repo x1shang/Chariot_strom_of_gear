@@ -2,14 +2,14 @@
 #include <stdint.h>
 
 namespace Cfg {
-constexpr char VERSION[] = "ChariotIntegrated-v3.1-R1";
+constexpr char VERSION[] = "ChariotIntegrated-v3.2-STBY21";
 constexpr char CONTROL_BASELINE[] = "9a11db22ac06d6c2f64c0cb23fb420198a7165ef";
 constexpr uint8_t WHEEL_PINS[4][2] = {{16,17},{18,19},{23,32},{15,5}};
 constexpr int WHEEL_POLARITY[4] = {1,1,-1,-1};
 constexpr uint8_t CHASSIS_STBY=33, PS_CLK=2, PS_CS=4, PS_CMD=12, PS_DAT=13;
-constexpr uint8_t FLY_EN=14, SERVO=27, FEED_IN1=25, FEED_IN2=26, FEED_STBY=22;
+constexpr uint8_t FLY_EN=14, SERVO=27, FEED_IN1=25, FEED_IN2=26, FEED_STBY=21;
 constexpr bool SERVO_INSTALLED=false; // User has no servo; GPIO27 stays low.
-// GPIO21 is reserved. L298 IN1/IN3 are hardwired 3V3; IN2/IN4 are GND.
+// GPIO22 is disconnected after an isolated LOW readback; use GPIO21 for TB3 STBY. L298 IN1/IN3 are hardwired 3V3; IN2/IN4 are GND.
 constexpr uint32_t DRIVE_HZ=20000, FLY_HZ=5000, SERVO_HZ=50;
 constexpr uint8_t FLY_CHANNEL=8, SERVO_CHANNEL=9, FEED_CH1=10, FEED_CH2=11;
 constexpr uint8_t DRIVE_DUTY=255, FLY_PERCENT=100;

@@ -14,6 +14,7 @@ extern int simulatedPins[40], simulatedDuty[40];
 inline int failAttach=-1, failWrite=-1, failFreq=-1;
 inline bool fullOnReadback=true;
 inline bool frequencyApiZero=false;
+inline int failHighReadPin=-1;
 inline uint8_t bitsByPin[40]={}, channelByPin[40]={}, timerByPin[40]={};
 inline uint32_t frequencyByPin[40]={};
 inline std::vector<uint8_t> transmitted;
@@ -28,7 +29,7 @@ inline void digitalWrite(uint8_t p,int v) {
     if(++wireBits==8) { transmitted.push_back(wireByte); wireBits=0; wireByte=0; }
   }
 }
-inline int digitalRead(uint8_t p) { return simulatedPins[p]; }
+inline int digitalRead(uint8_t p) { return p==failHighReadPin && simulatedPins[p]==HIGH ? LOW : simulatedPins[p]; }
 inline void delayMicroseconds(unsigned) {}
 inline void delay(unsigned ms) { simulatedMillis+=ms; }
 inline bool ledcAttachChannel(uint8_t p,uint32_t f,uint8_t b,uint8_t c) {
