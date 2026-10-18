@@ -1,0 +1,26 @@
+{
+  "recorded_at_local": "2026-10-18",
+  "port": "COM9",
+  "firmware": "ChariotIntegrated-v3.3-JOG",
+  "conditions": "所有有效轮次：N20 动力接通、脱离滑轨空载、direction 1、150ms；用户在场逐次确认",
+  "correction": "最早两轮标为 powered 的点动实际未接动力（用户事后确认），不能用于判定电机运动；原始 jog.json 保留不动。",
+  "runs": [
+    {"dir": "powered-100-150ms", "percent": 100, "power_state_actual": "off (仅 USB)", "valid": false, "observation": "作废"},
+    {"dir": "powered-100-300ms", "percent": 100, "power_state_actual": "off (仅 USB)", "valid": false, "observation": "作废"},
+    {"dir": "powered-100-150ms-rerun", "percent": 100, "readback": 256, "valid": true, "observation": "转了／明显动了一下"},
+    {"dir": "powered-50-150ms", "percent": 50, "readback": 128, "valid": true, "observation": "不动，也没有声音"},
+    {"dir": "powered-65-150ms", "percent": 65, "readback": 166, "valid": true, "observation": "抖一下／时转时不转（临界）"},
+    {"dir": "powered-75-150ms", "percent": 75, "readback": 191, "valid": true, "observation": "转了"}
+  ],
+  "finding": "启动门槛约 65%~75%（150ms、空载、6V 显示值）；FEED_PERCENT=30 在实物上起不动电机",
+  "reclassified": "N20 由『完全不转/疑似硬件故障』改判为『启动占空比不足』",
+  "withdrawn_claim": "『30%→100% 全部无动作、启动占空比不足被排除』——该结论因前两轮未接动力而撤回",
+  "not_proven_by_telemetry": [
+    "TB3 VM 端实际电压",
+    "TB3 AO1/AO2 输出电压与电机端电流",
+    "带负载（弹匣/滑轨啮合）时的启动能力",
+    "反向启动门槛",
+    "实测的 6V 供电（6V 仅为降压板显示值）"
+  ],
+  "outcome": "启动门槛已定位；整车验收仍未通过（带载与电压未测）"
+}
