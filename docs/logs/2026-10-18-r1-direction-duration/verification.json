@@ -2,9 +2,13 @@
   "recorded_at_local": "2026-10-18",
   "intended_port": "COM9",
   "firmware_version_built": "ChariotIntegrated-v3.5-R1LONG",
-  "firmware_version_on_board": "ChariotIntegrated-v3.4-R1ALT",
-  "flashed": false,
-  "flash_blocker": "COM9 (CH340) disappeared from the machine before upload; only Bluetooth COM ports remain, so the board is not connected",
+  "firmware_version_on_board": "ChariotIntegrated-v3.5-R1LONG",
+  "flashed": true,
+  "flash_history": [
+    {"attempt": 1, "result": "failed", "error": "could not open port 'COM9': FileNotFoundError(2)", "cause": "board disconnected; only Bluetooth COM ports present"},
+    {"attempt": 2, "result": "ok", "written_bytes": 290016, "verification": "Hash of data verified", "exit": 0, "note": "reused the cached build; artifact hash matched 020281f2..."}
+  ],
+  "post_flash_status": "fw=ChariotIntegrated-v3.5-R1LONG hw=1 ps=1 armed=1 N20ms=1750 N20pct=80 N20next=-1 N20last=1 feed=0 TB3=0 fault=none",
   "requirement": "R1 alternates direction with DIFFERENT durations; the up direction is wanted at 3000ms but which direction is up is unknown, so +1 is arbitrarily assigned 3000ms and -1 keeps 1750ms",
   "config_delta": {
     "VERSION": {"before": "ChariotIntegrated-v3.4-R1ALT", "after": "ChariotIntegrated-v3.5-R1LONG"},
@@ -45,7 +49,7 @@
     "error": "could not open port 'COM9': FileNotFoundError(2)",
     "exit": 1
   },
-  "next_step": "Reconnect the board, re-run the upload, then verify STATUS reports fw=ChariotIntegrated-v3.5-R1LONG and that the first R1 tap lasts ~3.0s and the second ~1.75s",
+  "next_step": "Press R1 twice with the mechanism ready; confirm the first tap lasts ~3.0s on the +1 direction and the second ~1.75s on -1, and that N20next/N20ms flip between 3000 and 1750",
   "not_verified": [
     "on-board flash of this build",
     "real R1 tap durations per direction",
