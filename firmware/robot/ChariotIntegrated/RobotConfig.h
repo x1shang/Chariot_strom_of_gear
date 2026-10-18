@@ -2,7 +2,7 @@
 #include <stdint.h>
 
 namespace Cfg {
-constexpr char VERSION[] = "ChariotIntegrated-v3.4-R1ALT";
+constexpr char VERSION[] = "ChariotIntegrated-v3.5-R1LONG";
 constexpr char CONTROL_BASELINE[] = "9a11db22ac06d6c2f64c0cb23fb420198a7165ef";
 constexpr uint8_t WHEEL_PINS[4][2] = {{16,17},{18,19},{23,32},{15,5}};
 constexpr int WHEEL_POLARITY[4] = {1,1,-1,-1};
@@ -19,11 +19,14 @@ constexpr uint32_t FLY_RAMP_MS=1200, FLY_READY_MS=2500, FLY_MAX_MS=10000;
 // never moved it and 65% only shuddered, so the old 30% default was unusable.
 constexpr uint8_t FEED_PERCENT=80;
 constexpr int FEED_POLARITY=1; // R1 docking direction; verify with mechanism detached.
-// FEED_PULSE_MS is one R1 tap. R1 alternates direction per accepted tap, so a
-// 1.75s run one way is followed by a 1.75s run the other way.
-constexpr uint32_t FEED_PULSE_MS=1750;
-// FEED_JOG_MAX_MS bounds a serial JOG; raised to 3000 so a loaded endurance
-// pulse (80% for 3s) can be run without losing the bounded auto-stop.
+// R1 tap duration DEPENDS ON DIRECTION. The intent is that the "up" direction
+// runs 3000ms and the other one 1750ms, but which physical direction is up is
+// NOT yet identified on the mechanism. So the first tap direction (+1) is
+// arbitrarily given the long 3000ms pulse and (-1) keeps 1750ms. Once the up
+// direction is known, either swap these two values or set FEED_POLARITY=-1.
+constexpr uint32_t FEED_PULSE_MS_FORWARD=3000; // raw tap direction +1
+constexpr uint32_t FEED_PULSE_MS_REVERSE=1750; // raw tap direction -1
+// FEED_JOG_MAX_MS bounds a serial JOG, including the 3000ms direction above.
 constexpr uint32_t FEED_JOG_MAX_MS=3000;
 constexpr uint32_t FEED_COOLDOWN_MS=800, FEED_REVERSE_GUARD_MS=300;
 // Initial narrow commissioning range. Not a measured platform angle.
@@ -33,7 +36,9 @@ constexpr int SERVO_DIRECTION=1;
 constexpr uint32_t SERVO_TICK_MS=20, SERVO_SETTLE_MS=500;
 static_assert(FLY_PERCENT<=100 && FEED_PERCENT>0 && FEED_PERCENT<=100, "Duty range");
 static_assert(FLY_READY_MS>=FLY_RAMP_MS && FLY_READY_MS<FLY_MAX_MS, "Pre-spin time");
-static_assert(FEED_PULSE_MS>0 && FEED_PULSE_MS<=FEED_JOG_MAX_MS && FEED_JOG_MAX_MS<=3000, "Feed time");
+static_assert(FEED_PULSE_MS_FORWARD>0 && FEED_PULSE_MS_FORWARD<=FEED_JOG_MAX_MS &&
+              FEED_PULSE_MS_REVERSE>0 && FEED_PULSE_MS_REVERSE<=FEED_JOG_MAX_MS &&
+              FEED_PULSE_MS_FORWARD!=FEED_PULSE_MS_REVERSE, "Feed time");
 static_assert(SERVO_MIN_US>=500 && SERVO_MIN_US<=SERVO_CENTER_US &&
               SERVO_CENTER_US<=SERVO_MAX_US && SERVO_MAX_US<=2500, "Servo range");
 static_assert(FEED_POLARITY==1 || FEED_POLARITY==-1, "Feeder polarity");

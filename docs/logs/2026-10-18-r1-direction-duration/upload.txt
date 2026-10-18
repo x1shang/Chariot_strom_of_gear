@@ -1,0 +1,10 @@
+esptool v5.3.1
+Serial port COM9:
+
+A fatal error occurred: Could not open COM9, the port is busy or doesn't exist.
+(could not open port 'COM9': FileNotFoundError(2, 'ϵͳ�Ҳ���ָ�����ļ���', None, 2))
+
+Hint: Check if the port is correct and ESP connected
+
+Failed uploading: uploading error: exit status 2
+UPLOAD_EXIT=1

@@ -1,0 +1,56 @@
+{
+  "recorded_at_local": "2026-10-18",
+  "intended_port": "COM9",
+  "firmware_version_built": "ChariotIntegrated-v3.5-R1LONG",
+  "firmware_version_on_board": "ChariotIntegrated-v3.4-R1ALT",
+  "flashed": false,
+  "flash_blocker": "COM9 (CH340) disappeared from the machine before upload; only Bluetooth COM ports remain, so the board is not connected",
+  "requirement": "R1 alternates direction with DIFFERENT durations; the up direction is wanted at 3000ms but which direction is up is unknown, so +1 is arbitrarily assigned 3000ms and -1 keeps 1750ms",
+  "config_delta": {
+    "VERSION": {"before": "ChariotIntegrated-v3.4-R1ALT", "after": "ChariotIntegrated-v3.5-R1LONG"},
+    "FEED_PULSE_MS": {"before": 1750, "after": "split: FEED_PULSE_MS_FORWARD=3000 (+1), FEED_PULSE_MS_REVERSE=1750 (-1)"},
+    "FEED_JOG_MAX_MS": {"before": 3000, "after": 3000},
+    "FEED_PERCENT": {"before": 80, "after": 80},
+    "STATUS_N20ms": {"before": "feedActive?feedDuration:FEED_PULSE_MS", "after": "feedActive?feedDuration:feedPulseMs(feedNextDirection)"}
+  },
+  "swap_instruction": "If the up direction turns out to be -1, exchange the two duration constants; do not change FEED_POLARITY, which would move both directions physically",
+  "source_sha256": {
+    "firmware/robot/ChariotIntegrated/ChariotIntegrated.ino": "2014a213f74fad4f7927770ce0f61bd88e32bead2ceed08e3470a4ca11f9e6c9",
+    "firmware/robot/ChariotIntegrated/DpadControl.h": "a380135160d8355e5e071a96afbc75a4b9269e9b07033624aac2de96e238d291",
+    "firmware/robot/ChariotIntegrated/DriveMath.h": "ede60a13a28492d823458e5f352ff1dadb5dc3f04745c5f4660913c58abccb59",
+    "firmware/robot/ChariotIntegrated/RobotConfig.h": "c9e727205ab9611d5ade1d83debbfac3108e36e8aa30dd2d0a628dd58864eb3c",
+    "tests/test_integrated_firmware.cpp": "f88233ce3aae2a84850c23238595a13c2d3712634c446b52e537ca3cf771a939",
+    "host/jog_integrated_n20.py": "22f6058cf6726da78af432bd788d1a7705819fb9c0f543ccc3375d9ad4f82c30"
+  },
+  "artifact_sha256": {
+    "ChariotIntegrated.ino.bin": "020281f264a5ad7de9b32b7263c3ca08392f52b3158a96c93614e949b285df56"
+  },
+  "build": {
+    "tool": "tools/build-integrated.ps1",
+    "arduino_cli": "1.5.2-rc.1",
+    "esp32_core": "esp32:esp32@3.3.12",
+    "data_directory": "D:/Download/arduino/data",
+    "fqbn": "esp32:esp32:esp32",
+    "compile_exit": 0,
+    "sketch_bytes": 289863,
+    "static_bytes": 22592
+  },
+  "host_tests": {
+    "runner": "g++ -std=c++17 -Itests/integrated-stubs (MSVC cmd unavailable on this machine)",
+    "result": "827 checks passed",
+    "added_cases": "FORWARD!=REVERSE assertion, +1 runs the full 3000ms, still active at 1750ms, -1 ends at 1750ms, idle STATUS reports the pending 3000ms"
+  },
+  "upload_attempt": {
+    "command": "arduino-cli upload -p COM9 --fqbn esp32:esp32:esp32 --input-dir <build>",
+    "error": "could not open port 'COM9': FileNotFoundError(2)",
+    "exit": 1
+  },
+  "next_step": "Reconnect the board, re-run the upload, then verify STATUS reports fw=ChariotIntegrated-v3.5-R1LONG and that the first R1 tap lasts ~3.0s and the second ~1.75s",
+  "not_verified": [
+    "on-board flash of this build",
+    "real R1 tap durations per direction",
+    "which direction is up",
+    "3000ms long direction against mechanical end stops (open-loop timing, no limit switch or current limit)"
+  ],
+  "outcome": "code change complete and host-verified; NOT flashed because the board is disconnected"
+}
