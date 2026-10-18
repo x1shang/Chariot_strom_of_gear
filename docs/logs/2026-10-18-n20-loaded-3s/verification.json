@@ -1,0 +1,64 @@
+{
+  "recorded_at_local": "2026-10-18",
+  "port": "COM9",
+  "firmware_status_version": "ChariotIntegrated-v3.3-JOG",
+  "version_string_note": "本次构建未升级 Cfg::VERSION，版本字符串不能用于区分二进制；以本文件的源文件与产物哈希为准",
+  "source_sha256": {
+    "firmware/robot/ChariotIntegrated/ChariotIntegrated.ino": "4bb4ff8aedc175fc69d069e365d73c4ce19e2d5623e6c368fff6bc8e67862b4c",
+    "firmware/robot/ChariotIntegrated/DpadControl.h": "a380135160d8355e5e071a96afbc75a4b9269e9b07033624aac2de96e238d291",
+    "firmware/robot/ChariotIntegrated/DriveMath.h": "ede60a13a28492d823458e5f352ff1dadb5dc3f04745c5f4660913c58abccb59",
+    "firmware/robot/ChariotIntegrated/RobotConfig.h": "f917ba422fe7c8973ae127f7c0c8ebc8a63df3a81d6172388a8eb943d1a19275",
+    "tests/test_integrated_firmware.cpp": "467d9612eb9856f5622b37ae5e663371c0e39c2c5be2a677d058b184bf79409a",
+    "host/jog_integrated_n20.py": "b6246b2f67ea3e073d231d3ce5e0eeb6af530ae9ea9527ecad45592a745ac2fa"
+  },
+  "artifact_sha256": {
+    "ChariotIntegrated.ino.bin": "6aedc8f300ea4e6daa1ddd27ec100d4877b2eb80d1a5b69601ecd30f8ab39a02"
+  },
+  "artifact_bytes": 289856,
+  "build": {
+    "tool": "tools/build-integrated.ps1",
+    "arduino_cli": "1.5.2-rc.1",
+    "esp32_core": "esp32:esp32@3.3.12",
+    "data_directory": "D:/Download/arduino/data",
+    "fqbn": "esp32:esp32:esp32",
+    "compile_exit": 0,
+    "sketch_bytes": 289715,
+    "static_bytes": 22576
+  },
+  "host_tests": {
+    "runner": "g++ -std=c++17 -Itests/integrated-stubs (MSVC cmd unavailable on this machine)",
+    "result": "792 checks passed"
+  },
+  "firmware_change": {
+    "FEED_JOG_MAX_MS": {"before": 500, "after": 3000},
+    "static_assert_bound": {"before": 1000, "after": 3000},
+    "host_script_ms_cap": {"before": 500, "after": 3000},
+    "host_script_added": "--loaded-confirmed (mutually exclusive with --unloaded-confirmed; one is required when powered)"
+  },
+  "upload": {
+    "command": "arduino-cli upload -p COM9 --fqbn esp32:esp32:esp32 --input-dir <build>",
+    "written_bytes": 289856,
+    "verification": "Hash of data verified",
+    "exit": 0
+  },
+  "test": {
+    "dir": "powered-80-3000ms-loaded",
+    "command": "JOG 1 3000 80",
+    "conditions": "N20 动力接通、负载已装上、用户在场",
+    "readback": "feed=1 TB3=1 N20ms=3000 N20pct=80 N20pwm=204,0",
+    "timed_stop_before_host_stop": true,
+    "fault": "none",
+    "error": null,
+    "user_observation": "转了，机构被带动了"
+  },
+  "finding": "带负载 80%/3s 可驱动机构；80% 可作为 R1 对接工作占空比候选",
+  "open_defect": "FEED_PERCENT=30 与 FEED_PULSE_MS=150 的 R1 默认参数在实物上不会产生动作，必须上调",
+  "not_proven": [
+    "TB3 VM 端实际电压与电流",
+    "带载重复性（仅一次）",
+    "反向带载",
+    "多次起转温升",
+    "电池电压下降后 80% 是否仍足够"
+  ],
+  "outcome": "带载 80%/3s 通过；整车验收仍未完成（R1 默认参数与量测待补）"
+}

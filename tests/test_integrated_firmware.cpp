@@ -91,7 +91,7 @@ int main() {
   advance(110); CHECK(!feedActive && simulatedPins[Cfg::FEED_STBY]==0);
   cmd("JOG -1 100"); CHECK(!feedActive); advance(Cfg::FEED_COOLDOWN_MS);
   cmd("JOG -1 100"); CHECK(feedActive && simulatedDuty[26]>0 && simulatedDuty[25]==0);
-  advance(110); cmd("JOG 1 501"); CHECK(!feedActive); cmd("JOG 1 0"); CHECK(!feedActive);
+  advance(110); cmd("JOG 1 3001"); CHECK(!feedActive); cmd("JOG 1 0"); CHECK(!feedActive);
   // All serial test runs remain limited and respond to fresh keys/STOP.
   advance(Cfg::FEED_COOLDOWN_MS); cmd("FLY 30 2000"); CHECK(flyActive && flySerial);
   advance(1500); CHECK(flyDuty==percentDuty(30)); frame(PAD_UP); motorIdle();
@@ -193,7 +193,7 @@ int main() {
   advance(150); motorIdle(); advance(Cfg::FEED_COOLDOWN_MS);
   cmd("JOG -1 100 70"); CHECK(feedActive && simulatedDuty[26]==179 && simulatedDuty[25]==0);
   cmd("STOP"); motorIdle(); neutral(); advance(Cfg::FEED_COOLDOWN_MS);
-  const char *badJog[]={"JOG 1 100 0","JOG 1 100 101","JOG 1 501 50","JOG 0 100 50","JOG 1 100 50 1","JOG 1 100 50x","JOG 1 100 -1"};
+  const char *badJog[]={"JOG 1 100 0","JOG 1 100 101","JOG 1 3001 50","JOG 0 100 50","JOG 1 100 50 1","JOG 1 100 50x","JOG 1 100 -1"};
   for(auto s:badJog) { cmd(s); CHECK(!feedActive); motorIdle(); }
   frame(BTN_R1); CHECK(feedActive && feedRunPercent==Cfg::FEED_PERCENT && simulatedDuty[25]==percentDuty(Cfg::FEED_PERCENT));
   frame(); advance(150); motorIdle(); advance(Cfg::FEED_COOLDOWN_MS);

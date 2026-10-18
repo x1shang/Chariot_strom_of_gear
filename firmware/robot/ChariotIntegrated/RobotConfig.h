@@ -17,7 +17,9 @@ constexpr uint32_t FLY_RAMP_MS=1200, FLY_READY_MS=2500, FLY_MAX_MS=10000;
 // READY is an elapsed-time permission, NOT a measured speed.
 constexpr uint8_t FEED_PERCENT=30;
 constexpr int FEED_POLARITY=1; // R1 docking direction; verify with mechanism detached.
-constexpr uint32_t FEED_PULSE_MS=150, FEED_JOG_MAX_MS=500;
+// FEED_JOG_MAX_MS bounds a serial JOG; raised to 3000 so a loaded endurance
+// pulse (80% for 3s) can be run without losing the bounded auto-stop.
+constexpr uint32_t FEED_PULSE_MS=150, FEED_JOG_MAX_MS=3000;
 constexpr uint32_t FEED_COOLDOWN_MS=800, FEED_REVERSE_GUARD_MS=300;
 // Initial narrow commissioning range. Not a measured platform angle.
 constexpr uint16_t SERVO_MIN_US=1400, SERVO_CENTER_US=1500, SERVO_MAX_US=1600;
@@ -26,7 +28,7 @@ constexpr int SERVO_DIRECTION=1;
 constexpr uint32_t SERVO_TICK_MS=20, SERVO_SETTLE_MS=500;
 static_assert(FLY_PERCENT<=100 && FEED_PERCENT>0 && FEED_PERCENT<=100, "Duty range");
 static_assert(FLY_READY_MS>=FLY_RAMP_MS && FLY_READY_MS<FLY_MAX_MS, "Pre-spin time");
-static_assert(FEED_PULSE_MS>0 && FEED_PULSE_MS<=FEED_JOG_MAX_MS && FEED_JOG_MAX_MS<=1000, "Feed time");
+static_assert(FEED_PULSE_MS>0 && FEED_PULSE_MS<=FEED_JOG_MAX_MS && FEED_JOG_MAX_MS<=3000, "Feed time");
 static_assert(SERVO_MIN_US>=500 && SERVO_MIN_US<=SERVO_CENTER_US &&
               SERVO_CENTER_US<=SERVO_MAX_US && SERVO_MAX_US<=2500, "Servo range");
 static_assert(FEED_POLARITY==1 || FEED_POLARITY==-1, "Feeder polarity");

@@ -12,12 +12,16 @@ p.add_argument('--milliseconds', type=int, default=150)
 p.add_argument('--direction', type=int, choices=(-1, 1), default=1)
 p.add_argument('--power-state', choices=('off', 'n20-only'), required=True)
 p.add_argument('--unloaded-confirmed', action='store_true')
+p.add_argument('--loaded-confirmed', action='store_true')
 p.add_argument('--output', type=Path, required=True)
 a = p.parse_args()
-if not 1 <= a.percent <= 100 or not 1 <= a.milliseconds <= 500:
-    p.error('percent must be 1..100 and milliseconds 1..500')
-if a.power_state == 'n20-only' and not a.unloaded_confirmed:
-    p.error('powered jog requires confirmation that the N20 is unloaded')
+if not 1 <= a.percent <= 100 or not 1 <= a.milliseconds <= 3000:
+    p.error('percent must be 1..100 and milliseconds 1..3000')
+if a.unloaded_confirmed and a.loaded_confirmed:
+    p.error('choose either --unloaded-confirmed or --loaded-confirmed, not both')
+if a.power_state == 'n20-only' and not (a.unloaded_confirmed or a.loaded_confirmed):
+    p.error('powered jog requires --unloaded-confirmed or --loaded-confirmed')
+load_state = 'loaded' if a.loaded_confirmed else ('unloaded' if a.unloaded_confirmed else 'unstated')
 a.output.mkdir(parents=True, exist_ok=True)
 s = serial.Serial(port=None, baudrate=115200, timeout=.04)
 s.dtr = False
@@ -81,6 +85,8 @@ finally:
                       {'feed':'0', 'TB3':'0', 'fly':'0', 'drive':'0,0,0,0', 'N20pwm':'0,0'}.items())
         result = {'power_state_confirmed_by_user': a.power_state,
                   'unloaded_confirmed_by_user': a.unloaded_confirmed,
+                  'loaded_confirmed_by_user': a.loaded_confirmed,
+                  'load_state': load_state,
                   'requested_percent': a.percent, 'requested_ms': a.milliseconds,
                   'direction': a.direction, 'host_commands_sent': commands,
                   'active_statuses': active, 'stopped_at_end': stopped,
