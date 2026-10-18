@@ -43,9 +43,18 @@
 - 烧录后 STATUS：`fw=ChariotIntegrated-v3.6-HOLDUD hw=1 ps=1 armed=1 N20ms=3000 N20pct=80 N20next=1 N20last=0 N20hold=0 feed=0 TB3=0 fault=none`。
 - 溯源哈希见 `verification.json`（产物 `ChariotIntegrated.ino.bin` = `e31b9d84…`）。
 
+## 用户现场确认（2026-10-18）
+
+**方向正确**：按住 △ 是上升、按住 × 是下降，与 `FEED_UP_DIRECTION=1` 的设定一致。也就是说：
+
+- **上升 = 原始方向 +1**（GPIO25 / `FEED_IN1` 那一路），也就是 R1 交替里被分配 3000ms 的那个方向；
+- **下降 = 原始方向 -1**（GPIO26 / `FEED_IN2`），R1 交替里 1750ms 的那个方向；
+- `FEED_UP_DIRECTION` 无需改为 -1，`FEED_POLARITY` 也不动。
+
+这条确认同时补上了 v3.5 记录里“哪一个是上升方向未知”的空白。
+
 ## 未验证（需实机按键）
 
-- 真实按住 △ / × 的物理方向是否分别是上升/下降；若是反向，把 `FEED_UP_DIRECTION` 改成 `-1` 即可（不要去改 `FEED_POLARITY`）。
 - 3000ms 上限是否够一次完整上升行程（若行程更长，加大 `FEED_HOLD_MAX_MS`，但不超过 `FEED_JOG_MAX_MS`）。
 - 无电流与限位保护：顶到机械限位后仍会继续给 80% 直到松手或到上限，属开环定时。
 - TB3 的 VM 端电压与电机电流仍未测量。

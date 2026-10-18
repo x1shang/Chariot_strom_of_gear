@@ -60,9 +60,14 @@
     "exit": 0
   },
   "post_flash_status": "fw=ChariotIntegrated-v3.6-HOLDUD hw=1 ps=1 armed=1 N20ms=3000 N20pct=80 N20next=1 N20last=0 N20hold=0 feed=0 TB3=0 fault=none",
+  "operator_confirmation": {
+    "date_local": "2026-10-18",
+    "statement": "direction correct: holding TRIANGLE raises, holding CROSS lowers",
+    "resolution": "up = raw direction +1 (GPIO25/FEED_IN1, the 3000ms R1 direction); down = -1 (GPIO26/FEED_IN2, the 1750ms R1 direction); FEED_UP_DIRECTION stays 1 and FEED_POLARITY stays 1",
+    "closes_previous_unknown": "v3.5 could not tell which direction was up"
+  },
   "rollback_note": "If TRIANGLE and CROSS turn out to be swapped physically, set FEED_UP_DIRECTION=-1 instead of changing FEED_POLARITY",
   "not_verified": [
-    "real button hold directions (up/down) by operator observation",
     "whether 3000ms covers a full travel",
     "mechanical end stop: no current limit or limit switch, 80% keeps driving until release or cap",
     "TB3 VM voltage and motor current"
