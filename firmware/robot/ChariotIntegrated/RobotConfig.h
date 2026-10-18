@@ -2,7 +2,7 @@
 #include <stdint.h>
 
 namespace Cfg {
-constexpr char VERSION[] = "ChariotIntegrated-v3.3-JOG";
+constexpr char VERSION[] = "ChariotIntegrated-v3.4-R1ALT";
 constexpr char CONTROL_BASELINE[] = "9a11db22ac06d6c2f64c0cb23fb420198a7165ef";
 constexpr uint8_t WHEEL_PINS[4][2] = {{16,17},{18,19},{23,32},{15,5}};
 constexpr int WHEEL_POLARITY[4] = {1,1,-1,-1};
@@ -15,11 +15,16 @@ constexpr uint8_t FLY_CHANNEL=8, SERVO_CHANNEL=9, FEED_CH1=10, FEED_CH2=11;
 constexpr uint8_t DRIVE_DUTY=255, FLY_PERCENT=100;
 constexpr uint32_t FLY_RAMP_MS=1200, FLY_READY_MS=2500, FLY_MAX_MS=10000;
 // READY is an elapsed-time permission, NOT a measured speed.
-constexpr uint8_t FEED_PERCENT=30;
+// 80% is the lowest duty verified to start the LOADED N20 on the bench; 30%
+// never moved it and 65% only shuddered, so the old 30% default was unusable.
+constexpr uint8_t FEED_PERCENT=80;
 constexpr int FEED_POLARITY=1; // R1 docking direction; verify with mechanism detached.
+// FEED_PULSE_MS is one R1 tap. R1 alternates direction per accepted tap, so a
+// 1.75s run one way is followed by a 1.75s run the other way.
+constexpr uint32_t FEED_PULSE_MS=1750;
 // FEED_JOG_MAX_MS bounds a serial JOG; raised to 3000 so a loaded endurance
 // pulse (80% for 3s) can be run without losing the bounded auto-stop.
-constexpr uint32_t FEED_PULSE_MS=150, FEED_JOG_MAX_MS=3000;
+constexpr uint32_t FEED_JOG_MAX_MS=3000;
 constexpr uint32_t FEED_COOLDOWN_MS=800, FEED_REVERSE_GUARD_MS=300;
 // Initial narrow commissioning range. Not a measured platform angle.
 constexpr uint16_t SERVO_MIN_US=1400, SERVO_CENTER_US=1500, SERVO_MAX_US=1600;

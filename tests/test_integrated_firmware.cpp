@@ -27,6 +27,10 @@ void motorIdle() {
   CHECK(simulatedDuty[14]==0 && simulatedDuty[25]==0 && simulatedDuty[26]==0);
   for(int i=0;i<4;++i) CHECK(wheels[i].value==0);
 }
+// Which TB3 input carries the running N20 pulse; 0 when neither does.
+int feedActivePin() {
+  return simulatedDuty[Cfg::FEED_IN1]>0?Cfg::FEED_IN1:(simulatedDuty[Cfg::FEED_IN2]>0?Cfg::FEED_IN2:0);
+}
 void arm() { neutral(); cmd("ARM"); CHECK(launcherArmed); }
 void flyReadyHold() { frame(BTN_R2); CHECK(flyActive); advance(Cfg::FLY_READY_MS,BTN_R2); CHECK(flyReady()); }
 int main() {
@@ -62,9 +66,12 @@ int main() {
   frame(BTN_R2|BTN_R1); CHECK(!feedActive);
   advance(2000,BTN_R2|BTN_R1); CHECK(flyReady() && !feedActive);
   CHECK(simulatedDuty[14]==256); // Installed 3.3.12 full-on representation.
+  // The rejected tap above must not consume the alternation slot.
+  feedNextDirection=1;
   frame(BTN_R2); frame(BTN_R2|BTN_R1);
-  CHECK(feedActive && simulatedPins[Cfg::FEED_STBY]==1 && simulatedDuty[25]>0 && simulatedDuty[26]==0);
-  advance(160,BTN_R2|BTN_R1); CHECK(!feedActive && simulatedPins[Cfg::FEED_STBY]==0);
+  CHECK(feedActive && simulatedPins[Cfg::FEED_STBY]==1 && feedActivePin()==Cfg::FEED_IN1);
+  advance(Cfg::FEED_PULSE_MS-80,BTN_R2|BTN_R1); CHECK(feedActive);
+  advance(120,BTN_R2|BTN_R1); CHECK(!feedActive && simulatedPins[Cfg::FEED_STBY]==0);
   advance(1000,BTN_R2|BTN_R1); CHECK(!feedActive); // Hold does not repeat.
   frame(BTN_R2); frame(BTN_R2|BTN_R1); CHECK(feedActive);
   frame(); motorIdle(); // Releasing fly deadman cancels a partial feed.
@@ -110,12 +117,14 @@ int main() {
   // R1 is a single timed pulse with R2 released, not a deadman or a queued move.
   advance(Cfg::FEED_COOLDOWN_MS); frame(BTN_R1);
   CHECK(feedActive && !flyActive && !feedNeedsFly && !feedJog && simulatedPins[Cfg::FEED_STBY]==1);
-  frame(); CHECK(feedActive); // A tap continues for its fixed duration after release.
-  advance(120); CHECK(feedActive); frame(0,10); CHECK(!feedActive); motorIdle();
+  frame(); CHECK(feedActive); // A tap continues for its full duration after release.
+  advance(Cfg::FEED_PULSE_MS-100); CHECK(feedActive); // Fixed 1750ms, not released-driven.
+  advance(120); CHECK(!feedActive); motorIdle();
   frame(BTN_R1); CHECK(!feedActive); // Cooldown rejects the edge.
   advance(1000,BTN_R1); CHECK(!feedActive); // Does not start later while held.
   frame(); frame(BTN_R1); CHECK(feedActive);
-  advance(160,BTN_R1); CHECK(!feedActive); advance(1000,BTN_R1); CHECK(!feedActive);
+  advance(Cfg::FEED_PULSE_MS,BTN_R1); CHECK(!feedActive); // Full pulse, then stop while held.
+  advance(1000,BTN_R1); CHECK(!feedActive);
   frame(); CHECK(!servoEnabled && frequencyByPin[27]==0);
   // Driving requests cannot move N20; stopping with R1 still held cannot queue it.
   advance(1000,PAD_UP); frame(PAD_UP|BTN_R1); CHECK(!feedActive && !wheelsIdle());
@@ -164,7 +173,7 @@ int main() {
   neutral(); // Explicit return to digital mode for the remaining original tests.
   // Unsigned clock arithmetic remains valid over wraparound.
   simulatedMillis=0xFFFFFF00u; pad=DpadControl{}; previousButtons=pendingEdges=0; arm();
-  frame(BTN_R1); CHECK(feedActive); frame(); advance(150); motorIdle();
+  frame(BTN_R1); CHECK(feedActive); frame(); advance(Cfg::FEED_PULSE_MS); motorIdle();
   advance(Cfg::FEED_COOLDOWN_MS); frame(BTN_R2); advance(2600,BTN_R2); CHECK(flyReady()); frame(); motorIdle();
   // Runtime write failure gates STBY before a fault is latched.
   arm(); failWrite=25; cmd("JOG 1 100"); CHECK(!hardwareOK && !feedActive && simulatedPins[Cfg::FEED_STBY]==0);
@@ -173,7 +182,7 @@ int main() {
   failWrite=14; cmd("STOP"); CHECK(!hardwareOK && !flyAttached && frequencyByPin[14]==0 && simulatedPins[14]==0);
   failWrite=-1; motorIdle();
   // Startup attach failure cannot be cleared by an ARM command.
-  setup(); neutral(); advance(Cfg::FEED_COOLDOWN_MS); failFreq=25; frame(BTN_R1);
+  setup(); neutral(); advance(Cfg::FEED_COOLDOWN_MS); feedNextDirection=1; failFreq=25; frame(BTN_R1);
   CHECK(!hardwareOK && !feedActive && simulatedPins[Cfg::FEED_STBY]==0); failFreq=-1; motorIdle();
   setup(); neutral(); failFreq=14; frame(BTN_R2); advance(50,BTN_R2);
   CHECK(!hardwareOK && !flyActive); failFreq=-1; motorIdle();
@@ -195,8 +204,24 @@ int main() {
   cmd("STOP"); motorIdle(); neutral(); advance(Cfg::FEED_COOLDOWN_MS);
   const char *badJog[]={"JOG 1 100 0","JOG 1 100 101","JOG 1 3001 50","JOG 0 100 50","JOG 1 100 50 1","JOG 1 100 50x","JOG 1 100 -1"};
   for(auto s:badJog) { cmd(s); CHECK(!feedActive); motorIdle(); }
-  frame(BTN_R1); CHECK(feedActive && feedRunPercent==Cfg::FEED_PERCENT && simulatedDuty[25]==percentDuty(Cfg::FEED_PERCENT));
-  frame(); advance(150); motorIdle(); advance(Cfg::FEED_COOLDOWN_MS);
+  frame(BTN_R1);
+  CHECK(feedActive && feedRunPercent==Cfg::FEED_PERCENT && feedActivePin()!=0 &&
+        simulatedDuty[feedActivePin()]==percentDuty(Cfg::FEED_PERCENT));
+  frame(); advance(Cfg::FEED_PULSE_MS); motorIdle(); advance(Cfg::FEED_COOLDOWN_MS);
+  // R1 alternates direction on every ACCEPTED tap; a rejected tap must not flip it.
+  setup(); neutral(); cmd("ARM"); feedNextDirection=1;
+  advance(Cfg::FEED_COOLDOWN_MS); frame(BTN_R1);
+  CHECK(feedActive && feedActivePin()==Cfg::FEED_IN1 && feedLastDirection==1 && feedNextDirection==-1);
+  advance(Cfg::FEED_PULSE_MS); CHECK(!feedActive); motorIdle();
+  frame(BTN_R1); CHECK(!feedActive && feedNextDirection==-1); // Cooldown tap: no flip.
+  advance(Cfg::FEED_COOLDOWN_MS); frame(BTN_R1);
+  CHECK(feedActive && feedActivePin()==Cfg::FEED_IN2 && feedLastDirection==-1 && feedNextDirection==1);
+  advance(Cfg::FEED_PULSE_MS); CHECK(!feedActive); motorIdle();
+  cmd("STATUS");
+  CHECK(Serial.output.find("N20ms=1750 N20pct=80 N20next=1 N20last=-1")!=std::string::npos);
+  advance(Cfg::FEED_COOLDOWN_MS); frame(BTN_R1);
+  CHECK(feedActive && feedActivePin()==Cfg::FEED_IN1); // Third tap returns to the first direction.
+  advance(Cfg::FEED_PULSE_MS); motorIdle(); advance(Cfg::FEED_COOLDOWN_MS);
   cmd("JOG 1 100"); CHECK(feedActive && feedRunPercent==Cfg::FEED_PERCENT); advance(100); motorIdle();
   advance(Cfg::FEED_COOLDOWN_MS); frame(PAD_UP); cmd("JOG 1 100 50"); CHECK(!feedActive); frame();
   advance(Cfg::FEED_COOLDOWN_MS); cmd("JOG 1 100 50"); CHECK(feedActive);

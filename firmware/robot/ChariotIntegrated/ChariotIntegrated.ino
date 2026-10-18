@@ -26,6 +26,9 @@ bool flyActive=false, flySerial=false, flyTimedOut=false, feedActive=false, feed
 bool feedHasStopped=false, feedNeedsFly=false;
 uint8_t psMode=0, flyTarget=0, flyDuty=0;
 int feedDirection=0, feedLastDirection=0;
+// R1 alternates: each ACCEPTED tap runs one direction for Cfg::FEED_PULSE_MS and
+// arms the next tap for the opposite direction. Rejected taps do not flip it.
+int feedNextDirection=1;
 uint8_t feedRunPercent=Cfg::FEED_PERCENT;
 uint16_t previousButtons=0, pendingEdges=0;
 uint16_t servoCurrent=Cfg::SERVO_CENTER_US, servoTarget=Cfg::SERVO_CENTER_US;
@@ -258,7 +261,9 @@ void tickRobot() {
     }
   }
   if((edges&BTN_R1) && !flySerial && launcherArmed) {
-    if(!startFeed(1,Cfg::FEED_PULSE_MS,false)) Serial.println("N20 R1 rejected: park/ramp/settle/cooldown");
+    const int direction=feedNextDirection;
+    if(startFeed(direction,Cfg::FEED_PULSE_MS,false)) feedNextDirection=-direction;
+    else Serial.println("N20 R1 rejected: park/ramp/settle/cooldown");
   }
   if(feedActive && (uint32_t(millis()-feedStarted)>=feedDuration || (feedNeedsFly && !flyReady()))) stopFeed();
   if(!feedActive && servoCurrent==servoTarget) tickDrive(); else stopDrive();
@@ -266,12 +271,13 @@ void tickRobot() {
 void printStatus() {
   Serial.printf("STATUS fw=%s hw=%d ps=%d mode=%02X ready=%d armed=%d buttons=%04X "
     "chassis=%d fly=%d duty=%u pretime=%d feed=%d TB3=%d servo=%d us=%u target=%u RX=%u turn=%d analog=%d "
-    "N20ms=%lu N20pct=%u drive=%d,%d,%d,%d fault=%s pwmhz=%lu,%lu,%lu N20pwm=%lu,%lu\n",
+    "N20ms=%lu N20pct=%u N20next=%d N20last=%d drive=%d,%d,%d,%d fault=%s pwmhz=%lu,%lu,%lu N20pwm=%lu,%lu\n",
     Cfg::VERSION,int(hardwareOK),int(pad.fresh(millis())),psMode,int(pad.armed),int(launcherArmed),pad.buttons,
     digitalRead(Cfg::CHASSIS_STBY),int(flyActive),unsigned(flyDuty),int(flyReady()),int(feedActive),
     digitalRead(Cfg::FEED_STBY),int(servoEnabled),unsigned(servoCurrent),unsigned(servoTarget),
     unsigned(pad.rightX),pad.turn,int(pad.analog),static_cast<unsigned long>(feedActive?feedDuration:Cfg::FEED_PULSE_MS),
-    unsigned(feedActive?feedRunPercent:Cfg::FEED_PERCENT),wheels[0].value,wheels[1].value,wheels[2].value,wheels[3].value,faultReason,
+    unsigned(feedActive?feedRunPercent:Cfg::FEED_PERCENT),feedNextDirection,feedLastDirection,
+    wheels[0].value,wheels[1].value,wheels[2].value,wheels[3].value,faultReason,
     static_cast<unsigned long>(pwmFrequency(16)),static_cast<unsigned long>(pwmFrequency(Cfg::FLY_EN)),
     static_cast<unsigned long>(pwmFrequency(Cfg::FEED_IN1)),
     static_cast<unsigned long>(ledcRead(Cfg::FEED_IN1)),static_cast<unsigned long>(ledcRead(Cfg::FEED_IN2)));
@@ -340,7 +346,7 @@ void setup() {
   if(result==ESP_ERR_INVALID_STATE) result=esp_task_wdt_reconfigure(&config);
   if(result!=ESP_OK || esp_task_wdt_add_user("integrated-loop",&watchdog)!=ESP_OK) { hardwareOK=false; strcpy(faultReason,"init_watchdog"); }
   Serial.printf("BOOT %s; NEW WIRING ONLY; release buttons and center right stick\n",Cfg::VERSION);
-  Serial.println("D-pad drive + right stick turn; hold R2 fly; tap R1 timed N20 (park first); servo absent; CIRCLE stop");
+  Serial.println("D-pad drive + right stick turn; hold R2 fly; R1 alternates 1750ms N20 direction each tap (park first); servo absent; CIRCLE stop");
   printStatus();
 }
 void loop() {

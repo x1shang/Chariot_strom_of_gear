@@ -55,7 +55,7 @@ try:
     send('STATUS')
     read_for(.15)
     state = statuses[-1] if statuses else {}
-    expected = {'fw': 'ChariotIntegrated-v3.3-JOG', 'hw': '1', 'ps': '1',
+    expected = {'fw': 'ChariotIntegrated-v3.4-R1ALT', 'hw': '1', 'ps': '1',
                 'ready': '1', 'armed': '1', 'buttons': '0000', 'turn': '0',
                 'fly': '0', 'feed': '0', 'drive': '0,0,0,0'}
     if not all(state.get(k) == v for k, v in expected.items()):

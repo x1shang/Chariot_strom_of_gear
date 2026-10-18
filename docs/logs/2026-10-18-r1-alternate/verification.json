@@ -1,0 +1,61 @@
+{
+  "recorded_at_local": "2026-10-18",
+  "port": "COM9",
+  "firmware_version": "ChariotIntegrated-v3.4-R1ALT",
+  "behavior": {
+    "R1_tap": "one direction for FEED_PULSE_MS (1750ms) at FEED_PERCENT (80%)",
+    "R1_next_tap": "opposite direction, same duration and duty",
+    "alternation_rule": "only an ACCEPTED tap flips the pending direction; rejected taps do not",
+    "state_persistence": "pending direction survives STOP/disarm",
+    "retained_gates": ["800ms cooldown", "300ms reverse guard", "wheelsIdle", "neutral stick", "servo settled", "feed enable readback"]
+  },
+  "config_delta": {
+    "VERSION": {"before": "ChariotIntegrated-v3.3-JOG", "after": "ChariotIntegrated-v3.4-R1ALT"},
+    "FEED_PULSE_MS": {"before": 150, "after": 1750},
+    "FEED_PERCENT": {"before": 30, "after": 80},
+    "FEED_JOG_MAX_MS": {"before": 3000, "after": 3000},
+    "STATUS": {"added": ["N20next", "N20last"]}
+  },
+  "duty_rationale": "bench sweep: 30%/50% no motion, 65% shudder, 75% turns unloaded, 80% drives the loaded mechanism for 3s",
+  "source_sha256": {
+    "firmware/robot/ChariotIntegrated/ChariotIntegrated.ino": "6fe088d7e7c16c28dcb16a5c7243ab32004a47d0a42ac95a6d0740e183d1c5ed",
+    "firmware/robot/ChariotIntegrated/DpadControl.h": "a380135160d8355e5e071a96afbc75a4b9269e9b07033624aac2de96e238d291",
+    "firmware/robot/ChariotIntegrated/DriveMath.h": "ede60a13a28492d823458e5f352ff1dadb5dc3f04745c5f4660913c58abccb59",
+    "firmware/robot/ChariotIntegrated/RobotConfig.h": "6acecd9fa644d4ddd4e5c650dce57d5ae4d116236abc991d16f1fb35872bce9e",
+    "tests/test_integrated_firmware.cpp": "6a9301b4460dbbc7465f6f06253c559126f6b222bf7d1fb6b6b3e7556eca39f3",
+    "host/jog_integrated_n20.py": "f6e62edca14347b4b8f4ccd1bc30fae5cbce24cad93b2992dfa8cb81868cb239"
+  },
+  "artifact_sha256": {
+    "ChariotIntegrated.ino.bin": "2e5776907fe7383afed3e1c3ff62965bada6244b85190b34c451bfa8a702d475"
+  },
+  "artifact_bytes": 289968,
+  "build": {
+    "tool": "tools/build-integrated.ps1",
+    "arduino_cli": "1.5.2-rc.1",
+    "esp32_core": "esp32:esp32@3.3.12",
+    "data_directory": "D:/Download/arduino/data",
+    "fqbn": "esp32:esp32:esp32",
+    "compile_exit": 0,
+    "sketch_bytes": 289823,
+    "static_bytes": 22592
+  },
+  "host_tests": {
+    "runner": "g++ -std=c++17 -Itests/integrated-stubs (MSVC cmd unavailable on this machine)",
+    "result": "822 checks passed",
+    "added_cases": "alternation, rejected-tap-no-flip, third tap returns to first direction, STATUS exposes pending direction, fixed-length 1750ms pulse"
+  },
+  "upload": {
+    "command": "arduino-cli upload -p COM9 --fqbn esp32:esp32:esp32 --input-dir <build>",
+    "written_bytes": 289968,
+    "verification": "Hash of data verified",
+    "exit": 0
+  },
+  "post_flash_status": "fw=ChariotIntegrated-v3.4-R1ALT hw=1 ps=1 armed=1 N20ms=1750 N20pct=80 N20next=1 N20last=0 feed=0 TB3=0 fault=none",
+  "not_verified": [
+    "real R1 button alternation and 1750ms duration by operator observation",
+    "FEED_POLARITY=1 against the actual mechanism direction",
+    "repeated loaded alternation: temperature, stall, mechanical end stops",
+    "TB3 VM end voltage and motor current"
+  ],
+  "outcome": "R1 alternating 1750ms/80% firmware built, flashed and telemetry-verified; physical R1 validation pending"
+}
