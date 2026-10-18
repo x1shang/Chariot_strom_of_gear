@@ -1,0 +1,11 @@
+{
+  "evidence_type": "Direct user reports; no instrument measurement",
+  "n20_unloaded": true,
+  "buck_display": "6V; not measured at TB3 VM",
+  "powered_50pct_150ms": "没有转动，也没有声音",
+  "powered_70pct_150ms": "没有转动，也没有声音",
+  "flywheel_direction": "User swapped each motor output lead pair; direction now correct",
+  "wiring": "TB3 STBY GPIO21; AIN1/2 GPIO25/26; original c23-d26 pulldown removed; GPIO22 disconnected; no servo",
+  "r1_default": "30%, 150ms; unchanged",
+  "n20_status": "Unresolved; next step actual TB3 supply and wiring inspection"
+}

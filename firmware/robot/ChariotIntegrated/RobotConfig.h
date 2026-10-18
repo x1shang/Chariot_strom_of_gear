@@ -2,7 +2,7 @@
 #include <stdint.h>
 
 namespace Cfg {
-constexpr char VERSION[] = "ChariotIntegrated-v3.2-STBY21";
+constexpr char VERSION[] = "ChariotIntegrated-v3.3-JOG";
 constexpr char CONTROL_BASELINE[] = "9a11db22ac06d6c2f64c0cb23fb420198a7165ef";
 constexpr uint8_t WHEEL_PINS[4][2] = {{16,17},{18,19},{23,32},{15,5}};
 constexpr int WHEEL_POLARITY[4] = {1,1,-1,-1};

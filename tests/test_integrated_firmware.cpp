@@ -185,5 +185,21 @@ int main() {
   failAttach=-1; setup(); neutral(); failHighReadPin=Cfg::FEED_STBY; frame(BTN_R1);
   CHECK(!hardwareOK && !feedActive && !strcmp(faultReason,"feed_enable")); motorIdle();
   failHighReadPin=-1;
+  // Per-command duty never changes R1 defaults; invalid inputs cannot energize.
+  setup(); neutral(); advance(Cfg::FEED_COOLDOWN_MS);
+  cmd("JOG 1 150 50");
+  CHECK(feedActive && feedRunPercent==50 && simulatedDuty[25]==128 && simulatedDuty[26]==0);
+  cmd("STATUS"); CHECK(Serial.output.find("N20ms=150 N20pct=50")!=std::string::npos);
+  advance(150); motorIdle(); advance(Cfg::FEED_COOLDOWN_MS);
+  cmd("JOG -1 100 70"); CHECK(feedActive && simulatedDuty[26]==179 && simulatedDuty[25]==0);
+  cmd("STOP"); motorIdle(); neutral(); advance(Cfg::FEED_COOLDOWN_MS);
+  const char *badJog[]={"JOG 1 100 0","JOG 1 100 101","JOG 1 501 50","JOG 0 100 50","JOG 1 100 50 1","JOG 1 100 50x","JOG 1 100 -1"};
+  for(auto s:badJog) { cmd(s); CHECK(!feedActive); motorIdle(); }
+  frame(BTN_R1); CHECK(feedActive && feedRunPercent==Cfg::FEED_PERCENT && simulatedDuty[25]==percentDuty(Cfg::FEED_PERCENT));
+  frame(); advance(150); motorIdle(); advance(Cfg::FEED_COOLDOWN_MS);
+  cmd("JOG 1 100"); CHECK(feedActive && feedRunPercent==Cfg::FEED_PERCENT); advance(100); motorIdle();
+  advance(Cfg::FEED_COOLDOWN_MS); frame(PAD_UP); cmd("JOG 1 100 50"); CHECK(!feedActive); frame();
+  advance(Cfg::FEED_COOLDOWN_MS); cmd("JOG 1 100 50"); CHECK(feedActive);
+  simulatedMillis+=150; tickRobot(); motorIdle(); CHECK(!pad.armed);
   printf("PASS: %d integrated firmware checks; no serial hardware or motors accessed\n",checks);
 }

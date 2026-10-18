@@ -26,6 +26,7 @@ bool flyActive=false, flySerial=false, flyTimedOut=false, feedActive=false, feed
 bool feedHasStopped=false, feedNeedsFly=false;
 uint8_t psMode=0, flyTarget=0, flyDuty=0;
 int feedDirection=0, feedLastDirection=0;
+uint8_t feedRunPercent=Cfg::FEED_PERCENT;
 uint16_t previousButtons=0, pendingEdges=0;
 uint16_t servoCurrent=Cfg::SERVO_CENTER_US, servoTarget=Cfg::SERVO_CENTER_US;
 uint32_t flyStarted=0, flyDuration=0, feedStarted=0, feedDuration=0, feedStoppedAt=0;
@@ -141,24 +142,24 @@ bool startFly(uint8_t percent,uint32_t duration,bool serialRun) {
   flyTarget=percentDuty(percent); flyDuration=duration; flyStarted=millis();
   flyDuty=0; flyActive=true; flySerial=serialRun; return true;
 }
-bool startFeed(int direction,uint32_t duration,bool jog) {
+bool startFeed(int direction,uint32_t duration,bool jog,uint8_t percent=Cfg::FEED_PERCENT) {
   const int actual=direction*Cfg::FEED_POLARITY;
   if(!hardwareOK || !launcherArmed || !pad.armed || !pad.fresh(millis()) ||
      !wheelsIdle() || (pad.buttons&DIRECTIONS) || pad.turn!=0 || !servoSettled() || feedActive ||
-     (direction!=1 && direction!=-1) || duration<1 || duration>Cfg::FEED_JOG_MAX_MS) return false;
+     (direction!=1 && direction!=-1) || duration<1 || duration>Cfg::FEED_JOG_MAX_MS || percent<1 || percent>100) return false;
   // R1 is independent of R2. During a running flywheel ramp, reject rather
   // than queue the request; a pulse begun with ready flywheels follows R2 stop.
   if(jog ? flyActive : (flyActive && !flyReady())) return false;
   if(feedHasStopped && (uint32_t(millis()-feedStoppedAt)<Cfg::FEED_COOLDOWN_MS ||
      (actual!=feedLastDirection && uint32_t(millis()-feedStoppedAt)<Cfg::FEED_REVERSE_GUARD_MS))) return false;
   if(!ledcWrite(Cfg::FEED_IN1,0) || !ledcWrite(Cfg::FEED_IN2,0)) { fault("feed clear"); return false; }
-  if(!ledcWrite(actual>0?Cfg::FEED_IN1:Cfg::FEED_IN2,percentDuty(Cfg::FEED_PERCENT))) {
+  if(!ledcWrite(actual>0?Cfg::FEED_IN1:Cfg::FEED_IN2,percentDuty(percent))) {
     fault("feed write"); return false;
   }
   if(pwmFrequency(actual>0?Cfg::FEED_IN1:Cfg::FEED_IN2)!=Cfg::DRIVE_HZ) {
     fault("feed frequency"); return false;
   }
-  feedDirection=actual; feedLastDirection=actual; feedDuration=duration; feedStarted=millis();
+  feedDirection=actual; feedLastDirection=actual; feedDuration=duration; feedStarted=millis(); feedRunPercent=percent;
   feedActive=true; feedJog=jog; feedNeedsFly=!jog && flyActive;
   digitalWrite(Cfg::FEED_STBY,HIGH); delayMicroseconds(2);
   if(digitalRead(Cfg::FEED_STBY)!=HIGH) { fault("feed enable"); return false; }
@@ -265,14 +266,15 @@ void tickRobot() {
 void printStatus() {
   Serial.printf("STATUS fw=%s hw=%d ps=%d mode=%02X ready=%d armed=%d buttons=%04X "
     "chassis=%d fly=%d duty=%u pretime=%d feed=%d TB3=%d servo=%d us=%u target=%u RX=%u turn=%d analog=%d "
-    "N20ms=%lu N20pct=%u drive=%d,%d,%d,%d fault=%s pwmhz=%lu,%lu,%lu\n",
+    "N20ms=%lu N20pct=%u drive=%d,%d,%d,%d fault=%s pwmhz=%lu,%lu,%lu N20pwm=%lu,%lu\n",
     Cfg::VERSION,int(hardwareOK),int(pad.fresh(millis())),psMode,int(pad.armed),int(launcherArmed),pad.buttons,
     digitalRead(Cfg::CHASSIS_STBY),int(flyActive),unsigned(flyDuty),int(flyReady()),int(feedActive),
     digitalRead(Cfg::FEED_STBY),int(servoEnabled),unsigned(servoCurrent),unsigned(servoTarget),
-    unsigned(pad.rightX),pad.turn,int(pad.analog),static_cast<unsigned long>(Cfg::FEED_PULSE_MS),
-    unsigned(Cfg::FEED_PERCENT),wheels[0].value,wheels[1].value,wheels[2].value,wheels[3].value,faultReason,
+    unsigned(pad.rightX),pad.turn,int(pad.analog),static_cast<unsigned long>(feedActive?feedDuration:Cfg::FEED_PULSE_MS),
+    unsigned(feedActive?feedRunPercent:Cfg::FEED_PERCENT),wheels[0].value,wheels[1].value,wheels[2].value,wheels[3].value,faultReason,
     static_cast<unsigned long>(pwmFrequency(16)),static_cast<unsigned long>(pwmFrequency(Cfg::FLY_EN)),
-    static_cast<unsigned long>(pwmFrequency(Cfg::FEED_IN1)));
+    static_cast<unsigned long>(pwmFrequency(Cfg::FEED_IN1)),
+    static_cast<unsigned long>(ledcRead(Cfg::FEED_IN1)),static_cast<unsigned long>(ledcRead(Cfg::FEED_IN2)));
 }
 uint8_t parseNumbers(const char *s,long *values,uint8_t maxCount) {
   uint8_t count=0;
@@ -286,7 +288,7 @@ uint8_t parseNumbers(const char *s,long *values,uint8_t maxCount) {
   return count;
 }
 void command() {
-  line[used]=0; bool ok=false; long args[2]={};
+  line[used]=0; bool ok=false; long args[3]={};
   if(overflow) { lockRobot(); Serial.println("ERR overflow; locked"); }
   else if(!used) { }
   else if(!strcmp(line,"STATUS")) printStatus();
@@ -306,10 +308,11 @@ void command() {
        safeNeutral() && startFly(uint8_t(args[0]),uint32_t(args[1]),true);
     Serial.println(ok?"OK timed flywheel test":"ERR FLY percent/ms/gate");
   } else if(!strncmp(line,"JOG ",4)) {
-    const uint8_t n=parseNumbers(line+4,args,2);
-    ok=n==2 && (args[0]==1 || args[0]==-1) && args[1]>=1 && args[1]<=long(Cfg::FEED_JOG_MAX_MS) &&
-       safeNeutral() && startFeed(int(args[0]),uint32_t(args[1]),true);
-    Serial.println(ok?"OK bounded N20 jog":"ERR JOG direction/ms/gate");
+    const uint8_t n=parseNumbers(line+4,args,3);
+    const long percent=n==2?Cfg::FEED_PERCENT:args[2];
+    ok=(n==2 || n==3) && (args[0]==1 || args[0]==-1) && args[1]>=1 && args[1]<=long(Cfg::FEED_JOG_MAX_MS) &&
+       percent>=1 && percent<=100 && safeNeutral() && startFeed(int(args[0]),uint32_t(args[1]),true,uint8_t(percent));
+    Serial.println(ok?"OK bounded N20 jog":"ERR JOG direction/ms/percent/gate");
   } else { lockRobot(); Serial.println("ERR unknown command; locked"); }
   used=0; overflow=false;
 }

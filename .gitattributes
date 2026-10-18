@@ -74,3 +74,5 @@ docs/logs/2026-10-18-integrated-r1/** -text
 docs/logs/2026-10-18-controller-response/** -text
 
 docs/logs/2026-10-18-stby21/** -text
+host/jog_integrated_n20.py -text
+docs/logs/2026-10-18-n20-jog-duty/** -text
