@@ -57,3 +57,18 @@
 # 归档的逐字节校验会失效（含 *.ps1 的 eol=crlf，会反过来把 LF 改成 CRLF）。
 # 因此对归档目录一律关闭文本转换：-text = 不碰任何行尾。
 docs/archive/** -text
+
+# Integrated firmware validation records bind exact source/log bytes with SHA-256.
+# Keep these bytes unchanged in Git so another checkout can verify those records.
+firmware/robot/ChariotIntegrated/** -text
+tests/integrated-stubs/** -text
+tests/test_integrated_firmware.cpp -text
+tests/run-integrated-tests.cmd -text
+host/verify_integrated_after_upload.py -text
+host/watch_controller_response.py -text
+tools/build-integrated.ps1 -text
+docs/reference/9a11db2/** -text
+docs/logs/2026-10-17-integrated-validation/** -text
+docs/logs/2026-10-17-integrated-v2-validation/** -text
+docs/logs/2026-10-18-integrated-r1/** -text
+docs/logs/2026-10-18-controller-response/** -text

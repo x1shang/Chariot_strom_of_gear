@@ -1,0 +1,10 @@
+{
+  "recorded_at": "2026-10-18T10:12:47.798107+08:00",
+  "evidence_type": "user observation, not instrument measurement",
+  "user_reply": "四轮都有响应，松开后停止",
+  "chassis_power_on_confirmed_by_user": true,
+  "wheels_raised_confirmed_by_user": true,
+  "flywheel_and_n20_power_off_confirmed_by_user": true,
+  "loaded_ground_driving_tested": false,
+  "flywheel_and_n20_motion_tested_this_round": false
+}

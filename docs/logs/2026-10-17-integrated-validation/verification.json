@@ -1,0 +1,32 @@
+{
+  "date": "2026-10-17",
+  "timezone": "Asia/Shanghai",
+  "version": "ChariotIntegrated-v1",
+  "repository_baseline": "19105dba29f1da45b91e0c2b75e0d9638c283437",
+  "fqbn": "esp32:esp32:esp32",
+  "arduino_esp32": "3.3.12",
+  "compile_exit": 0,
+  "program_bytes": 288847,
+  "global_bytes": 22520,
+  "host_checks": 334,
+  "baseline_dpad_tests": "passed",
+  "uploaded": false,
+  "serial_port_opened": false,
+  "motion_issued": false,
+  "hardware_acceptance": false,
+  "source_sha256": {
+    "firmware/robot/ChariotIntegrated/ChariotIntegrated.ino": "8132d0ea9dfb93af57a961d794662122baf67f9955adcafbe6bebebec3e62612",
+    "firmware/robot/ChariotIntegrated/DpadControl.h": "65a08ffb1f6fd14e9e51e3a0f34f840e50dfda4a72ea2039c5b8d00bf747559f",
+    "firmware/robot/ChariotIntegrated/DriveMath.h": "6e089b4245f24e664e19de4dc61254b54e5f29d82b72a7ced9d7c8bad582b9a4",
+    "firmware/robot/ChariotIntegrated/RobotConfig.h": "6117615560c3d339d62257bc0c57aa71063c2ccfc8316c0574d31522c54deb66",
+    "tests/test_integrated_firmware.cpp": "e0d2b18773489e1d8247630cbd3c30529e8d42fa0ccf1d36327e40196772c268",
+    "tests/integrated-stubs/Arduino.h": "cf5e2aef0f011af492c6595cb735728115d63ea6a23a07d41b60e49aaf4c2c13",
+    "tests/integrated-stubs/driver/gpio.h": "0f6cd58e42d8f0aaeef00e6fda8fe8f7d62fcf7cfd839802952dac269a14b03e",
+    "tests/integrated-stubs/esp_task_wdt.h": "23e228cbde07564135d026420be406ef265ebd44b13b4f23be49640357e104a0",
+    "tools/build-integrated.ps1": "b747cc2b421bd97db5674bcb8ab415bcb4514ac4fc43c4cb2878f9a46ac1e9b1"
+  },
+  "evidence_sha256": {
+    "compile.txt": "8899329655de3af30b989a52aff548ba9925a591f89e0780e721f8eb7941ff86",
+    "host-tests.txt": "bb42af88ea2d821711e19c27477abb50a1c9808882d5921c196ceae4acd39a3e"
+  }
+}

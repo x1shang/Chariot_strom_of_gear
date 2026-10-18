@@ -1,17 +1,22 @@
 ---
 
-> 2026-10-17 整合入口：[手柄驾驶 + R2 双飞轮](firmware/chassis/MecanumPS2Flywheel/README.md)。保留当前方向键驾驶，按住 R2 两飞轮 100%，松开撤销输出；圆圈停止全车。
 title: chariot — ESP32 投石小车
 type: project-index
 status: 原型 / 子系统控制状态见固件说明
 mcu: ESP32-D0WD-V3
 fqbn: esp32:esp32:esp32
 serial_port: COM4
-last_verified: 2026-10-17
-last_updated: 2026-10-17
+last_verified: 2026-10-18
+last_updated: 2026-10-18
 ---
 
 # chariot — ESP32 投石小车
+
+> **2026-10-18当前新接线入口：** [ChariotIntegrated-v3.1-R1完整版](firmware/robot/ChariotIntegrated/README.md)，方向键驾驶、右摇杆转向、R2双飞轮、停车点按R1定时N20。当前没有舵机，GPIO27不输出脉冲；R1默认150ms/30%，行程尚待标定。v3.1修复收到方向键后触发drive frequency误判的问题，改为直接查询LEDC定时器。681项主机检查通过；底盘有动力、四轮架空测试中，用户确认四轮均响应且松手停转；130/N20本轮未通电验证。[当前操作](docs/整合程序v3-R1对接器-2026-10-18.md) · [最新检查记录](docs/logs/2026-10-18-controller-response/README.md)。以下2026-10-17段落及v3.0USB记录保留历史状态。
+
+> 旧接线入口：[手柄驾驶 + R2 双飞轮](firmware/chassis/MecanumPS2Flywheel/README.md)仍使用六根飞轮信号，不能直接烧到已合并双EN的接线上。
+
+> **2026-10-17 整合交付（硬件尚未改接）：** 保留L298N双130，固定方向并共用GPIO14软启动；新增TB6612接送球N20、GPIO27接仰角舵机，留下GPIO21。已提供[从拔线到接线的傻瓜式说明](docs/发射装置改接线-从拔线到验收-2026-10-17.md)、[ChariotIntegrated-v2整合程序及手柄操作](firmware/robot/ChariotIntegrated/README.md)、[详细方案](docs/抛投扩展-舵机与N20逐线改接方案-2026-10-17.md)及[软件验证](docs/logs/2026-10-17-integrated-validation/README.md)。新接线只能用匹配的新程序；本次没有烧录或运行机构，电机电流、舵机实物及电源能力仍需核实。下文保留改线前的实测状态。
 
 一台"会跑的投石机"：**投掷机构**把球抛出去，**行驶底盘**负责开过去。另有一套让 Codex
 自己探测串口、编译、烧录、读串口的工具链。

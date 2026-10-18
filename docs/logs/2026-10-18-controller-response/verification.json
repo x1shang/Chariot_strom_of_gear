@@ -1,0 +1,243 @@
+{
+  "recorded_at": "2026-10-18T10:12:47.799373+08:00",
+  "version": "ChariotIntegrated-v3.1-R1",
+  "git_baseline": "9a11db22ac06d6c2f64c0cb23fb420198a7165ef",
+  "fqbn": "esp32:esp32:esp32",
+  "arduino_esp32": "3.3.12",
+  "port": "COM4",
+  "host_checks": 681,
+  "compile_exit": 0,
+  "upload_exit": 0,
+  "program_bytes": 289531,
+  "global_bytes": 22576,
+  "compiled_source_matches": true,
+  "drive_headers_match_remote_baseline": true,
+  "startup": {
+    "checked_at": "2026-10-18T10:06:57.216682",
+    "port": "COM4",
+    "version": "ChariotIntegrated-v3.1-R1",
+    "motor_power_off_confirmed_by_user": true,
+    "commands_sent": [
+      "STOP",
+      "STATUS"
+    ],
+    "idle_pass": true,
+    "controller_neutral_seen": true,
+    "status_count": 15,
+    "faults": [],
+    "last_status": {
+      "fw": "ChariotIntegrated-v3.1-R1",
+      "hw": "1",
+      "ps": "1",
+      "mode": "73",
+      "ready": "0",
+      "armed": "0",
+      "buttons": "0000",
+      "chassis": "0",
+      "fly": "0",
+      "duty": "0",
+      "pretime": "0",
+      "feed": "0",
+      "TB3": "0",
+      "servo": "0",
+      "us": "1500",
+      "target": "1500",
+      "RX": "128",
+      "turn": "0",
+      "analog": "1",
+      "N20ms": "150",
+      "N20pct": "30",
+      "drive": "0,0,0,0",
+      "fault": "none",
+      "pwmhz": "20000,5000,20000"
+    },
+    "physical_motion_tested": false
+  },
+  "signal_only": {
+    "started_at": "2026-10-18T10:07:13.132202+08:00",
+    "duration_s": 45,
+    "port": "COM4",
+    "chassis_power_state_confirmed_by_user": "off",
+    "wheels_raised_confirmed_by_user": true,
+    "host_commands_sent": [
+      "STATUS",
+      "STOP"
+    ],
+    "host_motion_commands_sent": false,
+    "reset_first": false,
+    "status_count": 406,
+    "input_sample_count": 27,
+    "drive_output_sample_count": 26,
+    "observed_button_values": [
+      "0000",
+      "0010",
+      "0020",
+      "0040",
+      "0080"
+    ],
+    "versions_seen": [
+      "ChariotIntegrated-v3.1-R1"
+    ],
+    "timer_frequencies_seen": [
+      "20000,5000,20000"
+    ],
+    "fault_reasons_seen": [
+      "none"
+    ],
+    "observed_turn_range": [
+      -255,
+      255
+    ],
+    "faults": [],
+    "last_status": {
+      "fw": "ChariotIntegrated-v3.1-R1",
+      "hw": "1",
+      "ps": "1",
+      "mode": "73",
+      "ready": "0",
+      "armed": "0",
+      "buttons": "0000",
+      "chassis": "0",
+      "fly": "0",
+      "duty": "0",
+      "pretime": "0",
+      "feed": "0",
+      "TB3": "0",
+      "servo": "0",
+      "us": "1500",
+      "target": "1500",
+      "RX": "128",
+      "turn": "0",
+      "analog": "1",
+      "N20ms": "150",
+      "N20pct": "30",
+      "drive": "0,0,0,0",
+      "fault": "none",
+      "pwmhz": "20000,5000,20000",
+      "elapsed_s": 45.051
+    },
+    "stopped_at_end": true,
+    "physical_wheel_motion_observation": "awaiting user report; telemetry alone is not motion evidence"
+  },
+  "powered_wheels": {
+    "started_at": "2026-10-18T10:08:55.329084+08:00",
+    "duration_s": 60,
+    "port": "COM4",
+    "chassis_power_state_confirmed_by_user": "on",
+    "wheels_raised_confirmed_by_user": true,
+    "host_commands_sent": [
+      "STATUS",
+      "STOP"
+    ],
+    "host_motion_commands_sent": false,
+    "reset_first": false,
+    "status_count": 541,
+    "input_sample_count": 94,
+    "drive_output_sample_count": 61,
+    "observed_button_values": [
+      "0000",
+      "0020",
+      "0040",
+      "0080",
+      "0100",
+      "0200"
+    ],
+    "versions_seen": [
+      "ChariotIntegrated-v3.1-R1"
+    ],
+    "timer_frequencies_seen": [
+      "20000,5000,20000"
+    ],
+    "fault_reasons_seen": [
+      "none"
+    ],
+    "observed_turn_range": [
+      0,
+      255
+    ],
+    "faults": [],
+    "last_status": {
+      "fw": "ChariotIntegrated-v3.1-R1",
+      "hw": "1",
+      "ps": "1",
+      "mode": "73",
+      "ready": "0",
+      "armed": "0",
+      "buttons": "0000",
+      "chassis": "0",
+      "fly": "0",
+      "duty": "0",
+      "pretime": "0",
+      "feed": "0",
+      "TB3": "0",
+      "servo": "0",
+      "us": "1500",
+      "target": "1500",
+      "RX": "128",
+      "turn": "0",
+      "analog": "1",
+      "N20ms": "150",
+      "N20pct": "30",
+      "drive": "0,0,0,0",
+      "fault": "none",
+      "pwmhz": "20000,5000,20000",
+      "elapsed_s": 60.053
+    },
+    "stopped_at_end": true,
+    "physical_wheel_motion_observation": "awaiting user report; telemetry alone is not motion evidence"
+  },
+  "physical_observation": {
+    "recorded_at": "2026-10-18T10:12:47.798107+08:00",
+    "evidence_type": "user observation, not instrument measurement",
+    "user_reply": "四轮都有响应，松开后停止",
+    "chassis_power_on_confirmed_by_user": true,
+    "wheels_raised_confirmed_by_user": true,
+    "flywheel_and_n20_power_off_confirmed_by_user": true,
+    "loaded_ground_driving_tested": false,
+    "flywheel_and_n20_motion_tested_this_round": false
+  },
+  "source_sha256": {
+    "firmware/robot/ChariotIntegrated/ChariotIntegrated.ino": "30ac497c9e1f5e45015d01128105cf493ad35d30e5d860e431c71c944ee9a897",
+    "firmware/robot/ChariotIntegrated/RobotConfig.h": "463bc3af2a2b31efbc589bbd6386249d3d33552c0728b140a70b9cc3096342a1",
+    "firmware/robot/ChariotIntegrated/DpadControl.h": "a380135160d8355e5e071a96afbc75a4b9269e9b07033624aac2de96e238d291",
+    "firmware/robot/ChariotIntegrated/DriveMath.h": "ede60a13a28492d823458e5f352ff1dadb5dc3f04745c5f4660913c58abccb59",
+    "tests/test_integrated_firmware.cpp": "7e86f58941b7eda4a999568c4e501f733d88f21540a8f1f2611b0e6bb173da3b",
+    "tests/run-integrated-tests.cmd": "e8800442cf268c327caa034065eb20a9dd63eceb1ab1836e2f7ec550205a8db6",
+    "host/verify_integrated_after_upload.py": "feec9f6e418658dcf9ab62482ef55915a3fcd28f1dc111127500f643266c9c97",
+    "host/watch_controller_response.py": "5e03e909832d737133f8926a44de7ae8278f585b2f39d626ec82481eb835b7b3",
+    "tools/build-integrated.ps1": "b747cc2b421bd97db5674bcb8ab415bcb4514ac4fc43c4cb2878f9a46ac1e9b1",
+    "tests/integrated-stubs/Arduino.h": "61897d01ced53beb3cad5364521c95fb408f8a261a1639a61762ab91a5b7ad3d",
+    "tests/integrated-stubs/esp32-hal-periman.h": "2585a70551262397d074342a7d572658f08c05b19b053638938e2499718f9a38",
+    "tests/integrated-stubs/esp_task_wdt.h": "23e228cbde07564135d026420be406ef265ebd44b13b4f23be49640357e104a0",
+    "tests/integrated-stubs/driver/gpio.h": "0f6cd58e42d8f0aaeef00e6fda8fe8f7d62fcf7cfd839802952dac269a14b03e",
+    "tests/integrated-stubs/driver/ledc.h": "6707adc7c5029d10b538a250ea8cb1412703376845bf4bb335f0e94c9f0182e0",
+    "tests/integrated-stubs/soc/soc_caps.h": "40062d8da39ee9deac0ddf0d506c0b8b2c3f0cdf9c4e3ab126f655db17c30a54"
+  },
+  "binary_sha256": {
+    "boot_app0.bin": "f94c5d786a7a8fab06ac5d10e33bf37711a6697636dc037559ea19cc410a17f0",
+    "boot_app0_flashed.bin": "f94c5d786a7a8fab06ac5d10e33bf37711a6697636dc037559ea19cc410a17f0",
+    "ChariotIntegrated.ino.bin": "4bea61b80d7c218a0aa86b0f3469307df6eff72034b7a2b779c09fe9cd7b7d2e",
+    "ChariotIntegrated.ino.bootloader.bin": "47bbbfca119fe87190f63a67af9d85adff6433bcf3812ec92a9b9c9416a53ad1",
+    "ChariotIntegrated.ino.bootloader_flashed.bin": "47bbbfca119fe87190f63a67af9d85adff6433bcf3812ec92a9b9c9416a53ad1",
+    "ChariotIntegrated.ino.merged.bin": "dd7e4bd2c184b7a40a1eb485f2db2e8bf66830ab10f6850d04e22d378a78f533",
+    "ChariotIntegrated.ino.partitions.bin": "148b959cbff1c38aa8e1d5c0ba9d612c54997b945e56a63f41223eef650653a1",
+    "ChariotIntegrated.ino.partitions_flashed.bin": "148b959cbff1c38aa8e1d5c0ba9d612c54997b945e56a63f41223eef650653a1",
+    "ChariotIntegrated.ino_flashed.bin": "4bea61b80d7c218a0aa86b0f3469307df6eff72034b7a2b779c09fe9cd7b7d2e"
+  },
+  "log_sha256": {
+    "compile.txt": "36a93698b4a13deb184fcca7f6924939c80f64016a0a3e4ede827a8ad7c93904",
+    "host-tests.txt": "e6be52fba5620177344653e9c3902a08803a8a3c24779007cf1a6cff73ed7c58",
+    "physical-observation.json": "be5e7b904e6d77567e8d3c858e22e08437293bc0e2209d32158d9c53b00a1086",
+    "upload.txt": "3440a8939eddd720fcd0abd76081d4586829440d71fbde2b28cbd6527a6628c1",
+    "after-fix-signal/controller-response.json": "e5428f02781a4db597d03a5cd27275ca8ec3eaeef693e3ccf932322f41f20457",
+    "after-fix-signal/controller-response.txt": "cb18cd1e223b3951b6690f83c770f400ac7aecb1ce4d3d0c56f7d23af7f20918",
+    "before-fix/controller-response.json": "3bcf2d90ee2f56a128f2217d9e801460b44b2d7de30b002134900d98a5856228",
+    "before-fix/controller-response.txt": "9505580e1cc02fe6ed53e5bc410ad33d8998f73a373bb79d1872c2c0e512cf1b",
+    "powered-wheels/controller-response.json": "f6405f07679a32fdf13789790d28b288036444f543222b3eedff385053166070",
+    "powered-wheels/controller-response.txt": "5f24853852c29f0d2a327030ea8050e0346a497f852b3577e9a16996c239078a",
+    "reset-diagnosis/controller-response.json": "7517a556347272979c43487fb45bfd977422546d06427dedbd1b76b5a6adae67",
+    "reset-diagnosis/controller-response.txt": "246fc898a1ed81464a7f590824c9fc9f0ea75ab79b8a60b6a873c6eed323f364",
+    "startup-v3.1/startup.json": "e0fa047ddbc0b3622e945e60c300c62596304e4e848eeb6a1df4dad2b64d45f0",
+    "startup-v3.1/startup.txt": "c6ea88a61da053fc49526ceb9973ca22c3d9515b789e5ee1eec9fd86bbb647d5"
+  }
+}

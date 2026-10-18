@@ -1,0 +1,39 @@
+{
+  "checked_at": "2026-10-18T09:53:52.420773",
+  "port": "COM4",
+  "version": "ChariotIntegrated-v3-R1",
+  "motor_power_off_confirmed_by_user": true,
+  "commands_sent": [
+    "STOP",
+    "STATUS"
+  ],
+  "idle_pass": true,
+  "controller_neutral_seen": true,
+  "status_count": 15,
+  "faults": [],
+  "last_status": {
+    "fw": "ChariotIntegrated-v3-R1",
+    "hw": "1",
+    "ps": "1",
+    "mode": "73",
+    "ready": "0",
+    "armed": "0",
+    "buttons": "0000",
+    "chassis": "0",
+    "fly": "0",
+    "duty": "0",
+    "pretime": "0",
+    "feed": "0",
+    "TB3": "0",
+    "servo": "0",
+    "us": "1500",
+    "target": "1500",
+    "RX": "128",
+    "turn": "0",
+    "analog": "1",
+    "N20ms": "150",
+    "N20pct": "30",
+    "drive": "0,0,0,0"
+  },
+  "physical_motion_tested": false
+}

@@ -1,0 +1,4 @@
+Sketch uses 288983 bytes (22%) of program storage space. Maximum is 1310720 bytes.
+Global variables use 22544 bytes (6%) of dynamic memory, leaving 305136 bytes for local variables. Maximum is 327680 bytes.
+BUILD_DIRECTORY=C:\Users\33920\AppData\Local\Temp\chariot_integrated_8a53e45f96e443b196fac9116bef0c70\build
+COMPILE_EXIT=0

@@ -1,0 +1,20 @@
+OK motors OFF; servo holds
+STATUS fw=ChariotIntegrated-v3.1-R1 hw=1 ps=1 mode=73 ready=0 armed=0 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0 fault=none pwmhz=20000,5000,20000
+STATUS fw=ChariotIntegrated-v3.1-R1 hw=1 ps=1 mode=73 ready=1 armed=1 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0 fault=none pwmhz=20000,5000,20000
+STATUS fw=ChariotIntegrated-v3.1-R1 hw=1 ps=1 mode=73 ready=1 armed=1 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0 fault=none pwmhz=20000,5000,20000
+STATUS fw=ChariotIntegrated-v3.1-R1 hw=1 ps=1 mode=73 ready=1 armed=1 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0 fault=none pwmhz=20000,5000,20000
+OK motors OFF; servo holds
+STATUS fw=ChariotIntegrated-v3.1-R1 hw=1 ps=1 mode=73 ready=1 armed=1 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0 fault=none pwmhz=20000,5000,20000
+STATUS fw=ChariotIntegrated-v3.1-R1 hw=1 ps=1 mode=73 ready=1 armed=1 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0 fault=none pwmhz=20000,5000,20000
+STATUS fw=ChariotIntegrated-v3.1-R1 hw=1 ps=1 mode=73 ready=1 armed=1 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0 fault=none pwmhz=20000,5000,20000
+OK motors OFF; servo holds
+STATUS fw=ChariotIntegrated-v3.1-R1 hw=1 ps=1 mode=73 ready=0 armed=0 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0 fault=none pwmhz=20000,5000,20000
+STATUS fw=ChariotIntegrated-v3.1-R1 hw=1 ps=1 mode=73 ready=1 armed=1 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0 fault=none pwmhz=20000,5000,20000
+STATUS fw=ChariotIntegrated-v3.1-R1 hw=1 ps=1 mode=73 ready=1 armed=1 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0 fault=none pwmhz=20000,5000,20000
+STATUS fw=ChariotIntegrated-v3.1-R1 hw=1 ps=1 mode=73 ready=1 armed=1 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0 fault=none pwmhz=20000,5000,20000
+OK motors OFF; servo holds
+STATUS fw=ChariotIntegrated-v3.1-R1 hw=1 ps=1 mode=73 ready=1 armed=1 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0 fault=none pwmhz=20000,5000,20000
+STATUS fw=ChariotIntegrated-v3.1-R1 hw=1 ps=1 mode=73 ready=1 armed=1 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0 fault=none pwmhz=20000,5000,20000
+STATUS fw=ChariotIntegrated-v3.1-R1 hw=1 ps=1 mode=73 ready=1 armed=1 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0 fault=none pwmhz=20000,5000,20000
+OK motors OFF; servo holds
+STATUS fw=ChariotIntegrated-v3.1-R1 hw=1 ps=1 mode=73 ready=0 armed=0 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0 fault=none pwmhz=20000,5000,20000

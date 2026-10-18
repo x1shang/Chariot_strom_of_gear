@@ -1,0 +1,7 @@
+**********************************************************************
+** Visual Studio 2026 Developer Command Prompt v18.9.2
+** Copyright (c) 2026 Microsoft Corporation
+**********************************************************************
+[vcvarsall.bat] Environment initialized for: 'x64'
+test_integrated_firmware.cpp
+PASS: 552 integrated firmware checks; no serial hardware or motors accessed

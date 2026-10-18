@@ -1,0 +1,96 @@
+0.158 ets Jul 29 2019 12:21:46
+0.164 rst:0x1 (POWERON_RESET),boot:0x17 (SPI_FAST_FLASH_BOOT)
+0.166 configsip: 0, SPIWP:0xee
+0.172 clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+0.174 mode:DIO, clock div:1
+0.177 load:0x3fff0030,len:4876
+0.178 ho 0 tail 12 room 4
+0.180 load:0x40078000,len:16532
+0.183 load:0x40080400,len:3500
+0.184 entry 0x400805b4
+0.334 E (42) task_wdt: esp_task_wdt_init(517): TWDT already initialized
+0.340 BOOT ChariotIntegrated-v3-R1; NEW WIRING ONLY; release buttons and center right stick
+0.348 D-pad drive + right stick turn; hold R2 fly; tap R1 timed N20 (park first); servo absent; CIRCLE stop
+0.367 STATUS fw=ChariotIntegrated-v3-R1 hw=1 ps=0 mode=00 ready=0 armed=0 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=0 N20ms=150 N20pct=30 drive=0,0,0,0
+0.386 STATUS fw=ChariotIntegrated-v3-R1 hw=1 ps=1 mode=73 ready=0 armed=0 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0
+0.408 STATUS fw=ChariotIntegrated-v3-R1 hw=1 ps=1 mode=73 ready=0 armed=0 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0
+0.513 STATUS fw=ChariotIntegrated-v3-R1 hw=1 ps=1 mode=73 ready=1 armed=1 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0
+0.694 STATUS fw=ChariotIntegrated-v3-R1 hw=1 ps=1 mode=73 ready=1 armed=1 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0
+0.873 STATUS fw=ChariotIntegrated-v3-R1 hw=1 ps=1 mode=73 ready=1 armed=1 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0
+0.988 STATUS fw=ChariotIntegrated-v3-R1 hw=1 ps=1 mode=73 ready=1 armed=1 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0
+1.097 STATUS fw=ChariotIntegrated-v3-R1 hw=1 ps=1 mode=73 ready=1 armed=1 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0
+1.211 STATUS fw=ChariotIntegrated-v3-R1 hw=1 ps=1 mode=73 ready=1 armed=1 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0
+1.324 STATUS fw=ChariotIntegrated-v3-R1 hw=1 ps=1 mode=73 ready=1 armed=1 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0
+1.433 STATUS fw=ChariotIntegrated-v3-R1 hw=1 ps=1 mode=73 ready=1 armed=1 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0
+1.542 STATUS fw=ChariotIntegrated-v3-R1 hw=1 ps=1 mode=73 ready=1 armed=1 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0
+1.649 STATUS fw=ChariotIntegrated-v3-R1 hw=1 ps=1 mode=73 ready=1 armed=1 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0
+1.764 STATUS fw=ChariotIntegrated-v3-R1 hw=1 ps=1 mode=73 ready=1 armed=1 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0
+1.872 STATUS fw=ChariotIntegrated-v3-R1 hw=1 ps=1 mode=73 ready=1 armed=1 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0
+1.986 STATUS fw=ChariotIntegrated-v3-R1 hw=1 ps=1 mode=73 ready=1 armed=1 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0
+2.102 STATUS fw=ChariotIntegrated-v3-R1 hw=1 ps=1 mode=73 ready=1 armed=1 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0
+2.210 STATUS fw=ChariotIntegrated-v3-R1 hw=1 ps=1 mode=73 ready=1 armed=1 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0
+2.391 STATUS fw=ChariotIntegrated-v3-R1 hw=1 ps=1 mode=73 ready=1 armed=1 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0
+2.497 STATUS fw=ChariotIntegrated-v3-R1 hw=1 ps=1 mode=73 ready=1 armed=1 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0
+2.678 STATUS fw=ChariotIntegrated-v3-R1 hw=1 ps=1 mode=73 ready=1 armed=1 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0
+2.857 STATUS fw=ChariotIntegrated-v3-R1 hw=1 ps=1 mode=73 ready=1 armed=1 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0
+3.046 STATUS fw=ChariotIntegrated-v3-R1 hw=1 ps=1 mode=73 ready=1 armed=1 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0
+3.159 STATUS fw=ChariotIntegrated-v3-R1 hw=1 ps=1 mode=73 ready=1 armed=1 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0
+3.341 STATUS fw=ChariotIntegrated-v3-R1 hw=1 ps=1 mode=73 ready=1 armed=1 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0
+3.450 STATUS fw=ChariotIntegrated-v3-R1 hw=1 ps=1 mode=73 ready=1 armed=1 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0
+3.556 STATUS fw=ChariotIntegrated-v3-R1 hw=1 ps=1 mode=73 ready=1 armed=1 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0
+3.664 STATUS fw=ChariotIntegrated-v3-R1 hw=1 ps=1 mode=73 ready=1 armed=1 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0
+3.775 STATUS fw=ChariotIntegrated-v3-R1 hw=1 ps=1 mode=73 ready=1 armed=1 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0
+3.888 STATUS fw=ChariotIntegrated-v3-R1 hw=1 ps=1 mode=73 ready=1 armed=1 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0
+3.993 STATUS fw=ChariotIntegrated-v3-R1 hw=1 ps=1 mode=73 ready=1 armed=1 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0
+4.110 STATUS fw=ChariotIntegrated-v3-R1 hw=1 ps=1 mode=73 ready=1 armed=1 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0
+4.216 STATUS fw=ChariotIntegrated-v3-R1 hw=1 ps=1 mode=73 ready=1 armed=1 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0
+4.334 STATUS fw=ChariotIntegrated-v3-R1 hw=1 ps=1 mode=73 ready=1 armed=1 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0
+4.439 STATUS fw=ChariotIntegrated-v3-R1 hw=1 ps=1 mode=73 ready=1 armed=1 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0
+4.546 STATUS fw=ChariotIntegrated-v3-R1 hw=1 ps=1 mode=73 ready=1 armed=1 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0
+4.653 STATUS fw=ChariotIntegrated-v3-R1 hw=1 ps=1 mode=73 ready=1 armed=1 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0
+4.762 STATUS fw=ChariotIntegrated-v3-R1 hw=1 ps=1 mode=73 ready=1 armed=1 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0
+4.946 STATUS fw=ChariotIntegrated-v3-R1 hw=1 ps=1 mode=73 ready=1 armed=1 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0
+5.059 STATUS fw=ChariotIntegrated-v3-R1 hw=1 ps=1 mode=73 ready=1 armed=1 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0
+5.248 STATUS fw=ChariotIntegrated-v3-R1 hw=1 ps=1 mode=73 ready=1 armed=1 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0
+5.355 STATUS fw=ChariotIntegrated-v3-R1 hw=1 ps=1 mode=73 ready=1 armed=1 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0
+5.470 STATUS fw=ChariotIntegrated-v3-R1 hw=1 ps=1 mode=73 ready=1 armed=1 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0
+5.578 STATUS fw=ChariotIntegrated-v3-R1 hw=1 ps=1 mode=73 ready=1 armed=1 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0
+5.760 STATUS fw=ChariotIntegrated-v3-R1 hw=1 ps=1 mode=73 ready=1 armed=1 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0
+5.874 STATUS fw=ChariotIntegrated-v3-R1 hw=1 ps=1 mode=73 ready=1 armed=1 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0
+5.982 STATUS fw=ChariotIntegrated-v3-R1 hw=1 ps=1 mode=73 ready=1 armed=1 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0
+6.083 STATUS fw=ChariotIntegrated-v3-R1 hw=1 ps=1 mode=73 ready=1 armed=1 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0
+6.265 STATUS fw=ChariotIntegrated-v3-R1 hw=1 ps=1 mode=73 ready=1 armed=1 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0
+6.370 STATUS fw=ChariotIntegrated-v3-R1 hw=1 ps=1 mode=73 ready=1 armed=1 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0
+6.552 STATUS fw=ChariotIntegrated-v3-R1 hw=1 ps=1 mode=73 ready=1 armed=1 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0
+6.668 STATUS fw=ChariotIntegrated-v3-R1 hw=1 ps=1 mode=73 ready=1 armed=1 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0
+6.781 STATUS fw=ChariotIntegrated-v3-R1 hw=1 ps=1 mode=73 ready=1 armed=1 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0
+6.888 STATUS fw=ChariotIntegrated-v3-R1 hw=1 ps=1 mode=73 ready=1 armed=1 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0
+6.995 STATUS fw=ChariotIntegrated-v3-R1 hw=1 ps=1 mode=73 ready=1 armed=1 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0
+7.184 STATUS fw=ChariotIntegrated-v3-R1 hw=1 ps=1 mode=73 ready=1 armed=1 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0
+7.290 STATUS fw=ChariotIntegrated-v3-R1 hw=1 ps=1 mode=73 ready=1 armed=1 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0
+7.397 STATUS fw=ChariotIntegrated-v3-R1 hw=1 ps=1 mode=73 ready=1 armed=1 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0
+7.504 STATUS fw=ChariotIntegrated-v3-R1 hw=1 ps=1 mode=73 ready=1 armed=1 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0
+7.619 STATUS fw=ChariotIntegrated-v3-R1 hw=1 ps=1 mode=73 ready=1 armed=1 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0
+7.724 STATUS fw=ChariotIntegrated-v3-R1 hw=1 ps=1 mode=73 ready=1 armed=1 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0
+7.914 STATUS fw=ChariotIntegrated-v3-R1 hw=1 ps=1 mode=73 ready=1 armed=1 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0
+8.022 STATUS fw=ChariotIntegrated-v3-R1 hw=1 ps=1 mode=73 ready=1 armed=1 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0
+8.210 STATUS fw=ChariotIntegrated-v3-R1 hw=1 ps=1 mode=73 ready=1 armed=1 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0
+8.317 STATUS fw=ChariotIntegrated-v3-R1 hw=1 ps=1 mode=73 ready=1 armed=1 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0
+8.426 STATUS fw=ChariotIntegrated-v3-R1 hw=1 ps=1 mode=73 ready=1 armed=1 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0
+8.534 STATUS fw=ChariotIntegrated-v3-R1 hw=1 ps=1 mode=73 ready=1 armed=1 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0
+8.643 STATUS fw=ChariotIntegrated-v3-R1 hw=1 ps=1 mode=73 ready=1 armed=1 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0
+8.752 STATUS fw=ChariotIntegrated-v3-R1 hw=1 ps=1 mode=73 ready=1 armed=1 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0
+8.861 STATUS fw=ChariotIntegrated-v3-R1 hw=1 ps=1 mode=73 ready=1 armed=1 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0
+8.966 STATUS fw=ChariotIntegrated-v3-R1 hw=1 ps=1 mode=73 ready=1 armed=1 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0
+9.075 STATUS fw=ChariotIntegrated-v3-R1 hw=1 ps=1 mode=73 ready=1 armed=1 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0
+9.176 STATUS fw=ChariotIntegrated-v3-R1 hw=1 ps=1 mode=73 ready=1 armed=1 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0
+9.284 STATUS fw=ChariotIntegrated-v3-R1 hw=1 ps=1 mode=73 ready=1 armed=1 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0
+9.393 STATUS fw=ChariotIntegrated-v3-R1 hw=1 ps=1 mode=73 ready=1 armed=1 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0
+9.501 STATUS fw=ChariotIntegrated-v3-R1 hw=1 ps=1 mode=73 ready=1 armed=1 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0
+9.610 STATUS fw=ChariotIntegrated-v3-R1 hw=1 ps=1 mode=73 ready=1 armed=1 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0
+9.718 STATUS fw=ChariotIntegrated-v3-R1 hw=1 ps=1 mode=73 ready=1 armed=1 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0
+9.826 STATUS fw=ChariotIntegrated-v3-R1 hw=1 ps=1 mode=73 ready=1 armed=1 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0
+10.010 STATUS fw=ChariotIntegrated-v3-R1 hw=1 ps=1 mode=73 ready=1 armed=1 buttons=0000 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0
+10.017 FAULT drive frequency; motor enables OFF; reset required
+10.023 OK motors OFF; servo holds
+10.042 STATUS fw=ChariotIntegrated-v3-R1 hw=0 ps=1 mode=73 ready=0 armed=0 buttons=0010 chassis=0 fly=0 duty=0 pretime=0 feed=0 TB3=0 servo=0 us=1500 target=1500 RX=128 turn=0 analog=1 N20ms=150 N20pct=30 drive=0,0,0,0

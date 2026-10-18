@@ -1,0 +1,34 @@
+{
+  "date": "2026-10-17",
+  "timezone": "Asia/Shanghai",
+  "version": "ChariotIntegrated-v2",
+  "repository_baseline": "9a11db22ac06d6c2f64c0cb23fb420198a7165ef",
+  "control_source": "firmware/chassis/MecanumPS2Flywheel",
+  "fqbn": "esp32:esp32:esp32",
+  "arduino_esp32": "3.3.12",
+  "compile_exit": 0,
+  "program_bytes": 289379,
+  "global_bytes": 22544,
+  "host_checks": 552,
+  "uploaded": false,
+  "serial_port_opened": false,
+  "motion_issued": false,
+  "hardware_acceptance": false,
+  "compiled_source_bytes_verified": true,
+  "remote_control_headers_byte_identical": true,
+  "source_sha256": {
+    "firmware/robot/ChariotIntegrated/ChariotIntegrated.ino": "cd0cd74f6094fa3ff80a011c6fd7a14d61b4e62ffdd58e71c0d3832d18906217",
+    "firmware/robot/ChariotIntegrated/RobotConfig.h": "b23f08e449443fece8030a8eaf70b3f728e8614cc0f0ad20a92207ae755c55cd",
+    "firmware/robot/ChariotIntegrated/DpadControl.h": "a380135160d8355e5e071a96afbc75a4b9269e9b07033624aac2de96e238d291",
+    "firmware/robot/ChariotIntegrated/DriveMath.h": "ede60a13a28492d823458e5f352ff1dadb5dc3f04745c5f4660913c58abccb59",
+    "tests/test_integrated_firmware.cpp": "473d5f07e2f504fa0249ae1bc67711649607db7264e3b43a9ed4e83b20dcad33",
+    "tests/integrated-stubs/Arduino.h": "02507a3c50e3d1f388915af6e5668b5e5faf7aaacf99dcf8843b419be20829e9",
+    "tests/integrated-stubs/driver/gpio.h": "0f6cd58e42d8f0aaeef00e6fda8fe8f7d62fcf7cfd839802952dac269a14b03e",
+    "tests/integrated-stubs/esp_task_wdt.h": "23e228cbde07564135d026420be406ef265ebd44b13b4f23be49640357e104a0",
+    "tools/build-integrated.ps1": "b747cc2b421bd97db5674bcb8ab415bcb4514ac4fc43c4cb2878f9a46ac1e9b1"
+  },
+  "evidence_sha256": {
+    "compile.txt": "4fd265eca4e67c234878e3e9e9e8e277fdbcea82f90d17c7d2751e4f3a2612b1",
+    "host-tests.txt": "c06fe6016baca3b7fc01d4aebab140d5c9452f785341427c47703013f64cd8f7"
+  }
+}
