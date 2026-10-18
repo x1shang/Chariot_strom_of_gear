@@ -15,6 +15,7 @@
 
 constexpr uint16_t BTN_SELECT=1u<<0, BTN_START=1u<<3, BTN_L1=1u<<10;
 constexpr uint16_t BTN_R1=1u<<11, BTN_CROSS=1u<<14, BTN_SQUARE=1u<<15;
+constexpr uint16_t BTN_TRIANGLE=1u<<12; // Right cluster; unused before v3.6.
 constexpr uint16_t BTN_R2=1u<<9;
 constexpr uint16_t DIRECTIONS=PAD_UP|PAD_DOWN|PAD_LEFT|PAD_RIGHT;
 
@@ -30,6 +31,10 @@ int feedDirection=0, feedLastDirection=0;
 // duration and arms the next tap for the opposite direction. Rejected taps do
 // not flip it. The two directions deliberately differ in length.
 int feedNextDirection=1;
+// Nonzero while a hold-to-run mechanism run owns the N20 (value = requested
+// direction). Cleared by stopFeed. feedHoldTimeout latches after the hold cap.
+int feedHoldRequest=0;
+bool feedHoldTimeout=false;
 uint32_t feedPulseMs(int direction) {
   return direction>0?Cfg::FEED_PULSE_MS_FORWARD:Cfg::FEED_PULSE_MS_REVERSE;
 }
@@ -78,6 +83,7 @@ void stopFeed() {
   zeroOutput(Cfg::FEED_IN2,feedAttached[1]);
   if(feedActive) { feedStoppedAt=millis(); feedHasStopped=true; }
   feedActive=false; feedJog=false; feedNeedsFly=false; feedDirection=0;
+  feedHoldRequest=0;
 }
 void stopFly() {
   stopFeed();
@@ -269,19 +275,39 @@ void tickRobot() {
     if(startFeed(direction,feedPulseMs(direction),false)) feedNextDirection=-direction;
     else Serial.println("N20 R1 rejected: park/ramp/settle/cooldown");
   }
-  if(feedActive && (uint32_t(millis()-feedStarted)>=feedDuration || (feedNeedsFly && !flyReady()))) stopFeed();
+  // Hold-to-run mechanism: TRIANGLE raises while held, CROSS lowers while held.
+  // Releasing the button stops the pulse immediately; reaching the hold cap stops
+  // it and latches until both buttons are released. If both are held, TRIANGLE
+  // wins. Hold runs never touch the R1 alternation slot.
+  const int holdWant=(keys&BTN_TRIANGLE)?Cfg::FEED_UP_DIRECTION:((keys&BTN_CROSS)?-Cfg::FEED_UP_DIRECTION:0);
+  if(!holdWant) feedHoldTimeout=false;
+  if(feedHoldRequest && holdWant!=feedHoldRequest) stopFeed();
+  if(!feedActive && !feedHoldRequest && !feedHoldTimeout && holdWant && launcherArmed && !flySerial &&
+     (edges&(BTN_TRIANGLE|BTN_CROSS))) {
+    if(startFeed(holdWant,Cfg::FEED_HOLD_MAX_MS,false)) feedHoldRequest=holdWant;
+    else Serial.println("N20 hold rejected: park/ramp/settle/cooldown");
+  }
+  if(feedActive) {
+    const bool expired=uint32_t(millis()-feedStarted)>=feedDuration;
+    const bool flyLost=feedNeedsFly && !flyReady();
+    if(expired || flyLost) {
+      const bool wasHold=feedHoldRequest!=0;
+      stopFeed();
+      if(wasHold && expired) { feedHoldTimeout=true; Serial.println("N20 hold CAP; release both buttons"); }
+    }
+  }
   if(!feedActive && servoCurrent==servoTarget) tickDrive(); else stopDrive();
 }
 void printStatus() {
   Serial.printf("STATUS fw=%s hw=%d ps=%d mode=%02X ready=%d armed=%d buttons=%04X "
     "chassis=%d fly=%d duty=%u pretime=%d feed=%d TB3=%d servo=%d us=%u target=%u RX=%u turn=%d analog=%d "
-    "N20ms=%lu N20pct=%u N20next=%d N20last=%d drive=%d,%d,%d,%d fault=%s pwmhz=%lu,%lu,%lu N20pwm=%lu,%lu\n",
+    "N20ms=%lu N20pct=%u N20next=%d N20last=%d N20hold=%d drive=%d,%d,%d,%d fault=%s pwmhz=%lu,%lu,%lu N20pwm=%lu,%lu\n",
     Cfg::VERSION,int(hardwareOK),int(pad.fresh(millis())),psMode,int(pad.armed),int(launcherArmed),pad.buttons,
     digitalRead(Cfg::CHASSIS_STBY),int(flyActive),unsigned(flyDuty),int(flyReady()),int(feedActive),
     digitalRead(Cfg::FEED_STBY),int(servoEnabled),unsigned(servoCurrent),unsigned(servoTarget),
     unsigned(pad.rightX),pad.turn,int(pad.analog),
     static_cast<unsigned long>(feedActive?feedDuration:feedPulseMs(feedNextDirection)),
-    unsigned(feedActive?feedRunPercent:Cfg::FEED_PERCENT),feedNextDirection,feedLastDirection,
+    unsigned(feedActive?feedRunPercent:Cfg::FEED_PERCENT),feedNextDirection,feedLastDirection,feedHoldRequest,
     wheels[0].value,wheels[1].value,wheels[2].value,wheels[3].value,faultReason,
     static_cast<unsigned long>(pwmFrequency(16)),static_cast<unsigned long>(pwmFrequency(Cfg::FLY_EN)),
     static_cast<unsigned long>(pwmFrequency(Cfg::FEED_IN1)),
@@ -351,7 +377,7 @@ void setup() {
   if(result==ESP_ERR_INVALID_STATE) result=esp_task_wdt_reconfigure(&config);
   if(result!=ESP_OK || esp_task_wdt_add_user("integrated-loop",&watchdog)!=ESP_OK) { hardwareOK=false; strcpy(faultReason,"init_watchdog"); }
   Serial.printf("BOOT %s; NEW WIRING ONLY; release buttons and center right stick\n",Cfg::VERSION);
-  Serial.println("D-pad drive + right stick turn; hold R2 fly; R1 alternates N20 direction, first tap 3000ms then 1750ms (park first); servo absent; CIRCLE stop");
+  Serial.println("D-pad drive + right stick turn; hold R2 fly; hold TRIANGLE rise / CROSS lower N20 (release stops); tap R1 alternates 3000/1750ms; servo absent; CIRCLE stop");
   printStatus();
 }
 void loop() {

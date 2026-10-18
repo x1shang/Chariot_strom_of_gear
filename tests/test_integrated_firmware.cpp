@@ -113,7 +113,25 @@ int main() {
   cmd("SERVO 1600"); CHECK(servoCurrent==1500 && servoTarget==1500);
   frame(BTN_SELECT); advance(100,BTN_SELECT); CHECK(!servoEnabled); frame();
   advance(1200,BTN_L1); CHECK(servoCurrent==1500 && frequencyByPin[27]==0); frame();
-  frame(BTN_CROSS); CHECK(!feedActive); frame(); // Old CROSS control is removed.
+  // CROSS no longer starts a timed pulse: it is now the hold-to-lower control.
+  frame(BTN_CROSS);
+  CHECK(feedActive && feedHoldRequest==-Cfg::FEED_UP_DIRECTION && feedActivePin()==Cfg::FEED_IN2);
+  frame(); CHECK(!feedActive); motorIdle(); // Releasing the button stops it immediately.
+  // Hold-to-run mechanism: TRIANGLE rises, CROSS lowers, release stops, cap latches.
+  arm(); advance(Cfg::FEED_COOLDOWN_MS);
+  const int alternationBeforeHold=feedNextDirection;
+  frame(BTN_TRIANGLE);
+  CHECK(feedActive && feedHoldRequest==Cfg::FEED_UP_DIRECTION && feedActivePin()==Cfg::FEED_IN1);
+  advance(Cfg::FEED_HOLD_MAX_MS-100,BTN_TRIANGLE); CHECK(feedActive); // Still under the cap.
+  frame(); CHECK(!feedActive && !feedHoldTimeout && feedNextDirection==alternationBeforeHold);
+  motorIdle(); // Hold runs must not consume the R1 alternation slot.
+  advance(Cfg::FEED_COOLDOWN_MS); frame(BTN_TRIANGLE); CHECK(feedActive);
+  advance(Cfg::FEED_HOLD_MAX_MS+100,BTN_TRIANGLE); // Held past the cap.
+  CHECK(!feedActive && feedHoldTimeout); motorIdle();
+  advance(Cfg::FEED_COOLDOWN_MS,BTN_TRIANGLE); CHECK(!feedActive); // Latched while held.
+  frame(); CHECK(!feedHoldTimeout); // Releasing clears the latch.
+  advance(Cfg::FEED_COOLDOWN_MS); frame(BTN_TRIANGLE); CHECK(feedActive); // Re-press works.
+  frame(); CHECK(!feedActive); motorIdle();
   // R1 is a single timed pulse with R2 released, not a deadman or a queued move.
   advance(Cfg::FEED_COOLDOWN_MS); frame(BTN_R1);
   CHECK(feedActive && !flyActive && !feedNeedsFly && !feedJog && simulatedPins[Cfg::FEED_STBY]==1);

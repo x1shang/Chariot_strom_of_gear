@@ -1,0 +1,71 @@
+{
+  "recorded_at_local": "2026-10-18",
+  "port": "COM9",
+  "firmware_version": "ChariotIntegrated-v3.6-HOLDUD",
+  "flashed": true,
+  "requirement": "hold TRIANGLE (right cluster) = rotate the mechanism upward; hold CROSS = rotate downward",
+  "clarification": "The initial concern was wrong: TRIANGLE is not the D-pad up key. D-pad up/down/left/right are bits 4/5/6/7 (left cluster, chassis driving); TRIANGLE is bit 12 and CROSS bit 14 on the right cluster, so both were free for the mechanism",
+  "keymap": {
+    "PAD_UP|PAD_DOWN|PAD_LEFT|PAD_RIGHT": {"bits": "4,6,7,5", "use": "chassis driving (unchanged)"},
+    "PAD_CIRCLE": {"bit": 13, "use": "emergency stop (unchanged)"},
+    "BTN_TRIANGLE": {"bit": 12, "use": "NEW hold to rise"},
+    "BTN_CROSS": {"bit": 14, "use": "NEW hold to lower"},
+    "BTN_R1": {"bit": 11, "use": "alternating timed tap 3000/1750ms (unchanged)"},
+    "BTN_R2": {"bit": 9, "use": "flywheel deadman (unchanged)"}
+  },
+  "behavior": {
+    "hold_triangle": "N20 runs up direction at 80% while held; release stops immediately",
+    "hold_cross": "N20 runs down direction at 80% while held; release stops immediately",
+    "both_held": "TRIANGLE wins",
+    "safety_cap": "FEED_HOLD_MAX_MS=3000; reaching it stops and latches until both buttons are released",
+    "alternation": "hold runs never consume or flip the R1 pending direction",
+    "start_condition": "key edge plus the existing gates (parked, neutral, 800ms cooldown, no fly ramp, enable readback)"
+  },
+  "config_delta": {
+    "VERSION": {"before": "ChariotIntegrated-v3.5-R1LONG", "after": "ChariotIntegrated-v3.6-HOLDUD"},
+    "FEED_UP_DIRECTION": {"before": "n/a", "after": 1},
+    "FEED_HOLD_MAX_MS": {"before": "n/a", "after": 3000},
+    "FEED_PULSE_MS_FORWARD": {"before": 3000, "after": 3000},
+    "FEED_PULSE_MS_REVERSE": {"before": 1750, "after": 1750},
+    "FEED_PERCENT": {"before": 80, "after": 80},
+    "STATUS": {"added": ["N20hold"]}
+  },
+  "source_sha256": {
+    "firmware/robot/ChariotIntegrated/ChariotIntegrated.ino": "4b3cd6bbc6fc178bd1f8e0996c3c80f2a5feb66f270f842443e56e626c63fd67",
+    "firmware/robot/ChariotIntegrated/DpadControl.h": "a380135160d8355e5e071a96afbc75a4b9269e9b07033624aac2de96e238d291",
+    "firmware/robot/ChariotIntegrated/DriveMath.h": "ede60a13a28492d823458e5f352ff1dadb5dc3f04745c5f4660913c58abccb59",
+    "firmware/robot/ChariotIntegrated/RobotConfig.h": "e37ae001bd1b1cb887b9988d69787d1d020d4e0822590296846e33c8c7974d38",
+    "tests/test_integrated_firmware.cpp": "c0c5e764ac2ee102d88f5c21fee3c9d6566979362bdc0eaac652f797c708018f",
+    "host/jog_integrated_n20.py": "e014bbe15028d7728265981c77af3fa83029b67362c26327cbea761928f2de0e"
+  },
+  "artifact_sha256": {
+    "ChariotIntegrated.ino.bin": "e31b9d84a983c16370beaddad177dc8b5bd5c8579f5045c865db74e9747505c1"
+  },
+  "build": {
+    "tool": "tools/build-integrated.ps1",
+    "arduino_cli": "1.5.2-rc.1",
+    "esp32_core": "esp32:esp32@3.3.12",
+    "compile_exit": 0,
+    "sketch_bytes": 290151,
+    "static_bytes": 22600
+  },
+  "host_tests": {
+    "runner": "g++ -std=c++17 -Itests/integrated-stubs",
+    "result": "867 checks passed",
+    "added_cases": "TRIANGLE rise on FEED_IN1, CROSS lower on FEED_IN2, still running under the cap, release stops immediately, alternation slot untouched, cap latch, no retrigger while held, release clears latch, re-press works"
+  },
+  "upload": {
+    "command": "arduino-cli upload -p COM9 --fqbn esp32:esp32:esp32 --input-dir <build>",
+    "verification": "Hash of data verified",
+    "exit": 0
+  },
+  "post_flash_status": "fw=ChariotIntegrated-v3.6-HOLDUD hw=1 ps=1 armed=1 N20ms=3000 N20pct=80 N20next=1 N20last=0 N20hold=0 feed=0 TB3=0 fault=none",
+  "rollback_note": "If TRIANGLE and CROSS turn out to be swapped physically, set FEED_UP_DIRECTION=-1 instead of changing FEED_POLARITY",
+  "not_verified": [
+    "real button hold directions (up/down) by operator observation",
+    "whether 3000ms covers a full travel",
+    "mechanical end stop: no current limit or limit switch, 80% keeps driving until release or cap",
+    "TB3 VM voltage and motor current"
+  ],
+  "outcome": "hold-to-run firmware built, host-verified (867), flashed and telemetry-verified; physical button check pending"
+}

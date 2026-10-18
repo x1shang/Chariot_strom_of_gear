@@ -2,7 +2,7 @@
 #include <stdint.h>
 
 namespace Cfg {
-constexpr char VERSION[] = "ChariotIntegrated-v3.5-R1LONG";
+constexpr char VERSION[] = "ChariotIntegrated-v3.6-HOLDUD";
 constexpr char CONTROL_BASELINE[] = "9a11db22ac06d6c2f64c0cb23fb420198a7165ef";
 constexpr uint8_t WHEEL_PINS[4][2] = {{16,17},{18,19},{23,32},{15,5}};
 constexpr int WHEEL_POLARITY[4] = {1,1,-1,-1};
@@ -28,6 +28,14 @@ constexpr uint32_t FEED_PULSE_MS_FORWARD=3000; // raw tap direction +1
 constexpr uint32_t FEED_PULSE_MS_REVERSE=1750; // raw tap direction -1
 // FEED_JOG_MAX_MS bounds a serial JOG, including the 3000ms direction above.
 constexpr uint32_t FEED_JOG_MAX_MS=3000;
+// Hold-to-run mechanism control: TRIANGLE (PS2 right cluster, bit 12, previously
+// unused) raises while held and CROSS lowers while held. The left D-pad keeps
+// driving the chassis, so there is no conflict. FEED_UP_DIRECTION picks which
+// raw direction is "up": +1 is the direction the R1 alternation starts with.
+constexpr int FEED_UP_DIRECTION=1;
+// Hard cap on one continuous hold. One full travel is believed to take about 3s;
+// a hold that reaches this stops and latches until both buttons are released.
+constexpr uint32_t FEED_HOLD_MAX_MS=3000;
 constexpr uint32_t FEED_COOLDOWN_MS=800, FEED_REVERSE_GUARD_MS=300;
 // Initial narrow commissioning range. Not a measured platform angle.
 constexpr uint16_t SERVO_MIN_US=1400, SERVO_CENTER_US=1500, SERVO_MAX_US=1600;
@@ -41,6 +49,8 @@ static_assert(FEED_PULSE_MS_FORWARD>0 && FEED_PULSE_MS_FORWARD<=FEED_JOG_MAX_MS 
               FEED_PULSE_MS_FORWARD!=FEED_PULSE_MS_REVERSE, "Feed time");
 static_assert(SERVO_MIN_US>=500 && SERVO_MIN_US<=SERVO_CENTER_US &&
               SERVO_CENTER_US<=SERVO_MAX_US && SERVO_MAX_US<=2500, "Servo range");
+static_assert(FEED_UP_DIRECTION==1 || FEED_UP_DIRECTION==-1, "Up direction");
+static_assert(FEED_HOLD_MAX_MS>0 && FEED_HOLD_MAX_MS<=FEED_JOG_MAX_MS, "Hold time");
 static_assert(FEED_POLARITY==1 || FEED_POLARITY==-1, "Feeder polarity");
 static_assert(SERVO_DIRECTION==1 || SERVO_DIRECTION==-1, "Servo polarity");
 }
